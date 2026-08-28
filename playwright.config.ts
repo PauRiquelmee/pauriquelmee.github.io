@@ -29,7 +29,7 @@ export default defineConfig({
   webServer: externalBaseUrl
     ? undefined
     : {
-        command: "npm run serve:out",
+        command: "npm run preview:pages",
         url: localBaseUrl,
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,
