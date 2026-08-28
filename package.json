@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/paula-riquelme-portfolio next build",
     "postbuild": "node scripts/postbuild.mjs",
-    "start": "serve out -l 4173",
-    "serve:out": "serve out -l 4173",
+    "start": "node scripts/serve-out.mjs",
+    "serve:out": "node scripts/serve-out.mjs",
+    "preview:pages": "npm run build:pages && npm run serve:out",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
