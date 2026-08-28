@@ -16,7 +16,11 @@ export default function Hero() {
       </div>
       <div className="hero-content">
         <p className="hero-location">Concepción, Chile</p>
-        <h1 id="hero-title">{profile.headline}</h1>
+        <h1 id="hero-title" aria-label={profile.headline}>
+          <span aria-hidden="true">I design products,</span>
+          <span aria-hidden="true">bring them to market,</span>
+          <span aria-hidden="true">and can build them too.</span>
+        </h1>
         <m.div
           className="hero-rule"
           aria-hidden="true"
