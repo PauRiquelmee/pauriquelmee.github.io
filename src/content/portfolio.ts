@@ -18,6 +18,8 @@ export type Project = {
   image: string;
   imageAlt: string;
   imageCaption: string;
+  imageWidth: number;
+  imageHeight: number;
   outcomes: string[];
   metrics: Metric[];
   previewStatus: "blocked" | "unavailable";
@@ -100,6 +102,8 @@ export const projects: Project[] = [
     imageAlt:
       "Woku website showing its customer-feedback proposition and an audio feedback interface.",
     imageCaption: "Current Woku website, captured in English in August 2026.",
+    imageWidth: 1600,
+    imageHeight: 900,
     outcomes: [
       "Leads the product from discovery and workflow design through frontend implementation and launch.",
       "Translates customer needs into rapid feedback capture, NPS and forms, AI-assisted analysis, alerts, and WhatsApp and API integrations.",
@@ -124,6 +128,8 @@ export const projects: Project[] = [
       "El Mercurio Innovation feature announcing Inpla's Puerto Coronel customer, with Diego Orrego, Paula Riquelme, and José Zúñiga.",
     imageCaption:
       "El Mercurio Innovation coverage of Inpla's first customer, Puerto Coronel.",
+    imageWidth: 1088,
+    imageHeight: 720,
     outcomes: [
       "Won Puerto Coronel as the first customer before a product existed by selling the vision alone.",
       "Co-created the product, user experience, brand, and positioning.",
