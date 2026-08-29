@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-29T00:20:00Z",
+  "title": "Design System: Paula Riquelme Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Deep Launch Indigo",
+        "canonical": "#4338a8",
+        "tonalRamp": ["oklch(15% 0.172 280.6)", "oklch(25% 0.172 280.6)", "oklch(38% 0.172 280.6)", "oklch(50% 0.172 280.6)", "oklch(62% 0.172 280.6)", "oklch(74% 0.172 280.6)", "oklch(86% 0.172 280.6)", "oklch(95% 0.172 280.6)"]
+      },
+      "primary-light": {
+        "role": "primary",
+        "displayName": "Soft Signal Indigo",
+        "canonical": "#a5b5fc",
+        "tonalRamp": ["oklch(15% 0.103 274.1)", "oklch(25% 0.103 274.1)", "oklch(38% 0.103 274.1)", "oklch(50% 0.103 274.1)", "oklch(62% 0.103 274.1)", "oklch(74% 0.103 274.1)", "oklch(86% 0.103 274.1)", "oklch(95% 0.103 274.1)"]
+      },
+      "primary-dark": {
+        "role": "primary",
+        "displayName": "Midnight Indigo",
+        "canonical": "#292263",
+        "tonalRamp": ["oklch(15% 0.110 282.5)", "oklch(25% 0.110 282.5)", "oklch(38% 0.110 282.5)", "oklch(50% 0.110 282.5)", "oklch(62% 0.110 282.5)", "oklch(74% 0.110 282.5)", "oklch(86% 0.110 282.5)", "oklch(95% 0.110 282.5)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Dossier Paper",
+        "canonical": "#f3f0e8",
+        "tonalRamp": ["oklch(15% 0.011 89.7)", "oklch(25% 0.011 89.7)", "oklch(38% 0.011 89.7)", "oklch(50% 0.011 89.7)", "oklch(62% 0.011 89.7)", "oklch(74% 0.011 89.7)", "oklch(86% 0.011 89.7)", "oklch(95% 0.011 89.7)"]
+      },
+      "paper-bright": {
+        "role": "neutral",
+        "displayName": "Proof Sheet",
+        "canonical": "#fbfaf6",
+        "tonalRamp": ["oklch(15% 0.005 95.1)", "oklch(25% 0.005 95.1)", "oklch(38% 0.005 95.1)", "oklch(50% 0.005 95.1)", "oklch(62% 0.005 95.1)", "oklch(74% 0.005 95.1)", "oklch(86% 0.005 95.1)", "oklch(95% 0.005 95.1)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Near-Black Ink",
+        "canonical": "#11110f",
+        "tonalRamp": ["oklch(15% 0.004 106.8)", "oklch(25% 0.004 106.8)", "oklch(38% 0.004 106.8)", "oklch(50% 0.004 106.8)", "oklch(62% 0.004 106.8)", "oklch(74% 0.004 106.8)", "oklch(86% 0.004 106.8)", "oklch(95% 0.004 106.8)"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Graphite",
+        "canonical": "#66645e",
+        "tonalRamp": ["oklch(15% 0.010 91.6)", "oklch(25% 0.010 91.6)", "oklch(38% 0.010 91.6)", "oklch(50% 0.010 91.6)", "oklch(62% 0.010 91.6)", "oklch(74% 0.010 91.6)", "oklch(86% 0.010 91.6)", "oklch(95% 0.010 91.6)"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Ruled Taupe",
+        "canonical": "#b8b4aa",
+        "tonalRamp": ["oklch(15% 0.015 88.7)", "oklch(25% 0.015 88.7)", "oklch(38% 0.015 88.7)", "oklch(50% 0.015 88.7)", "oklch(62% 0.015 88.7)", "oklch(74% 0.015 88.7)", "oklch(86% 0.015 88.7)", "oklch(95% 0.015 88.7)"]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Dark Rule",
+        "canonical": "#383832",
+        "tonalRamp": ["oklch(15% 0.010 106.9)", "oklch(25% 0.010 106.9)", "oklch(38% 0.010 106.9)", "oklch(50% 0.010 106.9)", "oklch(62% 0.010 106.9)", "oklch(74% 0.010 106.9)", "oklch(86% 0.010 106.9)", "oklch(95% 0.010 106.9)"]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Clean White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(62% 0 0)", "oklch(74% 0 0)", "oklch(86% 0 0)", "oklch(95% 0 0)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Oversized hero and contact statements." },
+      "headline": { "displayName": "Headline", "purpose": "Major section headings." },
+      "project-title": { "displayName": "Project Title", "purpose": "Selected-work names and proof-sheet anchors." },
+      "title": { "displayName": "Title", "purpose": "Experience, education, skill, and press-introduction headings." },
+      "body": { "displayName": "Body", "purpose": "Summaries, descriptions, outcomes, and long-form evidence." },
+      "label": { "displayName": "Label", "purpose": "Roles, locations, sources, captions, and ledger metadata." },
+      "action": { "displayName": "Action", "purpose": "Buttons and compact action links." }
+    },
+    "shadows": [
+      { "name": "dialog-sheet", "value": "0 1.5rem 4rem rgb(17 17 15 / 28%)", "purpose": "Large detached project preview sheet." },
+      { "name": "dialog-sheet-compact", "value": "0 1rem 2.5rem rgb(17 17 15 / 28%)", "purpose": "Project preview sheet below the mobile breakpoint." },
+      { "name": "mobile-drawer", "value": "-1.25rem 0 3rem rgb(17 17 15 / 24%)", "purpose": "Right-edge mobile navigation drawer." }
+    ],
+    "motion": [
+      { "name": "ease-structural", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Shared easing for structural entry motion." },
+      { "name": "state-fast", "value": "150ms ease", "purpose": "Button color and two-pixel lift transitions." },
+      { "name": "backdrop-fade", "value": "180ms ease", "purpose": "Dialog backdrop opacity." },
+      { "name": "hero-rule", "value": "500ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Scale the hero rule from the left edge." },
+      { "name": "project-media-reveal", "value": "460ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveal project media from 55 percent opacity and 24 pixels below." },
+      { "name": "preview-dialog-enter", "value": "240ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Move the project proof sheet upward by 16 pixels." },
+      { "name": "mobile-navigation-enter", "value": "280ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Slide the drawer 32 pixels from the right while fading from 55 percent opacity." },
+      { "name": "reduced-motion", "value": "0.01ms transitions and no spatial initial state", "purpose": "Honor the user preference while preserving immediate state feedback." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "68rem" },
+      { "name": "mobile", "value": "48rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Deep-indigo action for the highest-priority path.",
+      "html": "<a class=\"ds-button-primary\" href=\"#\">View selected work</a>",
+      "css": ".ds-button-primary { display: inline-flex; min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #4338a8; border-radius: 12px; align-items: center; justify-content: center; background: #4338a8; color: white; font: 600 0.82rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; transition: background-color 150ms ease, transform 150ms ease; } .ds-button-primary:hover { border-color: #11110f; background: #11110f; transform: translateY(-2px); } .ds-button-primary:active { transform: translateY(0); } .ds-button-primary:focus-visible { outline: 3px solid #a5b5fc; outline-offset: 4px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent ruled action for a clear but subordinate path.",
+      "html": "<a class=\"ds-button-secondary\" href=\"#\">Get in touch</a>",
+      "css": ".ds-button-secondary { display: inline-flex; min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #11110f; border-radius: 12px; align-items: center; justify-content: center; background: transparent; color: #11110f; font: 600 0.82rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; transition: background-color 150ms ease, transform 150ms ease; } .ds-button-secondary:hover { border-color: #4338a8; background: #4338a8; color: white; transform: translateY(-2px); } .ds-button-secondary:active { transform: translateY(0); } .ds-button-secondary:focus-visible { outline: 3px solid #a5b5fc; outline-offset: 4px; }"
+    },
+    {
+      "name": "Ruled Masthead",
+      "kind": "nav",
+      "description": "Sticky paper masthead with the square PR mark, compact section links, and a rounded contact action.",
+      "html": "<header class=\"ds-masthead\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-mark\">PR</span><span>Paula Riquelme</span></a><nav class=\"ds-nav\"><a href=\"#\">Selected work</a><a class=\"ds-nav-contact\" href=\"#\">Contact</a></nav></header>",
+      "css": ".ds-masthead { display: flex; min-height: 4.5rem; padding: 0 1.5rem; border-bottom: 1px solid #11110f; align-items: center; justify-content: space-between; background: rgb(243 240 232 / 94%); color: #11110f; } .ds-brand { display: inline-flex; gap: 0.7rem; align-items: center; color: inherit; font: 700 1.05rem/1 'Arial Narrow', sans-serif; text-decoration: none; text-transform: uppercase; } .ds-mark { display: grid; width: 2rem; height: 2rem; background: #11110f; color: #fbfaf6; place-items: center; } .ds-nav { display: flex; gap: 2rem; align-items: center; font: 600 0.79rem/1 Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav a:hover { color: #4338a8; } .ds-nav-contact { padding: 0.6rem 0.9rem; border-radius: 12px; background: #11110f; color: #fbfaf6 !important; } .ds-nav-contact:hover { background: #4338a8; color: white !important; }"
+    },
+    {
+      "name": "Role Register",
+      "kind": "custom",
+      "description": "Three-role professional register, vertical on desktop and horizontal at compact widths.",
+      "html": "<div class=\"ds-role-register\"><span>Product Lead</span><span>Product Designer</span><span>Frontend Developer</span></div>",
+      "css": ".ds-role-register { display: grid; grid-template-columns: repeat(3, 1fr); width: 6.25rem; padding: 0.2rem 0.9rem 2rem 0; border-right: 1px solid #b8b4aa; color: #66645e; font: 600 0.7rem/1.5 Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; } .ds-role-register span { display: flex; min-height: 8.25rem; border-left: 1px solid #b8b4aa; align-items: center; justify-content: flex-end; writing-mode: vertical-rl; transform: rotate(180deg); } .ds-role-register span:first-child { border-left: 0; }"
+    },
+    {
+      "name": "Proof Ledger",
+      "kind": "custom",
+      "description": "Three-cell definition list that turns claims into first-scan evidence.",
+      "html": "<dl class=\"ds-proof-ledger\"><div><dd>50+</dd><dt>customers</dt></div><div><dd>3</dd><dt>countries</dt></div><div><dd>USD 70K</dd><dt>funding</dt></div></dl>",
+      "css": ".ds-proof-ledger { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #11110f; border-bottom: 1px solid #11110f; background: #f3f0e8; color: #11110f; } .ds-proof-ledger div { padding: 1rem 1.4rem 1.1rem; border-right: 1px solid #b8b4aa; } .ds-proof-ledger div:last-child { border-right: 0; } .ds-proof-ledger dd { margin: 0; font: 700 clamp(2.7rem, 4vw, 4.5rem)/0.85 'Arial Narrow', sans-serif; letter-spacing: -0.04em; text-transform: uppercase; } .ds-proof-ledger dt { margin-top: 0.55rem; color: #66645e; font: 400 0.72rem/1.5 Arial, sans-serif; letter-spacing: 0.09em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Project Proof Sheet",
+      "kind": "card",
+      "description": "Square project dossier with factual media, outcomes, and a ruled metric strip.",
+      "html": "<article class=\"ds-project-card\"><h3>Woku</h3><p>AI-powered customer-feedback platform</p><div class=\"ds-project-media\">Factual local WebP</div><dl><div><dt>customers</dt><dd>50+</dd></div><div><dt>countries</dt><dd>3</dd></div><div><dt>funding</dt><dd>USD 70K</dd></div></dl></article>",
+      "css": ".ds-project-card { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; color: #11110f; } .ds-project-card h3 { margin: 0; font: 700 clamp(3.5rem, 7vw, 7rem)/0.82 'Arial Narrow', sans-serif; letter-spacing: -0.04em; text-transform: uppercase; } .ds-project-card p { color: #66645e; } .ds-project-media { display: grid; margin: 2rem 0; border: 1px solid #11110f; background: #292263; color: white; aspect-ratio: 16 / 10; place-items: center; } .ds-project-card dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #b8b4aa; border-bottom: 1px solid #b8b4aa; } .ds-project-card dl div { padding: 1rem; border-right: 1px solid #b8b4aa; } .ds-project-card dl div:last-child { border-right: 0; } .ds-project-card dt { color: #66645e; font: 400 0.67rem/1.5 Arial, sans-serif; text-transform: uppercase; } .ds-project-card dd { margin: 0.3rem 0 0; font: 700 2rem/1 'Arial Narrow', sans-serif; white-space: nowrap; }"
+    },
+    {
+      "name": "Project Preview Sheet",
+      "kind": "custom",
+      "description": "Detached proof sheet opened by explicit action, with screenshot fallback and an external path.",
+      "html": "<div class=\"ds-preview-stage\"><section class=\"ds-preview-sheet\"><header><h3>Woku live preview</h3><button aria-label=\"Close\">×</button></header><div class=\"ds-preview-media\">Factual screenshot fallback</div><a href=\"#\">Open website</a></section></div>",
+      "css": ".ds-preview-stage { padding: 2rem; background: rgb(17 17 15 / 78%); } .ds-preview-sheet { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; box-shadow: 0 1.5rem 4rem rgb(17 17 15 / 28%); color: #11110f; } .ds-preview-sheet header { display: flex; align-items: flex-start; justify-content: space-between; } .ds-preview-sheet h3 { margin: 0; font: 700 3rem/0.9 'Arial Narrow', sans-serif; text-transform: uppercase; } .ds-preview-sheet button { width: 2.9rem; height: 2.9rem; border: 1px solid #11110f; border-radius: 12px; background: transparent; } .ds-preview-media { display: grid; min-height: 18rem; margin: 2rem 0 1rem; border: 1px solid #11110f; background: #11110f; color: #fbfaf6; place-items: center; } .ds-preview-sheet a { color: inherit; font: 700 0.78rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-transform: uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Product Launch Dossier",
+    "overview": "The system feels like a product launch dossier built from field evidence, not a centered personal-brand homepage. Warm paper, near-black ink, compressed display typography, thin rules, and square geometry create a factual editorial surface with a clear point of view.\n\nDeep indigo marks decisive actions and high-confidence evidence. Factual project and publication imagery, structured outcomes, and visible metrics make product leadership, design, go-to-market work, and frontend delivery read as one connected practice.\n\nDensity stays deliberate. Oversized type and the asymmetric role register establish identity, while ledgers and indices make the record easy to scan. Depth appears only when an overlay detaches from the document plane, and purposeful motion reinforces structure while respecting reduced-motion preferences.",
+    "keyCharacteristics": [
+      "Evidence before biography.",
+      "Compressed display type against calm body copy.",
+      "Square, ruled paper geometry with softly rounded actions and one deep indigo accent.",
+      "A vertical desktop role register that becomes horizontal responsively.",
+      "Factual imagery and motion that confirms structure, never decorates."
+    ],
+    "rules": [
+      { "name": "The Evidence Before Biography Rule", "body": "Lead with observable work, outcomes, and artifacts before relying on professional labels.", "section": "overview" },
+      { "name": "The One Indigo Rule", "body": "Use deep indigo for decisive actions, selected evidence, and major closing surfaces; its rarity carries authority.", "section": "colors" },
+      { "name": "The Factual Color Rule", "body": "Project media may be toned or cropped, but never recolored into decorative or invented imagery.", "section": "colors" },
+      { "name": "The Compression Rule", "body": "Barlow Condensed carries every oversized claim and index title; body copy never imitates it through tracking or all caps.", "section": "typography" },
+      { "name": "The Responsive Register Rule", "body": "Preserve hierarchy and reading order when vertical desktop labels become horizontal; do not preserve desktop novelty at the cost of mobile comprehension.", "section": "layout" },
+      { "name": "The Detached Sheet Rule", "body": "Shadows appear only when an overlay leaves the page plane; inline panels stay flat and use borders or contrast instead.", "section": "elevation" },
+      { "name": "The Square Proof Rule", "body": "Document surfaces, media crops, and overlays keep square corners; actions alone may soften to 12px for clearer affordance.", "section": "shapes" },
+      { "name": "The Motion With Purpose Rule", "body": "Animate rule growth, evidence reveal, and overlay entry only; reduced motion removes spatial starts and preserves immediate feedback.", "section": "components" }
+    ],
+    "dos": [
+      "Do use verified local WebP imagery and retain enough publication context for the evidence to remain honest.",
+      "Do pair one filled deep-indigo primary action with a ruled secondary action.",
+      "Do reserve Barlow Condensed 700 for oversized statements, headings, project names, and dialog titles.",
+      "Do preserve semantic reading order before applying grid offsets, vertical writing, or responsive rearrangement.",
+      "Do use thin rules, background contrast, and type scale to separate inline content."
+    ],
+    "donts": [
+      "Don't recenter the first impression into a generic personal-brand cover.",
+      "Don't add portraits, stock imagery, generic AI imagery, decorative gradients, glass cards, pills, or rounded card systems.",
+      "Don't use shadows on inline cards, ledgers, sections, or media.",
+      "Don't animate for ornament or leave spatial motion active when the user prefers reduced motion.",
+      "Don't invent metrics, customers, testimonials, benchmarks, or project visuals."
+    ]
+  }
+}

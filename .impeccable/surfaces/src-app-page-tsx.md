@@ -29,9 +29,9 @@ related_targets: []
 | Headline | Condensed grotesk, dominant multi-line scale, nearly full content width | Semantic HTML and self-hosted font |
 | Primary actions | One filled indigo action and one ruled secondary action | Base UI Button rendered as anchors |
 | Evidence ledger | Three equal cells with large values and compact factual labels | Semantic definition list and CSS grid |
-| Selected work | Two large, unequal proof-sheet compositions with factual media and visible actions | Semantic articles, optimized local WebP, Base UI Dialog |
-| Project preview | Explicitly opened overlay, lazy iframe where allowed, persistent screenshot and external fallback | Base UI Dialog, Motion, iframe |
+| Selected work | Two equal-width proof-sheet cards with distinct paper tones, factual media, ruled metrics, outcomes, and visible actions | Semantic articles, optimized local WebP, Base UI Dialog |
+| Project preview | Explicitly opened overlay; current project data uses local screenshot fallbacks and external links, while the component retains unused lazy-iframe support | Base UI Dialog, Motion, local WebP |
 | Experience | Dense index with role, company, dates, responsibilities, outcomes, and metrics | Semantic articles and CSS grid |
 | Recognition and press | Underlined titles, factual publication media, visible external links | Semantic anchors and optimized local WebP |
 | Contact close | Oversized direct prompt, mailto, LinkedIn, projects, English resume | Semantic HTML and Base UI Button rendered as anchors |
-| Motion | One opening sequence, project media reveal, short overlay transition | Motion LazyMotion and `m` |
+| Motion | Hero-rule growth, first-view project-media reveal, preview-sheet translation, and mobile drawer slide/fade, all suppressed spatially under reduced motion | Motion LazyMotion, `m`, `useReducedMotion`, and CSS media query |
