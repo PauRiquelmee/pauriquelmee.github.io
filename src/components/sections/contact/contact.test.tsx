@@ -11,7 +11,7 @@ describe("Contact", () => {
         name: "Have a difficult product problem to solve? Let's talk.",
       }),
     ).toBeVisible();
-    expect(screen.getByRole("link", { name: "Email Paula Riquelme" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "paula.riq.esco@gmail.com" })).toHaveAttribute(
       "href",
       "mailto:paula.riq.esco@gmail.com",
     );

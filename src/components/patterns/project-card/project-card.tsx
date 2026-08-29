@@ -57,7 +57,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           href={project.href}
           target="_blank"
           rel="noreferrer noopener"
-          aria-label={`Open ${project.name} website`}
+          aria-label={`Open website for ${project.name}`}
         >
           Open website
           <ExternalLink aria-hidden="true" size={17} strokeWidth={1.7} />

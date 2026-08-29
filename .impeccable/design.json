@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T00:20:00Z",
+  "generatedAt": "2026-08-29T00:29:00Z",
   "title": "Design System: Paula Riquelme Portfolio",
   "extensions": {
     "colorMeta": {
@@ -84,7 +84,7 @@
       { "name": "state-fast", "value": "150ms ease", "purpose": "Button color and two-pixel lift transitions." },
       { "name": "backdrop-fade", "value": "180ms ease", "purpose": "Dialog backdrop opacity." },
       { "name": "hero-rule", "value": "500ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Scale the hero rule from the left edge." },
-      { "name": "project-media-reveal", "value": "460ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveal project media from 55 percent opacity and 24 pixels below." },
+      { "name": "project-media-reveal", "value": "460ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveal project media from 24 pixels below without reducing evidence contrast." },
       { "name": "preview-dialog-enter", "value": "240ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Move the project proof sheet upward by 16 pixels." },
       { "name": "mobile-navigation-enter", "value": "280ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Slide the drawer 32 pixels from the right while fading from 55 percent opacity." },
       { "name": "reduced-motion", "value": "0.01ms transitions and no spatial initial state", "purpose": "Honor the user preference while preserving immediate state feedback." }

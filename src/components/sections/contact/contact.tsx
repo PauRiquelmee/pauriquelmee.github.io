@@ -14,7 +14,7 @@ export default function Contact() {
         <h2 id="contact-title">
           {"Have a difficult product problem to solve? Let's talk."}
         </h2>
-        <Button render={<a href={emailLink.href} aria-label={emailLink.ariaLabel} />}>
+        <Button render={<a href={emailLink.href} />}>
           paula.riq.esco@gmail.com
         </Button>
       </div>

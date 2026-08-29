@@ -11,7 +11,7 @@ describe("ProjectCard", () => {
     expect(screen.getByText("CEO & Co-founder / Product Lead")).toBeVisible();
     expect(screen.getByText("50+")).toBeVisible();
     expect(screen.getByAltText(/Woku website showing/i)).toBeVisible();
-    expect(screen.getByRole("link", { name: "Open Woku website" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Open website for Woku" })).toHaveAttribute(
       "rel",
       "noreferrer noopener",
     );

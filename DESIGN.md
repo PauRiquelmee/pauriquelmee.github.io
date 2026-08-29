@@ -212,7 +212,7 @@ Evidence ledgers are semantic definition lists. Large condensed values sit above
 
 Selected work uses equal-width, square proof sheets with large project names, factual local WebP imagery, a ruled metric strip, outcome lists, and visible preview and external actions. Woku uses the brighter proof-sheet surface while the adjacent card remains on warm paper.
 
-Project imagery is slightly desaturated and contrasted. It scales to 1.025 on card hover and reveals once from 55 percent opacity and 24px below over 460ms.
+Project imagery is slightly desaturated and contrasted. It scales to 1.025 on card hover and reveals once from 24px below over 460ms without reducing evidence contrast.
 
 ### Dialogs
 
