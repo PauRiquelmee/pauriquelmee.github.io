@@ -81,7 +81,7 @@ export const contactLinks: LinkItem[] = [
   },
   {
     label: "Inpla",
-    href: "https://inpla.dev",
+    href: "https://inpla.ai/en/",
     external: true,
     ariaLabel: "Open Inpla in a new tab",
   },
@@ -89,6 +89,11 @@ export const contactLinks: LinkItem[] = [
     label: "English resume",
     href: "/documents/paula-riquelme-resume-en.pdf",
     ariaLabel: "Download Paula Riquelme's English resume as a PDF",
+  },
+  {
+    label: "llms.txt",
+    href: "/llms.txt",
+    ariaLabel: "Read the portfolio llms.txt file",
   },
 ];
 
@@ -122,14 +127,14 @@ export const projects: Project[] = [
     name: "Inpla",
     role: "Co-founder & Brand Artisan, Product Design",
     description: "Platform for chatting with company data",
-    href: "https://inpla.dev",
-    image: "/media/inpla-project.webp",
+    href: "https://inpla.ai/en/",
+    image: "/media/inpla-website.webp",
     imageAlt:
-      "El Mercurio Innovation feature announcing Inpla's Puerto Coronel customer, with Diego Orrego, Paula Riquelme, and José Zúñiga.",
+      "Inpla product interface showing an AI conversation beside a monthly revenue dashboard.",
     imageCaption:
-      "El Mercurio Innovation coverage of Inpla's first customer, Puerto Coronel.",
-    imageWidth: 1088,
-    imageHeight: 720,
+      "Official Inpla product interface from inpla.ai, accessed in August 2026.",
+    imageWidth: 1600,
+    imageHeight: 1370,
     outcomes: [
       "Won Puerto Coronel as the first customer before a product existed by selling the vision alone.",
       "Co-created the product, user experience, brand, and positioning.",
@@ -139,9 +144,9 @@ export const projects: Project[] = [
       { value: "01", label: "first customer: Puerto Coronel" },
       { value: "Pre-product", label: "commercial validation" },
     ],
-    previewStatus: "unavailable",
+    previewStatus: "blocked",
     previewMessage:
-      "Inpla's domain is currently unavailable, so an embedded live preview cannot be loaded. The supplied publication evidence remains visible and the original website link is preserved.",
+      "Inpla prevents third-party embedding through X-Frame-Options. The official product image remains available here, and the live website opens in a new tab.",
   },
 ];
 
@@ -165,7 +170,7 @@ export const experience: ExperienceItem[] = [
     company: "Inpla",
     dates: "May 2025 - January 2026",
     location: "Chile",
-    href: "https://inpla.dev",
+    href: "https://inpla.ai/en/",
     responsibilities: [
       "Won the first customer, Puerto Coronel, before a product existed by selling the vision alone.",
       "Co-created the product, user experience, brand, and positioning.",

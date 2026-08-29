@@ -56,7 +56,7 @@ typography:
     lineHeight: 1
     letterSpacing: "0.055em"
 rounded:
-  action: "12px"
+  square: "0"
 spacing:
   page-gutter: "clamp(1.25rem, 4vw, 4.5rem)"
   section-space: "clamp(5rem, 10vw, 9rem)"
@@ -65,7 +65,7 @@ components:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-accent}"
     typography: "{typography.action}"
-    rounded: "{rounded.action}"
+    rounded: "{rounded.square}"
     padding: "0.76rem 1.05rem"
     height: "2.9rem"
   button-primary-hover:
@@ -75,7 +75,7 @@ components:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
     typography: "{typography.action}"
-    rounded: "{rounded.action}"
+    rounded: "{rounded.square}"
     padding: "0.76rem 1.05rem"
     height: "2.9rem"
   button-secondary-hover:
@@ -84,7 +84,7 @@ components:
   button-quiet:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
-    rounded: "{rounded.action}"
+    rounded: "{rounded.square}"
     padding: "0.7rem"
     height: "2.9rem"
     width: "2.9rem"
@@ -106,7 +106,7 @@ Density stays deliberate. Oversized type and the asymmetric role register establ
 
 - Evidence before biography.
 - Compressed display type against calm body copy.
-- Square, ruled paper geometry with softly rounded actions and one deep indigo accent.
+- Square, ruled paper geometry with square actions and one deep indigo accent.
 - A vertical desktop role register that becomes horizontal responsively.
 - Factual imagery and motion that confirms structure, never decorates.
 
@@ -178,21 +178,23 @@ Only the project preview and mobile navigation overlays receive soft shadows. Th
 
 ## Shapes
 
-The document system is deliberately square. Cards, media crops, navigation surfaces, proof ledgers, and dialogs use zero corner radius, while interactive actions use a restrained 12px radius. One-pixel rules provide most structural separation.
+The document system is deliberately square. Cards, media crops, navigation surfaces, proof ledgers, dialogs, and interactive actions use zero corner radius. One-pixel rules provide most structural separation.
 
 The PR monogram is a square ink tile. Project media uses a 16:10 rectangular crop, while publication imagery preserves enough source context to remain factual. Avoid pills, soft cards, ornamental circles, and rounded containers.
 
-**The Square Proof Rule.** Document surfaces, media crops, and overlays keep square corners; actions alone may soften to 12px for clearer affordance.
+The favicon uses a single white P on a deep-indigo square so it remains legible at browser-tab size. The masthead keeps the fuller black PR monogram.
+
+**The Square Proof Rule.** Document surfaces, media crops, overlays, and actions keep square corners; affordance comes from contrast, rules, labels, and interaction states.
 
 ## Components
 
 ### Buttons
 
 - **Foundation:** Base UI owns button behavior and supports rendering the same primitive as a semantic button or anchor.
-- **Shape:** Softly rounded at 12px with a one-pixel rule and a minimum height of 2.9rem.
+- **Shape:** Square with a one-pixel rule and a minimum height of 2.9rem.
 - **Primary:** Deep indigo with white text for the principal action. Contextual inverse buttons use white on indigo.
 - **Secondary:** Transparent paper with near-black text and an ink rule.
-- **Quiet:** A compact transparent icon control with the same 12px action radius for menus and dialog dismissal.
+- **Quiet:** A compact square transparent icon control for menus and dialog dismissal.
 - **Hover:** Filled actions change toward ink or indigo and lift by two pixels over 150ms.
 - **Focus:** A three-pixel soft-indigo outline with a four-pixel offset.
 

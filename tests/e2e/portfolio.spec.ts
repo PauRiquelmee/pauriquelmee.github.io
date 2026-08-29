@@ -95,6 +95,22 @@ test("serves the resume, static media, and production subpath", async ({ page })
   );
   expect(resumeResponse.status()).toBe(200);
   expect(resumeResponse.headers()["content-type"]).toContain("application/pdf");
+
+  const llmsLink = page.getByRole("link", {
+    name: "Read the portfolio llms.txt file",
+  });
+  await expect(llmsLink).toHaveAttribute("href", `${productionPath}llms.txt`);
+  await expect(page.locator('link[rel="describedby"]')).toHaveAttribute(
+    "href",
+    "https://pauriquelmee.github.io/paula-riquelme-portfolio/llms.txt",
+  );
+
+  const llmsResponse = await page.request.get(`${productionPath}llms.txt`);
+  expect(llmsResponse.status()).toBe(200);
+  expect(llmsResponse.headers()["content-type"]).toContain("text/plain");
+  const llmsText = await llmsResponse.text();
+  expect(llmsText).toContain("# Paula Riquelme Portfolio");
+  expect(llmsText).toContain("https://inpla.ai/en/");
 });
 
 test("keeps project, LinkedIn, recognition, and press links safe", async ({ page }) => {
@@ -145,7 +161,7 @@ test("contains complete core resume content and English metadata", async ({ page
   ).toContain("https://www.linkedin.com/in/pauriquelme");
 });
 
-test("keeps desktop metrics on one line and actions softly rounded", async ({
+test("keeps desktop metrics on one line and actions square", async ({
   page,
 }) => {
   test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
@@ -162,11 +178,11 @@ test("keeps desktop metrics on one line and actions softly rounded", async ({
   expect(lineCount).toBe(1);
   await expect(page.getByRole("link", { name: "View selected work" })).toHaveCSS(
     "border-radius",
-    "12px",
+    "0px",
   );
   await expect(page.getByRole("link", { name: "Contact", exact: true })).toHaveCSS(
     "border-radius",
-    "12px",
+    "0px",
   );
 });
 

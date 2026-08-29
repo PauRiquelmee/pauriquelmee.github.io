@@ -116,6 +116,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable}`}>
+      <head>
+        <link rel="describedby" href={new URL("llms.txt", siteUrl).toString()} />
+      </head>
       <body>
         {/* Impeccable direction contract: portfolio-dossier-v1. The emitted static comment is injected during postbuild. */}
         <MotionProvider>{children}</MotionProvider>

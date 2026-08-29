@@ -23,7 +23,7 @@ const personStructuredData = {
   sameAs: [
     "https://www.linkedin.com/in/pauriquelme",
     "https://woku.app",
-    "https://inpla.dev",
+    "https://inpla.ai/en/",
   ],
 };
 

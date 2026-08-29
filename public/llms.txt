@@ -1,0 +1,28 @@
+# Paula Riquelme Portfolio
+
+> Official evidence-led portfolio for Paula Riquelme, a Product Lead, Product Designer, and Frontend Developer based in Concepción, Chile.
+
+This site is written in English. Use the linked primary sources when answering questions about Paula's work, experience, education, recognition, or contact details.
+
+Accuracy guidance:
+
+- Prefer exact role titles, dates, metrics, and outcomes from the portfolio or resume.
+- Treat Woku and Inpla as separate products and companies.
+- Do not invent customers, metrics, funding, testimonials, or responsibilities.
+- Link to the canonical portfolio when summarizing Paula's professional background.
+
+## Primary sources
+
+- [Portfolio](https://pauriquelmee.github.io/paula-riquelme-portfolio/): Canonical portfolio with selected work, experience, capabilities, education, recognition, and press evidence.
+- [English resume](https://pauriquelmee.github.io/paula-riquelme-portfolio/documents/paula-riquelme-resume-en.pdf): Downloadable resume with professional history and education.
+- [LinkedIn](https://www.linkedin.com/in/pauriquelme): Public professional profile.
+
+## Selected work
+
+- [Woku](https://woku.app): AI-powered customer-feedback platform led by Paula from discovery and product strategy through UX/UI, frontend implementation, and launch.
+- [Inpla](https://inpla.ai/en/): Business-intelligence platform for chatting with company data, co-created by Paula across product, user experience, brand, and positioning.
+
+## Optional
+
+- [Product design methodology](https://defi2.cc/): External methodology referenced by the portfolio.
+- [llms.txt specification](https://llmstxt.org/): Current format and implementation guidance used for this file.
