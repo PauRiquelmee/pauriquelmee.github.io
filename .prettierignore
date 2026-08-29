@@ -1,0 +1,13 @@
+.git
+.impeccable
+.lighthouse
+.next
+coverage
+node_modules
+out
+package-lock.json
+playwright-report
+test-results
+public
+assets
+docs/screenshots

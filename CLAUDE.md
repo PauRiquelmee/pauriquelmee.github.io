@@ -93,6 +93,7 @@ Keep metadata, canonical URL, Open Graph, Twitter card, robots, sitemap, manifes
 Run the focused test for the slice, then:
 
 ```bash
+npm run format:check
 npm run lint
 npm run typecheck
 npm run validate:architecture
@@ -104,6 +105,7 @@ npm run validate:agent-docs
 ```bash
 npm run validate:architecture
 npm run validate:agent-docs
+npm run format:check
 npm run test
 npm run coverage
 npm run lint

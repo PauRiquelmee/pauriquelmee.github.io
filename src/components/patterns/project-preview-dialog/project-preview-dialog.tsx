@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Dialog } from "@base-ui/react/dialog";
-import { ExternalLink, X } from "lucide-react";
-import { m, useReducedMotion } from "motion/react";
-import Image from "next/image";
-import Button from "@/components/foundations/button";
-import { withBasePath } from "@/lib/paths";
+import { Dialog } from '@base-ui/react/dialog';
+import { ExternalLink, X } from 'lucide-react';
+import { m, useReducedMotion } from 'motion/react';
+import Image from 'next/image';
+import Button from '@/components/foundations/button';
+import { withBasePath } from '@/lib/paths';
 
 export type ProjectPreviewDialogProps = {
   projectName: string;
@@ -29,7 +29,9 @@ const ProjectPreviewDialog = ({
   return (
     <Dialog.Root>
       <Dialog.Trigger
-        render={<Button variant="secondary" className="project-preview-trigger" />}
+        render={
+          <Button variant="secondary" className="project-preview-trigger" />
+        }
       >
         Live preview {projectName}
       </Dialog.Trigger>
@@ -54,7 +56,10 @@ const ProjectPreviewDialog = ({
                 </div>
                 <Dialog.Close
                   render={
-                    <Button variant="quiet" aria-label={`Close ${projectName} preview`} />
+                    <Button
+                      variant="quiet"
+                      aria-label={`Close ${projectName} preview`}
+                    />
                   }
                 >
                   <X aria-hidden="true" size={22} strokeWidth={1.6} />

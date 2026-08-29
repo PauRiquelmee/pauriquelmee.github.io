@@ -1,85 +1,103 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from '@playwright/test';
 
-const productionPath = "/";
+const productionPath = '/';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("./");
+  await page.goto('./');
 });
 
-test("renders the English portfolio and primary navigation", async ({ page }) => {
+test('renders the English portfolio and primary navigation', async ({
+  page,
+}) => {
   await expect(page).toHaveTitle(
-    "Paula Riquelme | Product Lead & Product Designer",
+    'Paula Riquelme | Product Lead & Product Designer',
   );
   await expect(
-    page.getByRole("heading", {
-      name: "I design products, bring them to market, and can build them too.",
+    page.getByRole('heading', {
+      name: 'I design products, bring them to market, and can build them too.',
     }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Woku" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Inpla" })).toBeVisible();
-  await expect(page.getByText("USD 70,000", { exact: false }).first()).toBeVisible();
-  await expect(page.getByText("Puerto Coronel", { exact: false }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Woku' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Inpla' })).toBeVisible();
+  await expect(
+    page.getByText('USD 70,000', { exact: false }).first(),
+  ).toBeVisible();
+  await expect(
+    page.getByText('Puerto Coronel', { exact: false }).first(),
+  ).toBeVisible();
 
   if ((await page.viewportSize())!.width >= 1088) {
-    await page.getByRole("link", { name: "Experience", exact: true }).click();
+    await page.getByRole('link', { name: 'Experience', exact: true }).click();
     await expect(page).toHaveURL(/#experience$/);
-    await expect(page.getByRole("heading", { name: "Experience" })).toBeInViewport();
+    await expect(
+      page.getByRole('heading', { name: 'Experience' }),
+    ).toBeInViewport();
   }
 
   await expect(page.locator('a[href="/en"], a[href="/es"]')).toHaveCount(0);
   await expect(page.getByText(/language selector/i)).toHaveCount(0);
 });
 
-test("supports accessible mobile navigation", async ({ page }) => {
-  test.skip((await page.viewportSize())!.width >= 1088, "Mobile navigation only");
-
-  const trigger = page.getByRole("button", { name: "Open navigation" });
-  await trigger.click();
-  await expect(page.getByRole("dialog", { name: "Navigation" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "English resume" })).toHaveAttribute(
-    "download",
-    "",
+test('supports accessible mobile navigation', async ({ page }) => {
+  test.skip(
+    (await page.viewportSize())!.width >= 1088,
+    'Mobile navigation only',
   );
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog", { name: "Navigation" })).toBeHidden();
+
+  const trigger = page.getByRole('button', { name: 'Open navigation' });
+  await trigger.click();
+  await expect(page.getByRole('dialog', { name: 'Navigation' })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'English resume' }),
+  ).toHaveAttribute('download', '');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog', { name: 'Navigation' })).toBeHidden();
   await expect(trigger).toBeFocused();
 });
 
-test("opens honest project preview fallbacks and restores focus", async ({ page }) => {
-  const trigger = page.getByRole("button", { name: "Live preview Woku" });
+test('opens honest project preview fallbacks and restores focus', async ({
+  page,
+}) => {
+  const trigger = page.getByRole('button', { name: 'Live preview Woku' });
   await trigger.click();
 
-  const dialog = page.getByRole("dialog", { name: "Woku live preview" });
+  const dialog = page.getByRole('dialog', { name: 'Woku live preview' });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByText(/prevents third-party embedding/)).toBeVisible();
-  await expect(dialog.locator("iframe")).toHaveCount(0);
-  await expect(dialog.getByRole("link", { name: "Open website for Woku" })).toHaveAttribute(
-    "target",
-    "_blank",
-  );
+  await expect(
+    dialog.getByText(/prevents third-party embedding/),
+  ).toBeVisible();
+  await expect(dialog.locator('iframe')).toHaveCount(0);
+  await expect(
+    dialog.getByRole('link', { name: 'Open website for Woku' }),
+  ).toHaveAttribute('target', '_blank');
 
-  await page.keyboard.press("Escape");
+  await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(trigger).toBeFocused();
 });
 
-test("serves the resume and static media from the production root", async ({ page }) => {
+test('serves the resume and static media from the production root', async ({
+  page,
+}) => {
   expect(new URL(page.url()).pathname).toBe(productionPath);
 
-  const resume = page.getByRole("link", {
+  const resume = page.getByRole('link', {
     name: "Download Paula Riquelme's English resume as a PDF",
   });
   await expect(resume).toHaveAttribute(
-    "href",
+    'href',
     `${productionPath}documents/paula-riquelme-resume-en.pdf`,
   );
-  await expect(resume).toHaveAttribute("download", "");
+  await expect(resume).toHaveAttribute('download', '');
 
   const assetUrls = await page
-    .locator("img[src], script[src], link[rel='stylesheet'], link[rel='manifest']")
+    .locator(
+      "img[src], script[src], link[rel='stylesheet'], link[rel='manifest']",
+    )
     .evaluateAll((elements) =>
       elements.map((element) => {
-        const source = element.getAttribute("src") ?? element.getAttribute("href");
+        const source =
+          element.getAttribute('src') ?? element.getAttribute('href');
         return new URL(source!, window.location.href).toString();
       }),
     );
@@ -95,82 +113,91 @@ test("serves the resume and static media from the production root", async ({ pag
     `${productionPath}documents/paula-riquelme-resume-en.pdf`,
   );
   expect(resumeResponse.status()).toBe(200);
-  expect(resumeResponse.headers()["content-type"]).toContain("application/pdf");
+  expect(resumeResponse.headers()['content-type']).toContain('application/pdf');
 
-  const llmsLink = page.getByRole("link", {
-    name: "Read the portfolio llms.txt file",
+  const llmsLink = page.getByRole('link', {
+    name: 'Read the portfolio llms.txt file',
   });
-  await expect(llmsLink).toHaveAttribute("href", `${productionPath}llms.txt`);
+  await expect(llmsLink).toHaveAttribute('href', `${productionPath}llms.txt`);
   await expect(page.locator('link[rel="describedby"]')).toHaveAttribute(
-    "href",
-    "https://pauriquelmee.github.io/llms.txt",
+    'href',
+    'https://pauriquelmee.github.io/llms.txt',
   );
 
   const llmsResponse = await page.request.get(`${productionPath}llms.txt`);
   expect(llmsResponse.status()).toBe(200);
-  expect(llmsResponse.headers()["content-type"]).toContain("text/plain");
+  expect(llmsResponse.headers()['content-type']).toContain('text/plain');
   const llmsText = await llmsResponse.text();
-  expect(llmsText).toContain("# Paula Riquelme Portfolio");
-  expect(llmsText).toContain("https://inpla.ai/en/");
+  expect(llmsText).toContain('# Paula Riquelme Portfolio');
+  expect(llmsText).toContain('https://inpla.ai/en/');
 });
 
-test("keeps project, LinkedIn, recognition, and press links safe", async ({ page }) => {
-  await expect(page.getByRole("link", { name: "Open website for Woku" })).toHaveAttribute(
-    "rel",
-    "noreferrer noopener",
-  );
+test('keeps project, LinkedIn, recognition, and press links safe', async ({
+  page,
+}) => {
   await expect(
-    page.getByRole("link", { name: "Open Paula Riquelme on LinkedIn in a new tab" }),
-  ).toHaveAttribute("href", "https://www.linkedin.com/in/pauriquelme");
+    page.getByRole('link', { name: 'Open website for Woku' }),
+  ).toHaveAttribute('rel', 'noreferrer noopener');
   await expect(
-    page.getByRole("link", { name: "Best Undergraduate Paper | OPTIMA 2017" }),
-  ).toHaveAttribute("target", "_blank");
-  await expect(page.locator(".press-title")).toHaveCount(5);
-  await expect(page.locator(".press-title").first()).toHaveAttribute(
-    "rel",
-    "noreferrer noopener",
+    page.getByRole('link', {
+      name: 'Open Paula Riquelme on LinkedIn in a new tab',
+    }),
+  ).toHaveAttribute('href', 'https://www.linkedin.com/in/pauriquelme');
+  await expect(
+    page.getByRole('link', { name: 'Best Undergraduate Paper | OPTIMA 2017' }),
+  ).toHaveAttribute('target', '_blank');
+  await expect(page.locator('.press-title')).toHaveCount(5);
+  await expect(page.locator('.press-title').first()).toHaveAttribute(
+    'rel',
+    'noreferrer noopener',
   );
 });
 
-test("contains complete core resume content and English metadata", async ({ page }) => {
+test('contains complete core resume content and English metadata', async ({
+  page,
+}) => {
   for (const company of [
-    "woku",
-    "Inpla",
-    "stow SpA",
-    "Essbio",
-    "Universidad de Concepción",
-    "Orvita",
+    'woku',
+    'Inpla',
+    'stow SpA',
+    'Essbio',
+    'Universidad de Concepción',
+    'Orvita',
   ]) {
-    await expect(page.getByText(company, { exact: true }).first()).toBeAttached();
+    await expect(
+      page.getByText(company, { exact: true }).first(),
+    ).toBeAttached();
   }
 
   await expect(page.locator('html[lang="en"]')).toHaveCount(1);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
-    "href",
-    "https://pauriquelmee.github.io/",
+    'href',
+    'https://pauriquelmee.github.io/',
   );
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
-    "content",
-    "en_US",
+    'content',
+    'en_US',
   );
   await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
-    "content",
-    "summary_large_image",
+    'content',
+    'summary_large_image',
   );
   expect(
     await page.locator('script[type="application/ld+json"]').textContent(),
-  ).toContain("https://www.linkedin.com/in/pauriquelme");
+  ).toContain('https://www.linkedin.com/in/pauriquelme');
 });
 
-test("keeps the Essbio link quiet and the desktop role register balanced", async ({
+test('keeps the Essbio link quiet and the desktop role register balanced', async ({
   page,
 }) => {
-  const essbioEntry = page.locator(".experience-entry").filter({ hasText: "Essbio" });
-  const methodologyLink = essbioEntry.getByRole("link", {
+  const essbioEntry = page
+    .locator('.experience-entry')
+    .filter({ hasText: 'Essbio' });
+  const methodologyLink = essbioEntry.getByRole('link', {
     name: "Used Carlos Osorio's (defi)2 innovation methodology. Opens in a new tab",
   });
   const referenceResponsibility = essbioEntry
-    .locator(".experience-responsibilities li")
+    .locator('.experience-responsibilities li')
     .first();
 
   const [linkStyle, referenceStyle] = await Promise.all([
@@ -189,32 +216,39 @@ test("keeps the Essbio link quiet and the desktop role register balanced", async
   if ((await page.viewportSize())!.width >= 1088) {
     await methodologyLink.hover();
     await expect
-      .poll(() => methodologyLink.evaluate((element) => getComputedStyle(element).color))
+      .poll(() =>
+        methodologyLink.evaluate((element) => getComputedStyle(element).color),
+      )
       .not.toBe(referenceStyle.color);
 
-    const roleDividers = await page.locator(".role-register span").evaluateAll(
-      (elements) =>
+    const roleDividers = await page
+      .locator('.role-register span')
+      .evaluateAll((elements) =>
         elements.map((element) => getComputedStyle(element).borderLeftWidth),
+      );
+    expect(roleDividers).toEqual(['1px', '1px', '1px']);
+    await expect(page.locator('.role-register')).toHaveCSS(
+      'border-right-width',
+      '1px',
     );
-    expect(roleDividers).toEqual(["1px", "1px", "1px"]);
-    await expect(page.locator(".role-register")).toHaveCSS("border-right-width", "1px");
   } else {
-    const roleDividers = await page.locator(".role-register span").evaluateAll(
-      (elements) =>
+    const roleDividers = await page
+      .locator('.role-register span')
+      .evaluateAll((elements) =>
         elements.map((element) => getComputedStyle(element).borderLeftWidth),
-    );
-    expect(roleDividers).toEqual(["0px", "0px", "0px"]);
+      );
+    expect(roleDividers).toEqual(['0px', '0px', '0px']);
   }
 });
 
-test("keeps desktop metrics aligned, on one line, and actions square", async ({
+test('keeps desktop metrics aligned, on one line, and actions square', async ({
   page,
 }) => {
-  test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
+  test.skip((await page.viewportSize())!.width < 1088, 'Desktop layout only');
 
   const preProduct = page
     .locator('[data-project="inpla"] .project-metrics dd')
-    .filter({ hasText: "Pre-product" });
+    .filter({ hasText: 'Pre-product' });
   const lineCount = await preProduct.evaluate((element) => {
     const range = document.createRange();
     range.selectNodeContents(element);
@@ -223,48 +257,60 @@ test("keeps desktop metrics aligned, on one line, and actions square", async ({
 
   expect(lineCount).toBe(1);
 
-  const metricValueTops = await page.locator(".project-metrics dd").evaluateAll(
-    (elements) => elements.map((element) => element.getBoundingClientRect().top),
-  );
-  expect(Math.max(...metricValueTops) - Math.min(...metricValueTops)).toBeLessThanOrEqual(1);
+  const metricValueTops = await page
+    .locator('.project-metrics dd')
+    .evaluateAll((elements) =>
+      elements.map((element) => element.getBoundingClientRect().top),
+    );
+  expect(
+    Math.max(...metricValueTops) - Math.min(...metricValueTops),
+  ).toBeLessThanOrEqual(1);
 
-  await expect(page.getByRole("link", { name: "View selected work" })).toHaveCSS(
-    "border-radius",
-    "0px",
-  );
-  await expect(page.getByRole("link", { name: "Contact", exact: true })).toHaveCSS(
-    "border-radius",
-    "0px",
-  );
+  await expect(
+    page.getByRole('link', { name: 'View selected work' }),
+  ).toHaveCSS('border-radius', '0px');
+  await expect(
+    page.getByRole('link', { name: 'Contact', exact: true }),
+  ).toHaveCSS('border-radius', '0px');
 });
 
-test("aligns mobile metric values and hero actions", async ({ page }) => {
-  test.skip((await page.viewportSize())!.width >= 1088, "Mobile layout only");
+test('aligns mobile metric values and hero actions', async ({ page }) => {
+  test.skip((await page.viewportSize())!.width >= 1088, 'Mobile layout only');
 
-  for (const project of ["woku", "inpla"]) {
+  for (const project of ['woku', 'inpla']) {
     const valueTops = await page
       .locator(`[data-project="${project}"] .project-metrics dd`)
       .evaluateAll((elements) =>
         elements.map((element) => element.getBoundingClientRect().top),
       );
 
-    expect(Math.max(...valueTops) - Math.min(...valueTops)).toBeLessThanOrEqual(1);
+    expect(Math.max(...valueTops) - Math.min(...valueTops)).toBeLessThanOrEqual(
+      1,
+    );
   }
 
-  const actionHeights = await page.locator(".hero-actions .button").evaluateAll(
-    (elements) => elements.map((element) => element.getBoundingClientRect().height),
-  );
-  expect(Math.max(...actionHeights) - Math.min(...actionHeights)).toBeLessThanOrEqual(1);
+  const actionHeights = await page
+    .locator('.hero-actions .button')
+    .evaluateAll((elements) =>
+      elements.map((element) => element.getBoundingClientRect().height),
+    );
+  expect(
+    Math.max(...actionHeights) - Math.min(...actionHeights),
+  ).toBeLessThanOrEqual(1);
 });
 
-test("keeps selected work on the shared vertical rhythm", async ({ page }) => {
-  const spacing = await page.locator(".selected-work").evaluate((section) => {
-    const heading = section.querySelector<HTMLElement>(".section-heading")!;
-    const card = section.querySelector<HTMLElement>(".project-card")!;
+test('keeps selected work on the shared vertical rhythm', async ({ page }) => {
+  const spacing = await page.locator('.selected-work').evaluate((section) => {
+    const heading = section.querySelector<HTMLElement>('.section-heading')!;
+    const card = section.querySelector<HTMLElement>('.project-card')!;
 
     return {
-      sectionPaddingTop: Number.parseFloat(getComputedStyle(section).paddingTop),
-      headingMarginBottom: Number.parseFloat(getComputedStyle(heading).marginBottom),
+      sectionPaddingTop: Number.parseFloat(
+        getComputedStyle(section).paddingTop,
+      ),
+      headingMarginBottom: Number.parseFloat(
+        getComputedStyle(heading).marginBottom,
+      ),
       cardPaddingTop: Number.parseFloat(getComputedStyle(card).paddingTop),
     };
   });
@@ -274,33 +320,45 @@ test("keeps selected work on the shared vertical rhythm", async ({ page }) => {
   expect(spacing.cardPaddingTop).toBeGreaterThanOrEqual(16);
 });
 
-test("fills the recognition card height with its evidence image", async ({ page }) => {
-  test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
+test('fills the recognition card height with its evidence image', async ({
+  page,
+}) => {
+  test.skip((await page.viewportSize())!.width < 1088, 'Desktop layout only');
 
-  const featureBox = await page.locator(".recognition-feature").boundingBox();
-  const imageBox = await page.locator(".recognition-feature > img").boundingBox();
+  const featureBox = await page.locator('.recognition-feature').boundingBox();
+  const imageBox = await page
+    .locator('.recognition-feature > img')
+    .boundingBox();
 
   expect(featureBox).not.toBeNull();
   expect(imageBox).not.toBeNull();
-  expect(Math.abs(featureBox!.height - imageBox!.height)).toBeLessThanOrEqual(2);
+  expect(Math.abs(featureBox!.height - imageBox!.height)).toBeLessThanOrEqual(
+    2,
+  );
 });
 
-test("completes structural motion and removes spatial starts when requested", async ({
+test('completes structural motion and removes spatial starts when requested', async ({
   page,
 }) => {
   const media = page.locator('[data-project="woku"] .project-media');
   const initialTransform = await media.evaluate(
     (element) => getComputedStyle(element).transform,
   );
-  expect(initialTransform).not.toBe("none");
+  expect(initialTransform).not.toBe('none');
 
   await media.scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
-  await expect(media).toHaveCSS("transform", "none");
+  await expect(media).toHaveCSS('transform', 'none');
 
-  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.reload();
   const reducedMedia = page.locator('[data-project="woku"] .project-media');
-  expect(Number(await reducedMedia.evaluate((element) => getComputedStyle(element).opacity))).toBe(1);
-  await expect(reducedMedia).toHaveCSS("transform", "none");
+  expect(
+    Number(
+      await reducedMedia.evaluate(
+        (element) => getComputedStyle(element).opacity,
+      ),
+    ),
+  ).toBe(1);
+  await expect(reducedMedia).toHaveCSS('transform', 'none');
 });

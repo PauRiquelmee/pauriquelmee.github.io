@@ -1,13 +1,18 @@
-import { createElement } from "react";
-import SkillGroup from "@/components/patterns/skill-group";
-import { language, skillGroups } from "@/content/portfolio";
+import { createElement } from 'react';
+import SkillGroup from '@/components/patterns/skill-group';
+import { language, skillGroups } from '@/content/portfolio';
 
 const Capabilities = () => {
   return (
-    <section className="section capabilities" aria-labelledby="capabilities-title">
+    <section
+      className="section capabilities"
+      aria-labelledby="capabilities-title"
+    >
       <div className="section-heading section-heading-row">
         <h2 id="capabilities-title">Capabilities</h2>
-        <p>Strategy, design craft, and implementation in one working practice.</p>
+        <p>
+          Strategy, design craft, and implementation in one working practice.
+        </p>
       </div>
       <div className="skill-grid">
         {skillGroups.map((group) =>

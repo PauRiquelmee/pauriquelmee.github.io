@@ -1,2 +1,2 @@
-export { default } from "./press-feature";
-export type { PressFeatureProps } from "./press-feature";
+export { default } from './press-feature';
+export type { PressFeatureProps } from './press-feature';

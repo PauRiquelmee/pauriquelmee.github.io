@@ -1,54 +1,57 @@
-import { createServer } from "node:http";
-import { readFile, stat } from "node:fs/promises";
-import path from "node:path";
-import { brotliCompressSync, constants as zlibConstants } from "node:zlib";
-import { normalizeOutputPath } from "./serve-out.lib.mjs";
+import { createServer } from 'node:http';
+import { readFile, stat } from 'node:fs/promises';
+import path from 'node:path';
+import { brotliCompressSync, constants as zlibConstants } from 'node:zlib';
+import { normalizeOutputPath } from './serve-out.lib.mjs';
 
 const port = Number(process.env.PORT ?? 4173);
-const outputRoot = path.resolve("out");
+const outputRoot = path.resolve('out');
 const contentTypes = new Map([
-  [".css", "text/css; charset=utf-8"],
-  [".html", "text/html; charset=utf-8"],
-  [".ico", "image/x-icon"],
-  [".js", "text/javascript; charset=utf-8"],
-  [".json", "application/json; charset=utf-8"],
-  [".pdf", "application/pdf"],
-  [".png", "image/png"],
-  [".svg", "image/svg+xml"],
-  [".txt", "text/plain; charset=utf-8"],
-  [".webmanifest", "application/manifest+json; charset=utf-8"],
-  [".webp", "image/webp"],
-  [".woff2", "font/woff2"],
-  [".xml", "application/xml; charset=utf-8"],
+  ['.css', 'text/css; charset=utf-8'],
+  ['.html', 'text/html; charset=utf-8'],
+  ['.ico', 'image/x-icon'],
+  ['.js', 'text/javascript; charset=utf-8'],
+  ['.json', 'application/json; charset=utf-8'],
+  ['.pdf', 'application/pdf'],
+  ['.png', 'image/png'],
+  ['.svg', 'image/svg+xml'],
+  ['.txt', 'text/plain; charset=utf-8'],
+  ['.webmanifest', 'application/manifest+json; charset=utf-8'],
+  ['.webp', 'image/webp'],
+  ['.woff2', 'font/woff2'],
+  ['.xml', 'application/xml; charset=utf-8'],
 ]);
 const compressibleExtensions = new Set([
-  ".css",
-  ".html",
-  ".js",
-  ".json",
-  ".svg",
-  ".txt",
-  ".webmanifest",
-  ".xml",
+  '.css',
+  '.html',
+  '.js',
+  '.json',
+  '.svg',
+  '.txt',
+  '.webmanifest',
+  '.xml',
 ]);
 
 const server = createServer(async (request, response) => {
   try {
-    const requestUrl = new URL(request.url ?? "/", `http://${request.headers.host}`);
+    const requestUrl = new URL(
+      request.url ?? '/',
+      `http://${request.headers.host}`,
+    );
     const outputPath = normalizeOutputPath(requestUrl.pathname);
     let filePath = path.join(outputRoot, outputPath);
 
     try {
       const fileStats = await stat(filePath);
-      if (fileStats.isDirectory()) filePath = path.join(filePath, "index.html");
+      if (fileStats.isDirectory()) filePath = path.join(filePath, 'index.html');
     } catch {
-      if (!path.extname(filePath)) filePath = path.join(filePath, "index.html");
+      if (!path.extname(filePath)) filePath = path.join(filePath, 'index.html');
     }
 
     const file = await readFile(filePath);
     const extension = path.extname(filePath);
     const shouldCompress =
-      request.headers["accept-encoding"]?.includes("br") &&
+      request.headers['accept-encoding']?.includes('br') &&
       compressibleExtensions.has(extension);
     const responseBody = shouldCompress
       ? brotliCompressSync(file, {
@@ -56,20 +59,20 @@ const server = createServer(async (request, response) => {
         })
       : file;
     const responseHeaders = {
-      "cache-control": "no-store",
-      "content-type": contentTypes.get(extension) ?? "application/octet-stream",
-      vary: "Accept-Encoding",
+      'cache-control': 'no-store',
+      'content-type': contentTypes.get(extension) ?? 'application/octet-stream',
+      vary: 'Accept-Encoding',
     };
-    if (shouldCompress) responseHeaders["content-encoding"] = "br";
+    if (shouldCompress) responseHeaders['content-encoding'] = 'br';
     response.writeHead(200, responseHeaders);
-    if (request.method === "HEAD") response.end();
+    if (request.method === 'HEAD') response.end();
     else response.end(responseBody);
   } catch {
-    response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
-    response.end("Not found");
+    response.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
+    response.end('Not found');
   }
 });
 
-server.listen(port, "127.0.0.1", () => {
+server.listen(port, '127.0.0.1', () => {
   console.log(`Static export available at http://127.0.0.1:${port}/`);
 });

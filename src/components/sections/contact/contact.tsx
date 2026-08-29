@@ -1,8 +1,8 @@
-import { createElement } from "react";
-import { ExternalLink } from "lucide-react";
-import Button from "@/components/foundations/button";
-import { contactLinks } from "@/content/portfolio";
-import { withBasePath } from "@/lib/paths";
+import { createElement } from 'react';
+import { ExternalLink } from 'lucide-react';
+import Button from '@/components/foundations/button';
+import { contactLinks } from '@/content/portfolio';
+import { withBasePath } from '@/lib/paths';
 
 const Contact = () => {
   const emailLink = contactLinks[0];
@@ -21,19 +21,21 @@ const Contact = () => {
       <nav className="contact-links" aria-label="Contact and project links">
         {secondaryLinks.map((link) =>
           createElement(
-            "a",
+            'a',
             {
               key: link.label,
-              href: link.href.startsWith("/") ? withBasePath(link.href) : link.href,
-              target: link.external ? "_blank" : undefined,
-              rel: link.external ? "noreferrer noopener" : undefined,
-              download: link.label === "English resume" ? true : undefined,
-              "aria-label": link.ariaLabel,
+              href: link.href.startsWith('/')
+                ? withBasePath(link.href)
+                : link.href,
+              target: link.external ? '_blank' : undefined,
+              rel: link.external ? 'noreferrer noopener' : undefined,
+              download: link.label === 'English resume' ? true : undefined,
+              'aria-label': link.ariaLabel,
             },
             link.label,
             link.external
               ? createElement(ExternalLink, {
-                  "aria-hidden": true,
+                  'aria-hidden': true,
                   size: 15,
                   strokeWidth: 1.7,
                 })

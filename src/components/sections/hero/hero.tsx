@@ -1,6 +1,6 @@
-import AnimatedRule from "@/components/foundations/animated-rule";
-import Button from "@/components/foundations/button";
-import { profile } from "@/content/portfolio";
+import AnimatedRule from '@/components/foundations/animated-rule';
+import Button from '@/components/foundations/button';
+import { profile } from '@/content/portfolio';
 
 const Hero = () => {
   return (

@@ -1,13 +1,13 @@
-import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/paths";
+import type { MetadataRoute } from 'next';
+import { siteUrl } from '@/lib/paths';
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static';
 
 const sitemap = (): MetadataRoute.Sitemap => {
   return [
     {
       url: siteUrl.toString(),
-      changeFrequency: "yearly",
+      changeFrequency: 'yearly',
       priority: 1,
     },
   ];

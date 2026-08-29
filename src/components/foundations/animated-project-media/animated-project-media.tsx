@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
-import type { ReactNode } from "react";
-import { m, useReducedMotion } from "motion/react";
+import type { ReactNode } from 'react';
+import { m, useReducedMotion } from 'motion/react';
 
 export type AnimatedProjectMediaProps = {
   children: ReactNode;
 };
 
-const AnimatedProjectMedia = ({
-  children,
-}: AnimatedProjectMediaProps) => {
+const AnimatedProjectMedia = ({ children }: AnimatedProjectMediaProps) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (

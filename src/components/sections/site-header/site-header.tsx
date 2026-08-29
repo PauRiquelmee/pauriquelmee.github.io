@@ -1,13 +1,13 @@
-import Image from "next/image";
-import MobileNavigation from "@/components/patterns/mobile-navigation";
-import { withBasePath } from "@/lib/paths";
+import Image from 'next/image';
+import MobileNavigation from '@/components/patterns/mobile-navigation';
+import { withBasePath } from '@/lib/paths';
 
 const SiteHeader = () => {
   return (
     <header className="site-header">
       <a className="site-brand" href="#top" aria-label="Paula Riquelme home">
         <Image
-          src={withBasePath("/brand/pr-monogram.svg")}
+          src={withBasePath('/brand/pr-monogram.svg')}
           alt=""
           width={32}
           height={32}
@@ -19,7 +19,7 @@ const SiteHeader = () => {
         <a href="#experience">Experience</a>
         <a href="#recognition">Recognition</a>
         <a
-          href={withBasePath("/documents/paula-riquelme-resume-en.pdf")}
+          href={withBasePath('/documents/paula-riquelme-resume-en.pdf')}
           download
         >
           English resume

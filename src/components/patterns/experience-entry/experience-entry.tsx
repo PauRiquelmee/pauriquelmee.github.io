@@ -1,6 +1,6 @@
-import { createElement } from "react";
-import { ExternalLink } from "lucide-react";
-import type { ExperienceItem } from "@/content/portfolio";
+import { createElement } from 'react';
+import { ExternalLink } from 'lucide-react';
+import type { ExperienceItem } from '@/content/portfolio';
 
 export type ExperienceEntryProps = {
   item: ExperienceItem;
@@ -20,30 +20,32 @@ const ExperienceEntry = ({ item }: ExperienceEntryProps) => {
       <ul className="experience-responsibilities">
         {item.responsibilities.map((responsibility) => {
           const text =
-            typeof responsibility === "string" ? responsibility : responsibility.text;
-          const finalWordStart = text.lastIndexOf(" ") + 1;
+            typeof responsibility === 'string'
+              ? responsibility
+              : responsibility.text;
+          const finalWordStart = text.lastIndexOf(' ') + 1;
 
           return createElement(
-            "li",
+            'li',
             { key: text },
-            typeof responsibility === "string"
+            typeof responsibility === 'string'
               ? responsibility
               : createElement(
-                  "a",
+                  'a',
                   {
-                    className: "experience-methodology-link",
+                    className: 'experience-methodology-link',
                     href: responsibility.externalLink.href,
-                    target: "_blank",
-                    rel: "noreferrer noopener",
-                    "aria-label": responsibility.externalLink.ariaLabel,
+                    target: '_blank',
+                    rel: 'noreferrer noopener',
+                    'aria-label': responsibility.externalLink.ariaLabel,
                   },
                   responsibility.text.slice(0, finalWordStart),
                   createElement(
-                    "span",
-                    { className: "experience-methodology-link-ending" },
+                    'span',
+                    { className: 'experience-methodology-link-ending' },
                     responsibility.text.slice(finalWordStart),
                     createElement(ExternalLink, {
-                      "aria-hidden": true,
+                      'aria-hidden': true,
                       size: 15,
                       strokeWidth: 1.7,
                     }),

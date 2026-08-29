@@ -1,5 +1,5 @@
-import { createElement } from "react";
-import type { SkillGroup as SkillGroupData } from "@/content/portfolio";
+import { createElement } from 'react';
+import type { SkillGroup as SkillGroupData } from '@/content/portfolio';
 
 export type SkillGroupProps = {
   group: SkillGroupData;
@@ -10,7 +10,7 @@ const SkillGroup = ({ group }: SkillGroupProps) => {
     <article className="skill-group">
       <h3>{group.name}</h3>
       <ul>
-        {group.items.map((item) => createElement("li", { key: item }, item))}
+        {group.items.map((item) => createElement('li', { key: item }, item))}
       </ul>
     </article>
   );

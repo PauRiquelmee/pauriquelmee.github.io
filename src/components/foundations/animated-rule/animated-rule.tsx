@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { m, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from 'motion/react';
 
 const AnimatedRule = () => {
   const shouldReduceMotion = useReducedMotion();
