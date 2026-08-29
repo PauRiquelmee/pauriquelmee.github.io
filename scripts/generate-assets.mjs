@@ -67,12 +67,12 @@ await Promise.all([
   writeFile(path.join(publicDirectory, "brand", "social-card.svg"), socialCardSvg),
 ]);
 
-async function renderFavicon(size, outputPath) {
+const renderFavicon = async (size, outputPath) => {
   await sharp(Buffer.from(faviconSvg))
     .resize(size, size)
     .png({ compressionLevel: 9 })
     .toFile(outputPath);
-}
+};
 
 const faviconSizes = [16, 32, 48];
 const faviconPaths = [];
@@ -168,7 +168,7 @@ const pageSize = [595.28, 841.89];
 const margin = 44;
 const contentWidth = pageSize[0] - margin * 2;
 
-function wrapText(text, font, size, maxWidth) {
+const wrapText = (text, font, size, maxWidth) => {
   const words = text.split(/\s+/);
   const lines = [];
   let line = "";
@@ -185,9 +185,9 @@ function wrapText(text, font, size, maxWidth) {
 
   if (line) lines.push(line);
   return lines;
-}
+};
 
-function createPage() {
+const createPage = () => {
   const page = pdf.addPage(pageSize);
   page.drawLine({
     start: { x: margin, y: pageSize[1] - 34 },
@@ -196,9 +196,9 @@ function createPage() {
     color: rgb(0.07, 0.07, 0.06),
   });
   return page;
-}
+};
 
-function drawWrapped(page, text, options) {
+const drawWrapped = (page, text, options) => {
   const {
     x = margin,
     y,
@@ -213,9 +213,9 @@ function drawWrapped(page, text, options) {
     page.drawText(line, { x, y: y - index * lineHeight, size, font, color });
   });
   return y - lines.length * lineHeight;
-}
+};
 
-function drawSectionTitle(page, title, y) {
+const drawSectionTitle = (page, title, y) => {
   page.drawText(title.toUpperCase(), {
     x: margin,
     y,
@@ -225,9 +225,9 @@ function drawSectionTitle(page, title, y) {
     characterSpacing: 1.2,
   });
   return y - 17;
-}
+};
 
-function drawRole(page, role, company, dates, location, bullets, y) {
+const drawRole = (page, role, company, dates, location, bullets, y) => {
   y = drawWrapped(page, `${role} | ${company}`, { y, size: 11, font: boldFont, lineHeight: 13 });
   y = drawWrapped(page, `${dates} | ${location}`, {
     y: y + 1,
@@ -245,7 +245,7 @@ function drawRole(page, role, company, dates, location, bullets, y) {
     });
   }
   return y - 8;
-}
+};
 
 let page = createPage();
 page.drawText("PAULA RIQUELME", {

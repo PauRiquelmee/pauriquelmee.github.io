@@ -2,7 +2,7 @@ import Image from "next/image";
 import MobileNavigation from "@/components/patterns/mobile-navigation";
 import { withBasePath } from "@/lib/paths";
 
-export default function SiteHeader() {
+const SiteHeader = () => {
   return (
     <header className="site-header">
       <a className="site-brand" href="#top" aria-label="Paula Riquelme home">
@@ -29,4 +29,6 @@ export default function SiteHeader() {
       <MobileNavigation />
     </header>
   );
-}
+};
+
+export default SiteHeader;

@@ -5,7 +5,7 @@ export type SkillGroupProps = {
   group: SkillGroupData;
 };
 
-export default function SkillGroup({ group }: SkillGroupProps) {
+const SkillGroup = ({ group }: SkillGroupProps) => {
   return (
     <article className="skill-group">
       <h3>{group.name}</h3>
@@ -14,4 +14,6 @@ export default function SkillGroup({ group }: SkillGroupProps) {
       </ul>
     </article>
   );
-}
+};
+
+export default SkillGroup;

@@ -3,7 +3,7 @@ import { siteUrl } from "@/lib/paths";
 
 export const dynamic = "force-static";
 
-export default function robots(): MetadataRoute.Robots {
+const robots = (): MetadataRoute.Robots => {
   return {
     rules: {
       userAgent: "*",
@@ -12,4 +12,6 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: new URL("sitemap.xml", siteUrl).toString(),
     host: siteUrl.origin,
   };
-}
+};
+
+export default robots;

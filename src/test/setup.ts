@@ -25,9 +25,9 @@ Object.defineProperty(window, "matchMedia", {
 });
 
 class ResizeObserverMock {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
+  observe = () => {};
+  unobserve = () => {};
+  disconnect = () => {};
 }
 
 global.ResizeObserver = ResizeObserverMock;
@@ -36,12 +36,10 @@ class IntersectionObserverMock {
   root = null;
   rootMargin = "0px";
   thresholds = [0];
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-  takeRecords() {
-    return [];
-  }
+  observe = () => {};
+  unobserve = () => {};
+  disconnect = () => {};
+  takeRecords = () => [];
 }
 
 global.IntersectionObserver = IntersectionObserverMock;

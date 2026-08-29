@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-export default function manifest(): MetadataRoute.Manifest {
+const manifest = (): MetadataRoute.Manifest => {
   return {
     name: "Paula Riquelme Portfolio",
     short_name: "Paula Riquelme",
@@ -27,4 +27,6 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
   };
-}
+};
+
+export default manifest;

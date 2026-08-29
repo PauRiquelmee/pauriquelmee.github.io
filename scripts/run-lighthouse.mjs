@@ -10,7 +10,7 @@ const server = spawn(process.execPath, ["scripts/serve-out.mjs"], {
   stdio: "ignore",
 });
 
-async function waitForServer() {
+const waitForServer = async () => {
   for (let attempt = 0; attempt < 40; attempt += 1) {
     try {
       const response = await fetch(auditUrl);
@@ -20,7 +20,7 @@ async function waitForServer() {
     }
   }
   throw new Error("The static preview did not become available.");
-}
+};
 
 let chrome;
 
