@@ -35,7 +35,7 @@ Visitors arrive from professional referrals, LinkedIn, press coverage, or direct
 - Woku and Inpla previews load only after explicit interaction and fall back to local screenshots plus safe external links when embedding is blocked.
 - Base UI owns relevant interactive primitives and focus management.
 - Motion owns meaningful animation and respects the user's reduced-motion preference.
-- Source architecture enforces one component per production TSX file, one component-level JSX return, folder-boundary imports, colocated tests, and default exports from component folders.
+- Source architecture enforces one named component per production TSX file, folder-boundary imports, colocated tests, and default exports from component folders while allowing idiomatic JSX in callbacks and conditions.
 - All visible copy, metadata, code, tests, documentation, workflow text, branches, commits, and pull request content are English-only.
 - The repository may not use em dash characters.
 

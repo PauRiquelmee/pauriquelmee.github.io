@@ -134,7 +134,7 @@ The repository treats quality requirements as executable constraints:
 - Component coverage must remain at or above 90% for statements, lines, and functions, and 85% for branches.
 - Lighthouse must reach at least 95 for performance, accessibility, and best practices, plus 100 for SEO.
 - Every reusable component has one implementation, one colocated behavior test, and one default folder export.
-- Every production TSX file contains one React component and at most one component-level JSX return.
+- Every production TSX file contains one named React component. JSX in callbacks and conditions remains idiomatic and is not counted as a second component.
 - JavaScript and TypeScript use arrow functions, single-quoted strings, and double-quoted JSX attributes.
 - The production route, metadata, assets, resume, navigation, dialogs, focus behavior, and reduced-motion path are covered by automated checks.
 

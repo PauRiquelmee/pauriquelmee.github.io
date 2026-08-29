@@ -1,6 +1,6 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import ts from 'typescript';
+import { inspectTsxSource } from './validate-architecture.lib.mjs';
 
 const root = process.cwd();
 const sourceRoot = path.join(root, 'src');
@@ -33,110 +33,8 @@ const walk = async (directory) => {
   return files;
 };
 
-const isJsxNode = (node) => {
-  return (
-    ts.isJsxElement(node) ||
-    ts.isJsxSelfClosingElement(node) ||
-    ts.isJsxFragment(node)
-  );
-};
-
-const isJsxExpression = (node) => {
-  let current = node;
-  while (
-    ts.isParenthesizedExpression(current) ||
-    ts.isAsExpression(current) ||
-    ts.isSatisfiesExpression(current)
-  ) {
-    current = current.expression;
-  }
-  return isJsxNode(current);
-};
-
 const inspectTsx = (file, source) => {
-  const ast = ts.createSourceFile(
-    file,
-    source,
-    ts.ScriptTarget.Latest,
-    true,
-    ts.ScriptKind.TSX,
-  );
-  let componentDeclarations = 0;
-  let jsxReturns = 0;
-
-  const functionReturnsJsx = (node) => {
-    let found = false;
-    const visit = (child) => {
-      if (found) return;
-      if (
-        ts.isReturnStatement(child) &&
-        child.expression &&
-        isJsxExpression(child.expression)
-      ) {
-        found = true;
-        return;
-      }
-      ts.forEachChild(child, visit);
-    };
-
-    if (node.body && isJsxExpression(node.body)) return true;
-    if (node.body) ts.forEachChild(node.body, visit);
-    return found;
-  };
-
-  const visit = (node) => {
-    if (
-      (ts.isFunctionDeclaration(node) ||
-        ts.isFunctionExpression(node) ||
-        ts.isArrowFunction(node)) &&
-      functionReturnsJsx(node)
-    ) {
-      componentDeclarations += 1;
-    }
-
-    if (
-      ts.isReturnStatement(node) &&
-      node.expression &&
-      isJsxExpression(node.expression)
-    ) {
-      jsxReturns += 1;
-    }
-
-    if (ts.isArrowFunction(node) && isJsxExpression(node.body)) {
-      jsxReturns += 1;
-    }
-
-    ts.forEachChild(node, visit);
-  };
-
-  visit(ast);
-
-  if (componentDeclarations !== 1) {
-    errors.push(
-      `${path.relative(root, file)} must contain exactly one React component; found ${componentDeclarations}.`,
-    );
-  }
-
-  if (jsxReturns > 1) {
-    errors.push(
-      `${path.relative(root, file)} must contain at most one component-level JSX return; found ${jsxReturns}.`,
-    );
-  }
-
-  for (const statement of ast.statements) {
-    if (
-      !ts.isImportDeclaration(statement) ||
-      !ts.isStringLiteral(statement.moduleSpecifier)
-    )
-      continue;
-    const specifier = statement.moduleSpecifier.text;
-    if (!specifier.startsWith('@/components/')) continue;
-    if (specifier.split('/').length !== 4) {
-      errors.push(
-        `${path.relative(root, file)} bypasses a component folder boundary: ${specifier}.`,
-      );
-    }
-  }
+  errors.push(...inspectTsxSource({ file, root, source }));
 };
 
 const inspectComponentFolders = async () => {
