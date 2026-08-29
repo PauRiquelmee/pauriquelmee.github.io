@@ -45,7 +45,7 @@ typography:
     letterSpacing: 'normal'
   label:
     fontFamily: 'Barlow, Arial, sans-serif'
-    fontSize: '0.72rem'
+    fontSize: '0.75rem'
     fontWeight: 700
     lineHeight: 1.5
     letterSpacing: '0.13em'
@@ -102,6 +102,8 @@ Deep indigo marks decisive actions and high-confidence evidence. Factual project
 
 Density stays deliberate. Oversized type and the asymmetric role register establish identity, while ledgers and indices make the record easy to scan. Depth appears only when an overlay detaches from the document plane, and purposeful motion reinforces structure while respecting reduced-motion preferences.
 
+Tailwind CSS 4 expresses this system through theme tokens and component-local utilities. Global CSS is reserved for document defaults, shared interaction contracts, focus and selection, and selectors that are clearer as a cross-component rule.
+
 **Key Characteristics:**
 
 - Evidence before biography.
@@ -154,6 +156,8 @@ The palette combines warm editorial neutrals with one authoritative indigo famil
 - **Label:** Uppercase roles, locations, sources, captions, and ledger metadata with measured tracking.
 - **Action:** Compact uppercase buttons and external links.
 
+Body and supporting copy remain at least 14px. Labels, metadata, captions, navigation, and actions remain at least 12px at the default root size.
+
 **The Compression Rule.** Barlow Condensed carries every oversized claim and index title; body copy never imitates it through tracking or all caps.
 
 ## Layout
@@ -172,7 +176,7 @@ Visual order must follow semantic reading order. The layout remains complete in 
 
 The document plane is flat. Inline cards, ledgers, media, and sections use one-pixel rules, paper contrast, and tonal bands instead of shadows. The sticky masthead uses translucent paper and restrained backdrop blur without appearing detached.
 
-Only the project preview and mobile navigation overlays receive soft shadows. Their dark translucent backdrops and restrained blur establish modal depth without introducing glass-card styling.
+Only the mobile navigation overlay receives a soft shadow. Its dark translucent backdrop and restrained blur establish modal depth without introducing glass-card styling.
 
 **The Detached Sheet Rule.** Shadows appear only when an overlay leaves the page plane; inline panels stay flat and use borders or contrast instead.
 
@@ -190,7 +194,7 @@ The favicon uses a single white P on a deep-indigo square so it remains legible 
 
 ### Buttons
 
-- **Foundation:** Base UI owns button behavior and supports rendering the same primitive as a semantic button or anchor.
+- **Foundation:** Base UI owns actionable button behavior. Navigation and external destinations remain semantic native anchors that share the visual action contract without receiving button semantics.
 - **Shape:** Square with a one-pixel rule and a minimum height of 2.9rem.
 - **Primary:** Deep indigo with white text for the principal action. Contextual inverse buttons use white on indigo.
 - **Secondary:** Transparent paper with near-black text and an ink rule.
@@ -212,19 +216,19 @@ Evidence ledgers are semantic definition lists. Large condensed values sit above
 
 ### Project Proof Sheets
 
-Selected work uses equal-width, square proof sheets with large project names, factual local WebP imagery, a ruled metric strip, outcome lists, and visible preview and external actions. Woku uses the brighter proof-sheet surface while the adjacent card remains on warm paper.
+Selected work uses equal-width, square proof sheets with large project names, factual local WebP imagery, a ruled metric strip, outcome lists, a prioritized case study action, and a secondary external website action. Woku uses the brighter proof-sheet surface while the adjacent card remains on warm paper.
 
 Project imagery is slightly desaturated and contrasted. It scales to 1.025 on card hover and reveals once from 24px below over 460ms without reducing evidence contrast.
 
-### Dialogs
+### Case Studies
 
-Base UI owns focus management, dismissal, and accessible dialog semantics. The project preview is a bright paper sheet above a 78 percent near-black backdrop with 6px blur. It enters from 16px below over 240ms.
+Woku and Inpla case studies extend the dossier into long-form evidence records. Each route uses an oversized project register, a ruled role ledger, consistent factual sections, measurable evidence, supporting media, source links, a reflection, and three clear next actions.
 
-Preview content mounts only after explicit interaction. The component supports a lazy iframe, but the current Woku and Inpla data use factual local screenshot fallbacks plus persistent external links.
+The structure distinguishes Paula's documented contribution from company outcomes and states factual boundaries where the available record does not support further claims. The layout stacks without horizontal overflow at 320px and remains entirely available in the static HTML export.
 
 ### Motion
 
-Motion for React is loaded through LazyMotion. It draws the hero rule from the left, reveals project media, translates the preview sheet, and slides and fades mobile navigation.
+Motion for React is loaded through LazyMotion. It draws the hero rule from the left, reveals project media, and slides and fades mobile navigation.
 
 **The Motion With Purpose Rule.** Animate rule growth, evidence reveal, and overlay entry only; reduced motion removes spatial starts and preserves immediate feedback.
 
