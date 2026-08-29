@@ -32,7 +32,16 @@ export type ExperienceItem = {
   dates: string;
   location?: string;
   href?: string;
-  responsibilities: string[];
+  responsibilities: Array<
+    | string
+    | {
+        text: string;
+        externalLink: {
+          href: string;
+          ariaLabel: string;
+        };
+      }
+  >;
 };
 
 export type SkillGroup = {
@@ -196,7 +205,14 @@ export const experience: ExperienceItem[] = [
     location: "Concepción, Chile",
     responsibilities: [
       "Led an innovation process with 30 technicians to improve the company's maintenance processes.",
-      "Used Carlos Osorio's (defi)2 innovation methodology.",
+      {
+        text: "Used Carlos Osorio's (defi)2 innovation methodology.",
+        externalLink: {
+          href: "https://defi2.cc/",
+          ariaLabel:
+            "Used Carlos Osorio's (defi)2 innovation methodology. Opens in a new tab",
+        },
+      },
       "Created data models and decision-support visualizations for maintenance planning.",
     ],
   },
@@ -278,13 +294,6 @@ export const recognition = {
   image: "/media/optima-2017.webp",
   imageAlt:
     "Diario Concepción article about Paula Riquelme's award-winning tourism route model at OPTIMA 2017.",
-};
-
-export const methodologyLink: LinkItem = {
-  label: "Carlos Osorio's (defi)2 innovation methodology",
-  href: "https://defi2.cc/",
-  external: true,
-  ariaLabel: "Open the (defi)2 innovation methodology in a new tab",
 };
 
 export const pressFeatures: PressFeature[] = [
