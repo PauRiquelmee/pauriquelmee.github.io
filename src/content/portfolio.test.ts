@@ -20,6 +20,7 @@ describe("canonical portfolio content", () => {
       "Orvita",
     ]);
     expect(education).toHaveLength(2);
+    expect(experience[0].dates).toBe("September 2023 - August 2026");
   });
 
   it("preserves the selected-work outcomes", () => {

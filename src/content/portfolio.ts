@@ -154,7 +154,7 @@ export const experience: ExperienceItem[] = [
   {
     role: "CEO & Co-founder / Product Lead",
     company: "woku",
-    dates: "September 2023 - Present",
+    dates: "September 2023 - August 2026",
     location: "Chile",
     href: "https://woku.app",
     responsibilities: [
