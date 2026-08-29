@@ -17,6 +17,6 @@ export const normalizeOutputPath = (pathname) => {
   }
 
   return relativePath.endsWith('/')
-    ? `${normalizedPath}/index.html`
+    ? path.posix.join(normalizedPath, 'index.html')
     : normalizedPath;
 };

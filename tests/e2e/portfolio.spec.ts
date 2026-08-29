@@ -10,7 +10,7 @@ test('renders the English portfolio and primary navigation', async ({
   page,
 }) => {
   await expect(page).toHaveTitle(
-    'Paula Riquelme | Product Lead & Product Designer',
+    'Paula Riquelme Portfolio | Product Lead & Product Designer',
   );
   await expect(
     page.getByRole('heading', {
@@ -123,13 +123,80 @@ test('serves the resume and static media from the production root', async ({
     'href',
     'https://pauriquelmee.github.io/llms.txt',
   );
+  await expect(
+    page.locator('link[rel="alternate"][type="text/markdown"]'),
+  ).toHaveAttribute('href', 'https://pauriquelmee.github.io/index.md');
 
   const llmsResponse = await page.request.get(`${productionPath}llms.txt`);
   expect(llmsResponse.status()).toBe(200);
   expect(llmsResponse.headers()['content-type']).toContain('text/plain');
   const llmsText = await llmsResponse.text();
   expect(llmsText).toContain('# Paula Riquelme Portfolio');
+  expect(llmsText).toContain('## When to use this portfolio');
+  expect(llmsText).toContain('## How agents should use it');
   expect(llmsText).toContain('https://inpla.ai/en/');
+});
+
+test('publishes substantive trust pages and lists them in the sitemap', async ({
+  page,
+}) => {
+  for (const [path, heading] of [
+    ['/about/', 'About Paula Riquelme'],
+    ['/contact/', 'Contact Paula Riquelme'],
+    ['/privacy/', 'Privacy notice'],
+  ] as const) {
+    const response = await page.request.get(path);
+    expect(response.status(), path).toBe(200);
+
+    await page.goto(path);
+    await expect(page.getByRole('heading', { name: heading })).toBeVisible();
+    const visibleText = await page.locator('main').innerText();
+    expect(visibleText.length, path).toBeGreaterThanOrEqual(500);
+    await expect(
+      page.getByRole('link', { name: 'Paula Riquelme Portfolio home' }),
+    ).toHaveAttribute('href', '/');
+  }
+
+  const sitemapResponse = await page.request.get('/sitemap.xml');
+  expect(sitemapResponse.status()).toBe(200);
+  const sitemapText = await sitemapResponse.text();
+  expect(sitemapText).toContain('https://pauriquelmee.github.io/about/');
+  expect(sitemapText).toContain('https://pauriquelmee.github.io/contact/');
+  expect(sitemapText).toContain('https://pauriquelmee.github.io/privacy/');
+});
+
+test('serves a recoverable 404 and Markdown recovery document', async ({
+  page,
+}) => {
+  const missingResponse = await page.request.get(
+    '/agent-readiness-path-that-does-not-exist',
+    { headers: { Accept: 'text/markdown' } },
+  );
+  expect(missingResponse.status()).toBe(404);
+  const missingBody = await missingResponse.text();
+  expect(missingBody).toContain('Page not found');
+  expect(missingBody).toContain('/sitemap.xml');
+  expect(missingBody).toContain('/llms.txt');
+  expect(missingBody).toContain('/404.md');
+
+  const markdownResponse = await page.request.get('/404.md');
+  expect(markdownResponse.status()).toBe(200);
+  expect(markdownResponse.headers()['content-type']).toContain('text/markdown');
+  expect(await markdownResponse.text()).toContain(
+    '[Agent instructions](https://pauriquelmee.github.io/llms.txt)',
+  );
+});
+
+test('publishes a canonical Markdown alternative for agents', async ({
+  page,
+}) => {
+  const response = await page.request.get('/index.md');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['content-type']).toContain('text/markdown');
+  const markdown = await response.text();
+  expect(markdown).toContain('# Paula Riquelme Portfolio');
+  expect(markdown).toContain('## Selected work');
+  expect(markdown).toContain('## Contact');
 });
 
 test('keeps project, LinkedIn, recognition, and press links safe', async ({

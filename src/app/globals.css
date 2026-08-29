@@ -288,6 +288,26 @@ ul { padding: 0; }
 .contact-links a:hover { color: var(--accent-light); }
 .contact-signoff { margin-top: 1rem; color: #dcd8ff; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
 
+.trust-page-shell { min-height: 100svh; }
+.trust-page-header { position: sticky; z-index: 40; top: 0; display: flex; min-height: 4.5rem; padding: 0 var(--page-gutter); border-bottom: 1px solid var(--ink); align-items: center; justify-content: space-between; background: rgb(243 240 232 / 94%); backdrop-filter: blur(14px); }
+.trust-page-navigation { display: flex; align-items: stretch; align-self: stretch; }
+.trust-page-navigation a { display: inline-flex; min-height: 2.9rem; padding: 0 1.05rem; border-left: 1px solid var(--line); align-items: center; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; }
+.trust-page-navigation a:hover { background: var(--ink); color: var(--paper-bright); }
+.trust-page-main { width: min(100%, var(--max-width)); margin: 0 auto; padding: clamp(3rem, 7vw, 7rem) var(--page-gutter) var(--section-space); }
+.trust-page-introduction { display: grid; grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr); gap: clamp(2rem, 6vw, 7rem); padding: 1rem 0 clamp(3rem, 7vw, 7rem); border-top: 1px solid var(--ink); align-items: end; }
+.trust-page-introduction h1 { max-width: 12ch; font-family: var(--font-display); font-size: clamp(2.6rem, 5.4vw, 5.5rem); font-weight: 700; letter-spacing: -0.035em; line-height: 0.9; text-transform: uppercase; text-wrap: balance; }
+.trust-page-introduction > p { max-width: 68ch; color: var(--muted); font-size: 1rem; }
+.trust-page-record { border-top: 1px solid var(--ink); }
+.trust-page-record section { display: grid; grid-template-columns: minmax(14rem, 0.85fr) minmax(0, 1.15fr); gap: 1.25rem clamp(2rem, 6vw, 7rem); padding: clamp(2rem, 5vw, 4.5rem) 0; border-bottom: 1px solid var(--line); }
+.trust-page-record h2 { grid-row: 1 / span 8; font-family: var(--font-display); font-size: clamp(1.55rem, 2.4vw, 2.4rem); font-weight: 700; line-height: 1; text-transform: uppercase; text-wrap: balance; }
+.trust-page-record p { grid-column: 2; max-width: 68ch; color: var(--muted); }
+.trust-page-actions { display: flex; margin-top: clamp(2rem, 5vw, 4.5rem); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); flex-wrap: wrap; }
+.trust-page-actions a { display: inline-flex; min-height: 2.9rem; gap: 0.35rem; padding: 0.76rem 1.05rem; border-right: 1px solid var(--ink); align-items: center; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.055em; text-transform: uppercase; }
+.trust-page-actions a:first-child { background: var(--accent); color: white; }
+.trust-page-actions a:hover { background: var(--ink); color: white; }
+.trust-page-footer { padding: 1rem var(--page-gutter); border-top: 1px solid var(--ink); background: var(--ink); color: var(--paper-bright); }
+.trust-page-footer p { width: min(100%, var(--max-width)); margin: 0 auto; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; }
+
 .dialog-backdrop { position: fixed; z-index: 70; inset: 0; background: rgb(17 17 15 / 78%); backdrop-filter: blur(6px); transition: opacity 180ms ease; }
 .dialog-viewport { position: fixed; z-index: 80; inset: 0; display: grid; overflow-y: auto; padding: clamp(1rem, 4vw, 3rem); place-items: center; }
 .project-preview-popup { width: min(70rem, 100%); max-height: calc(100svh - 2rem); overflow-y: auto; border: 1px solid var(--ink); background: var(--paper-bright); box-shadow: 0 1.5rem 4rem rgb(17 17 15 / 28%); }
@@ -352,6 +372,17 @@ ul { padding: 0; }
   .contact .button { width: 100%; }
   .contact-links { display: grid; }
   .contact-links a, .contact-links a:first-child { padding: 0.75rem 0; border-right: 0; border-bottom: 1px solid rgb(255 255 255 / 24%); }
+  .trust-page-header { position: static; min-height: auto; padding: 1rem; align-items: flex-start; }
+  .trust-page-header .site-brand { min-height: 2.9rem; }
+  .trust-page-navigation { display: grid; align-self: auto; }
+  .trust-page-navigation a { min-height: 2.9rem; padding: 0 0 0 1.05rem; }
+  .trust-page-main { padding-top: 3rem; }
+  .trust-page-introduction, .trust-page-record section { grid-template-columns: 1fr; gap: 1.25rem; }
+  .trust-page-introduction { padding-bottom: 3rem; }
+  .trust-page-record h2, .trust-page-record p { grid-column: 1; grid-row: auto; }
+  .trust-page-actions { display: grid; }
+  .trust-page-actions a { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .trust-page-actions a:last-child { border-bottom: 0; }
   .project-preview-popup { box-shadow: 0 1rem 2.5rem rgb(17 17 15 / 28%); }
   .project-preview-fallback, .project-preview-fallback img, .project-preview-frame { min-height: 18rem; height: 18rem; }
   .project-preview-fallback p { right: 0.5rem; bottom: 0.5rem; left: 0.5rem; }

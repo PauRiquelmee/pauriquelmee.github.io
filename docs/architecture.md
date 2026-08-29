@@ -2,7 +2,7 @@
 
 ## Project constraints
 
-This repository produces one English-only portfolio page for Paula Riquelme. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical resume facts in `src/content`.
+This repository produces an English-only portfolio for Paula Riquelme. The primary experience lives at `/`, supported by focused About, Contact, and Privacy trust pages. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical resume facts in `src/content`.
 
 The implementation uses strict TypeScript, Tailwind CSS, Base UI, Motion for React, Vitest, React Testing Library, user-event, jest-dom, and Playwright. It does not use another foundational component library, animation library, backend, API route, database, or multilingual routing.
 
@@ -74,7 +74,7 @@ Content remains visible in server-rendered HTML. Motion does not gate meaningful
 
 `next.config.ts` enables `output: "export"`, `trailingSlash: true`, and `images.unoptimized: true`. The build emits `out`. A post-build script places `.nojekyll` in `out`.
 
-No component uses cookies, headers, draft mode, server actions, rewrites, redirects, or runtime route handlers. Metadata routes must be statically generated or represented by public files when static export constraints require it.
+No component uses cookies, headers, draft mode, server actions, rewrites, redirects, or runtime route handlers. Metadata routes must be statically generated or represented by public files when static export constraints require it. The export includes a custom `404.html`; GitHub Pages serves it with a real 404 status for unknown paths.
 
 ## GitHub Pages root hosting
 
@@ -84,7 +84,7 @@ The canonical production origin is `https://PauRiquelmee.github.io/`. Metadata, 
 
 ## Content architecture
 
-All resume facts live in `src/content/portfolio.ts` with explicit TypeScript types. Experience, education, skills, metrics, recognition, press, and contact links are separate exported records. This gives tests a single factual source and prevents text drift across sections, metadata, JSON-LD, and the resume generator.
+All resume facts live in `src/content/portfolio.ts` with explicit TypeScript types. Experience, education, skills, metrics, recognition, press, contact links, and trust-page content are separate exported records. This gives tests a single factual source and prevents text drift across sections, routes, metadata, JSON-LD, and the resume generator.
 
 The site does not invent testimonials, customer names, awards, dates, metrics, roles, funding sources, or capabilities. Press imagery and links are mapped explicitly to the supplied local files.
 
@@ -113,7 +113,7 @@ The custom architecture validator parses production TSX and folder structure. CI
 
 ## SEO strategy
 
-Static metadata defines the exact English title and description, a production `metadataBase`, canonical URL, Open Graph data, Twitter card data, robots directives, keywords, icons, and theme color. Static robots, sitemap, and manifest files use root-relative paths. A Person JSON-LD object matches visible facts and uses LinkedIn, Woku, and Inpla for `sameAs`.
+Static metadata defines the exact English title and description, a production `metadataBase`, canonical URLs, Open Graph data, Twitter card data, robots directives, keywords, icons, and theme color. Static robots, sitemap, and manifest files use root-relative paths. A JSON-LD graph identifies both the named portfolio website and Paula as a Person, while the Person record uses LinkedIn, Woku, and Inpla for `sameAs`.
 
 No alternate locale, `hreflang`, Spanish metadata, or localized route is generated.
 
@@ -121,7 +121,9 @@ No alternate locale, `hreflang`, Spanish metadata, or localized route is generat
 
 Identity assets are deterministic. Source SVG files define the PR monogram, the white-P-on-indigo favicon, and the social card. Sharp rasterizes and optimizes favicon sizes, PWA icons, Apple touch icon, Open Graph image, Twitter image, and supplied Woku, Inpla, press, and recognition media. The favicon combines 16, 32, and 48 pixel images.
 
-The static export also publishes `llms.txt` at the project root. It follows the current llms.txt Markdown structure, links to canonical evidence, and is discoverable through both the footer and a `rel="describedby"` document link.
+The static export also publishes `llms.txt` at the project root. It follows the current llms.txt Markdown structure, tells agents when and how to use the portfolio, links to canonical evidence, and is discoverable through both the footer and a `rel="describedby"` document link.
+
+`index.md` provides a canonical Markdown representation advertised through `rel="alternate"`. `404.md` provides a concise recovery guide linked from the custom 404 page. GitHub Pages cannot vary the root response by the HTTP `Accept` header or add `Vary: Accept`, so full Accept Markdown content negotiation requires a different host or an edge proxy. The portfolio also has no callable product API, and the static host cannot provide a live Streamable HTTP MCP handshake. The project does not publish a static file that could be mistaken for either runtime protocol.
 
 The English resume PDF is generated from canonical content using a deterministic PDF library and visually inspected before release. Source assets stay under `assets/source` when useful, while browser-ready output lives in `public`.
 

@@ -7,6 +7,8 @@ describe('static preview path normalization', () => {
     expect(normalizeOutputPath('/documents/paula-riquelme-resume-en.pdf')).toBe(
       'documents/paula-riquelme-resume-en.pdf',
     );
+    expect(normalizeOutputPath('/about/')).toBe('about/index.html');
+    expect(normalizeOutputPath('/404.md')).toBe('404.md');
   });
 
   it('rejects traversal outside the export directory', () => {

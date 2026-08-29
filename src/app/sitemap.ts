@@ -5,12 +5,15 @@ export const dynamic = 'force-static';
 
 const sitemap = (): MetadataRoute.Sitemap => {
   return [
-    {
-      url: siteUrl.toString(),
-      changeFrequency: 'yearly',
-      priority: 1,
-    },
-  ];
+    { path: '', priority: 1 },
+    { path: 'about/', priority: 0.8 },
+    { path: 'contact/', priority: 0.8 },
+    { path: 'privacy/', priority: 0.6 },
+  ].map(({ path, priority }) => ({
+    url: new URL(path, siteUrl).toString(),
+    changeFrequency: 'yearly',
+    priority,
+  }));
 };
 
 export default sitemap;

@@ -12,6 +12,7 @@ const contentTypes = new Map([
   ['.ico', 'image/x-icon'],
   ['.js', 'text/javascript; charset=utf-8'],
   ['.json', 'application/json; charset=utf-8'],
+  ['.md', 'text/markdown; charset=utf-8'],
   ['.pdf', 'application/pdf'],
   ['.png', 'image/png'],
   ['.svg', 'image/svg+xml'],
@@ -26,6 +27,7 @@ const compressibleExtensions = new Set([
   '.html',
   '.js',
   '.json',
+  '.md',
   '.svg',
   '.txt',
   '.webmanifest',
@@ -68,8 +70,19 @@ const server = createServer(async (request, response) => {
     if (request.method === 'HEAD') response.end();
     else response.end(responseBody);
   } catch {
-    response.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
-    response.end('Not found');
+    try {
+      const notFoundPage = await readFile(path.join(outputRoot, '404.html'));
+      response.writeHead(404, {
+        'cache-control': 'no-store',
+        'content-type': 'text/html; charset=utf-8',
+        vary: 'Accept-Encoding',
+      });
+      if (request.method === 'HEAD') response.end();
+      else response.end(notFoundPage);
+    } catch {
+      response.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
+      response.end('Not found');
+    }
   }
 });
 

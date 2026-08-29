@@ -27,7 +27,7 @@
 
 This repository contains Paula Riquelme's English-only professional portfolio. It presents her work across customer discovery, product strategy, UX/UI, go-to-market execution, and frontend implementation through selected projects, measurable outcomes, professional experience, recognition, and press evidence.
 
-The experience is designed as a product launch dossier, not a generic personal profile. Visitors can understand Paula's range quickly, inspect factual project evidence, download the English resume, and start a conversation from a fast, accessible static site.
+The experience is designed as a product launch dossier, not a generic personal profile. Visitors can understand Paula's range quickly, inspect factual project evidence, download the English resume, and start a conversation from a fast, accessible static site. Dedicated About, Contact, and Privacy pages provide stable trust anchors for people and agents.
 
 ## Product principles
 
@@ -158,7 +158,9 @@ npm run test:e2e
 - [`DESIGN.md`](DESIGN.md) documents the product launch dossier direction, visual tokens, responsive rules, and component behavior.
 - [`src/content/portfolio.ts`](src/content/portfolio.ts) is the canonical source for every visible professional claim.
 - [`assets/source`](assets/source) contains supplied source imagery; [`public`](public) contains browser-ready assets and the English resume.
-- [`public/llms.txt`](public/llms.txt) provides a concise machine-readable overview of the portfolio.
+- [`public/llms.txt`](public/llms.txt) provides when-to-use, source, and accuracy guidance for agents.
+- [`public/index.md`](public/index.md) provides the canonical portfolio in Markdown.
+- [`public/404.md`](public/404.md) gives agents and people a concise recovery index from the custom 404 page.
 
 All visible copy, metadata, tests, documentation, workflow text, identifiers, and release communication are English only. Factual outcomes, dates, organizations, recognition, and links must remain traceable to the canonical product record.
 
@@ -167,6 +169,9 @@ All visible copy, metadata, tests, documentation, workflow text, identifiers, an
 Every push to `main` triggers continuous integration and the Pages workflow. Pages builds the static export, uploads `out` as an artifact, and deploys it through the official GitHub Pages actions with the `github-pages` environment, minimum permissions, and concurrency protection.
 
 - [Live portfolio](https://pauriquelmee.github.io/)
+- [About Paula Riquelme](https://pauriquelmee.github.io/about/)
+- [Contact Paula Riquelme](https://pauriquelmee.github.io/contact/)
+- [Privacy notice](https://pauriquelmee.github.io/privacy/)
 - [Source repository](https://github.com/PauRiquelmee/pauriquelmee.github.io)
 - [Continuous integration workflow](.github/workflows/ci.yml)
 - [GitHub Pages workflow](.github/workflows/pages.yml)

@@ -9,8 +9,8 @@ import { profile } from '@/content/portfolio';
 import { siteUrl } from '@/lib/paths';
 
 const personStructuredData = {
-  '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': new URL('#paula-riquelme', siteUrl).toString(),
   name: profile.name,
   jobTitle: 'Product Lead, Product Designer, and Frontend Developer',
   description: profile.summary,
@@ -25,6 +25,23 @@ const personStructuredData = {
     'https://woku.app',
     'https://inpla.ai/en/',
   ],
+};
+
+const websiteStructuredData = {
+  '@type': 'WebSite',
+  '@id': new URL('#website', siteUrl).toString(),
+  name: 'Paula Riquelme Portfolio',
+  alternateName: 'Paula Riquelme Product Portfolio',
+  description:
+    "Official evidence-led portfolio for Paula Riquelme's product leadership, product design, and frontend work.",
+  url: siteUrl.toString(),
+  inLanguage: 'en',
+  author: { '@id': new URL('#paula-riquelme', siteUrl).toString() },
+};
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [websiteStructuredData, personStructuredData],
 };
 
 const Home = () => {
@@ -47,7 +64,7 @@ const Home = () => {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personStructuredData).replace(/</g, '\\u003c'),
+          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
         }}
       />
     </>

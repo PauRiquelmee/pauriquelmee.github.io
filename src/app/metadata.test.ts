@@ -8,10 +8,10 @@ import { siteUrl } from '@/lib/paths';
 describe('portfolio metadata', () => {
   it('uses English canonical, Open Graph, and Twitter metadata', () => {
     expect(metadata.title).toBe(
-      'Paula Riquelme | Product Lead & Product Designer',
+      'Paula Riquelme Portfolio | Product Lead & Product Designer',
     );
     expect(metadata.description).toBe(
-      'Product Lead, product designer, and frontend developer building digital products from customer discovery and strategy through implementation.',
+      'Official portfolio of Paula Riquelme, a Product Lead, product designer, and frontend developer building from discovery and strategy through implementation.',
     );
     expect(metadata.metadataBase).toEqual(siteUrl);
     expect(metadata.alternates).toEqual({ canonical: '/' });
@@ -29,10 +29,11 @@ describe('portfolio metadata', () => {
     expect(manifest().lang).toBe('en');
     expect(manifest().start_url).toBe('/');
     expect(robots().sitemap).toBe('https://pauriquelmee.github.io/sitemap.xml');
-    expect(sitemap()).toEqual([
-      expect.objectContaining({
-        url: 'https://pauriquelmee.github.io/',
-      }),
+    expect(sitemap().map((entry) => entry.url)).toEqual([
+      'https://pauriquelmee.github.io/',
+      'https://pauriquelmee.github.io/about/',
+      'https://pauriquelmee.github.io/contact/',
+      'https://pauriquelmee.github.io/privacy/',
     ]);
   });
 });

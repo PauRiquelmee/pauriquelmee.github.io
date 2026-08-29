@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Next.js App Router with TypeScript, Tailwind CSS, Base UI, Motion for React, Vitest, React Testing Library, and Playwright. The site is a static export deployed as a GitHub Pages project site.
+Next.js App Router with TypeScript, Tailwind CSS, Base UI, Motion for React, Vitest, React Testing Library, and Playwright. The site is a static export deployed as a GitHub Pages user site.
 
 ## Users
 
@@ -28,9 +28,10 @@ Visitors arrive from professional referrals, LinkedIn, press coverage, or direct
 
 ## Capabilities and Constraints
 
-- One English-only page at `/`.
+- An English-only portfolio at `/`, with substantive `/about/`, `/contact/`, and `/privacy/` trust pages.
+- A custom recoverable 404, `llms.txt`, a sitemap, and canonical Markdown documents for agent access.
 - No backend, API routes, database, contact form, multilingual routes, or language selector.
-- Static export compatible with the GitHub Pages repository subpath.
+- Static export compatible with the GitHub Pages user-site root.
 - Woku and Inpla previews load only after explicit interaction and fall back to local screenshots plus safe external links when embedding is blocked.
 - Base UI owns relevant interactive primitives and focus management.
 - Motion owns meaningful animation and respects the user's reduced-motion preference.
