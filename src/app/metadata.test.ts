@@ -25,13 +25,13 @@ describe("portfolio metadata", () => {
 
   it("publishes a production-aware manifest, robots policy, and sitemap", () => {
     expect(manifest().lang).toBe("en");
-    expect(manifest().start_url).toBe("/paula-riquelme-portfolio/");
+    expect(manifest().start_url).toBe("/");
     expect(robots().sitemap).toBe(
-      "https://pauriquelmee.github.io/paula-riquelme-portfolio/sitemap.xml",
+      "https://pauriquelmee.github.io/sitemap.xml",
     );
     expect(sitemap()).toEqual([
       expect.objectContaining({
-        url: "https://pauriquelmee.github.io/paula-riquelme-portfolio/",
+        url: "https://pauriquelmee.github.io/",
       }),
     ]);
   });

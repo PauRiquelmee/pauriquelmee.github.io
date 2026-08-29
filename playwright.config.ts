@@ -1,7 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const localBaseUrl =
-  "http://127.0.0.1:4173/paula-riquelme-portfolio/";
+const localBaseUrl = "http://127.0.0.1:4173/";
 const externalBaseUrl = process.env.PLAYWRIGHT_BASE_URL;
 
 export default defineConfig({

@@ -58,7 +58,7 @@ const socialCardSvg = `
   <rect x="54" y="385" width="350" height="6" fill="${colors.accent}"/>
   <text x="54" y="459" fill="${colors.foreground}" font-family="Arial, Helvetica, sans-serif" font-size="34">Product Lead · Product Designer · Frontend Developer</text>
   <text x="54" y="590" fill="${colors.muted}" font-family="Arial, Helvetica, sans-serif" font-size="24">Concepción, Chile</text>
-  <text x="1146" y="590" fill="${colors.accent}" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="end">paula-riquelme-portfolio</text>
+  <text x="1146" y="590" fill="${colors.accent}" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="end">pauriquelmee.github.io</text>
 </svg>
 `.trim();
 
@@ -326,7 +326,7 @@ y = drawWrapped(page, "Best Undergraduate Paper | OPTIMA 2017", { y, size: 10.5,
 y = drawWrapped(page, "Developed an algorithm based on the traveling salesperson problem to recommend tourist routes according to a visitor's interests, available time, and budget. The work received the Best Undergraduate Paper award at the OPTIMA 2017 Congress and made it possible to obtain USD 7,000 from the Chilean Institute for Operations Research, ICHIO, to develop Orvita.", { y: y - 1, size: 8.7, lineHeight: 11.5 }) - 10;
 y = drawSectionTitle(page, "Press", y);
 y = drawWrapped(page, "Featured five times in El Mercurio Innovation for Woku, Inpla, entrepreneurship, startup closure, and Made Inn Conce 2024. Diario Concepción also covered the OPTIMA 2017 recognition.", { y, size: 8.7, lineHeight: 11.5 });
-y = drawWrapped(page, "Portfolio: https://PauRiquelmee.github.io/paula-riquelme-portfolio/", { y: y - 5, size: 8.5, font: boldFont, lineHeight: 11 });
+y = drawWrapped(page, "Portfolio: https://PauRiquelmee.github.io/", { y: y - 5, size: 8.5, font: boldFont, lineHeight: 11 });
 y = drawWrapped(page, "Woku: https://woku.app  |  Inpla: https://inpla.ai/en/  |  Methodology: https://defi2.cc/", { y: y - 2, size: 8.5, lineHeight: 11 }) - 10;
 y = drawSectionTitle(page, "Languages", y);
 drawWrapped(page, "English: full professional proficiency.", { y, size: 8.8, lineHeight: 11 });

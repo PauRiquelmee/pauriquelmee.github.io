@@ -1,16 +1,7 @@
 import path from "node:path";
 
-export const previewBasePath = "/paula-riquelme-portfolio";
-
 export function normalizeOutputPath(pathname) {
-  let decodedPath = decodeURIComponent(pathname);
-
-  if (
-    decodedPath === previewBasePath ||
-    decodedPath.startsWith(`${previewBasePath}/`)
-  ) {
-    decodedPath = decodedPath.slice(previewBasePath.length);
-  }
+  const decodedPath = decodeURIComponent(pathname);
 
   if (decodedPath === "" || decodedPath === "/") return "index.html";
 

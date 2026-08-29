@@ -26,6 +26,6 @@ npm run test:e2e
 
 The site is statically exported to `out` and deployed through the official GitHub Pages Actions workflow at:
 
-https://PauRiquelmee.github.io/paula-riquelme-portfolio/
+https://PauRiquelmee.github.io/
 
 See `docs/architecture.md` for system boundaries, accessibility, SEO, testing, assets, and deployment decisions.

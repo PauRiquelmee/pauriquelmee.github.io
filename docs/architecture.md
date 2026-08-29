@@ -2,7 +2,7 @@
 
 ## Project constraints
 
-This repository produces one English-only portfolio page for Paula Riquelme. The site must export to static files, run below the `/paula-riquelme-portfolio` GitHub Pages subpath in production, avoid server-only features, minimize browser JavaScript, and preserve the canonical resume facts in `src/content`.
+This repository produces one English-only portfolio page for Paula Riquelme. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical resume facts in `src/content`.
 
 The implementation uses strict TypeScript, Tailwind CSS, Base UI, Motion for React, Vitest, React Testing Library, user-event, jest-dom, and Playwright. It does not use another foundational component library, animation library, backend, API route, database, or multilingual routing.
 
@@ -76,11 +76,11 @@ Content remains visible in server-rendered HTML. Motion does not gate meaningful
 
 No component uses cookies, headers, draft mode, server actions, rewrites, redirects, or runtime route handlers. Metadata routes must be statically generated or represented by public files when static export constraints require it.
 
-## GitHub Pages basePath handling
+## GitHub Pages root hosting
 
-Production uses `NEXT_PUBLIC_BASE_PATH=/paula-riquelme-portfolio`. Local development uses an empty base path. `next.config.ts` reads the value at build time and assigns both `basePath` and `assetPrefix` in production. `src/lib/paths.ts` provides one tested helper for public asset URLs used in HTML and metadata.
+The repository is named `pauriquelmee.github.io`, so production is served directly from `/` without `basePath` or `assetPrefix`. `src/lib/paths.ts` provides one tested helper that normalizes public asset URLs to root-relative paths.
 
-The canonical production origin is `https://PauRiquelmee.github.io/paula-riquelme-portfolio/`. Metadata, sitemap, robots, manifest, JSON-LD, resume links, screenshots, icons, and social cards use the real project-site path.
+The canonical production origin is `https://PauRiquelmee.github.io/`. Metadata, sitemap, robots, manifest, JSON-LD, resume links, screenshots, icons, and social cards use the user-site root.
 
 ## Content architecture
 
@@ -94,7 +94,7 @@ The component workflow is test-first: add a behavior test, run it and confirm th
 
 Vitest and React Testing Library cover semantic roles, names, external links, disabled controls, focus behavior, mobile navigation, project preview loading, Escape closing, focus restoration, fallback messaging, resume downloads, reduced motion, base paths, and English metadata. Coverage thresholds are 90 percent statements, lines, and functions, plus 85 percent branches for the component layer.
 
-Playwright runs against the static export served beneath the production subpath. It covers navigation, mobile menu, previews, fallbacks, external links, resume download, LinkedIn, press links, core content, and static assets.
+Playwright runs against the static export served at the production root. It covers navigation, mobile menu, previews, fallbacks, external links, resume download, LinkedIn, press links, core content, and static assets.
 
 The custom architecture validator parses production TSX and folder structure. CI runs lint, typecheck, unit tests, coverage, architecture validation, agent-document validation, build, and Playwright.
 
@@ -113,7 +113,7 @@ The custom architecture validator parses production TSX and folder structure. CI
 
 ## SEO strategy
 
-Static metadata defines the exact English title and description, a production `metadataBase`, canonical URL, Open Graph data, Twitter card data, robots directives, keywords, icons, and theme color. Static robots, sitemap, and manifest files include the repository base path. A Person JSON-LD object matches visible facts and uses LinkedIn, Woku, and Inpla for `sameAs`.
+Static metadata defines the exact English title and description, a production `metadataBase`, canonical URL, Open Graph data, Twitter card data, robots directives, keywords, icons, and theme color. Static robots, sitemap, and manifest files use root-relative paths. A Person JSON-LD object matches visible facts and uses LinkedIn, Woku, and Inpla for `sameAs`.
 
 No alternate locale, `hreflang`, Spanish metadata, or localized route is generated.
 

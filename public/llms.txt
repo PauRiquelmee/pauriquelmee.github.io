@@ -13,8 +13,8 @@ Accuracy guidance:
 
 ## Primary sources
 
-- [Portfolio](https://pauriquelmee.github.io/paula-riquelme-portfolio/): Canonical portfolio with selected work, experience, capabilities, education, recognition, and press evidence.
-- [English resume](https://pauriquelmee.github.io/paula-riquelme-portfolio/documents/paula-riquelme-resume-en.pdf): Downloadable resume with professional history and education.
+- [Portfolio](https://pauriquelmee.github.io/): Canonical portfolio with selected work, experience, capabilities, education, recognition, and press evidence.
+- [English resume](https://pauriquelmee.github.io/documents/paula-riquelme-resume-en.pdf): Downloadable resume with professional history and education.
 - [LinkedIn](https://www.linkedin.com/in/pauriquelme): Public professional profile.
 
 ## Selected work
