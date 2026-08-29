@@ -29,6 +29,11 @@ describe("canonical portfolio content", () => {
       "USD 70K",
     ]);
     expect(projects[1].outcomes.join(" ")).toContain("Puerto Coronel");
+    expect(projects[1]).toMatchObject({
+      href: "https://inpla.ai/en/",
+      image: "/media/inpla-website.webp",
+      previewStatus: "blocked",
+    });
   });
 
   it("contains all skill groups and five El Mercurio Innovation features", () => {
@@ -45,6 +50,12 @@ describe("canonical portfolio content", () => {
     expect(
       contactLinks.find((link) => link.label === "English resume")?.href,
     ).toContain("paula-riquelme-resume-en.pdf");
+    expect(contactLinks.find((link) => link.label === "Inpla")?.href).toBe(
+      "https://inpla.ai/en/",
+    );
+    expect(contactLinks.find((link) => link.label === "llms.txt")?.href).toBe(
+      "/llms.txt",
+    );
     expect(recognition.title).toBe("Best Undergraduate Paper | OPTIMA 2017");
   });
 });

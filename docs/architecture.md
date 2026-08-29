@@ -119,7 +119,9 @@ No alternate locale, `hreflang`, Spanish metadata, or localized route is generat
 
 ## Asset generation strategy
 
-Identity assets are deterministic. Source SVG files define the PR monogram and social card. Sharp rasterizes and optimizes favicon sizes, PWA icons, Apple touch icon, Open Graph image, Twitter image, and supplied Woku, Inpla, press, and recognition media. The favicon combines 16, 32, and 48 pixel images.
+Identity assets are deterministic. Source SVG files define the PR monogram, the white-P-on-indigo favicon, and the social card. Sharp rasterizes and optimizes favicon sizes, PWA icons, Apple touch icon, Open Graph image, Twitter image, and supplied Woku, Inpla, press, and recognition media. The favicon combines 16, 32, and 48 pixel images.
+
+The static export also publishes `llms.txt` at the project root. It follows the current llms.txt Markdown structure, links to canonical evidence, and is discoverable through both the footer and a `rel="describedby"` document link.
 
 The English resume PDF is generated from canonical content using a deterministic PDF library and visually inspected before release. Source assets stay under `assets/source` when useful, while browser-ready output lives in `public`.
 

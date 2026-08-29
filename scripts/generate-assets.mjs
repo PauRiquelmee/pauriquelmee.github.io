@@ -35,6 +35,14 @@ const monogramSvg = `
 </svg>
 `.trim();
 
+const faviconSvg = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Paula Riquelme favicon</title>
+  <rect width="64" height="64" fill="${colors.accent}"/>
+  <text x="32" y="45" fill="#ffffff" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="middle">P</text>
+</svg>
+`.trim();
+
 const socialCardSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
   <title id="title">Paula Riquelme portfolio social card</title>
@@ -59,8 +67,8 @@ await Promise.all([
   writeFile(path.join(publicDirectory, "brand", "social-card.svg"), socialCardSvg),
 ]);
 
-async function renderMonogram(size, outputPath) {
-  await sharp(Buffer.from(monogramSvg))
+async function renderFavicon(size, outputPath) {
+  await sharp(Buffer.from(faviconSvg))
     .resize(size, size)
     .png({ compressionLevel: 9 })
     .toFile(outputPath);
@@ -72,13 +80,14 @@ const faviconPaths = [];
 for (const size of faviconSizes) {
   const outputPath = path.join(temporaryDirectory, `favicon-${size}.png`);
   faviconPaths.push(outputPath);
-  await renderMonogram(size, outputPath);
+  await renderFavicon(size, outputPath);
 }
 
 await Promise.all([
-  renderMonogram(192, path.join(publicDirectory, "icons", "icon-192.png")),
-  renderMonogram(512, path.join(publicDirectory, "icons", "icon-512.png")),
-  renderMonogram(180, path.join(publicDirectory, "apple-touch-icon.png")),
+  writeFile(path.join(publicDirectory, "brand", "favicon.svg"), faviconSvg),
+  renderFavicon(192, path.join(publicDirectory, "icons", "icon-192.png")),
+  renderFavicon(512, path.join(publicDirectory, "icons", "icon-512.png")),
+  renderFavicon(180, path.join(publicDirectory, "apple-touch-icon.png")),
   sharp(Buffer.from(socialCardSvg))
     .png({ compressionLevel: 9 })
     .toFile(path.join(publicDirectory, "social", "paula-riquelme.png")),
@@ -104,6 +113,11 @@ const imageJobs = [
     input: "inpla.png",
     output: "inpla-project.webp",
     transform: (image) => image.extract({ left: 32, top: 28, width: 1088, height: 720 }),
+  },
+  {
+    input: "inpla-hero-official.webp",
+    output: "inpla-website.webp",
+    transform: (image) => image.resize({ width: 1600, withoutEnlargement: true }),
   },
   {
     input: "verano1.png",
@@ -313,7 +327,7 @@ y = drawWrapped(page, "Developed an algorithm based on the traveling salesperson
 y = drawSectionTitle(page, "Press", y);
 y = drawWrapped(page, "Featured five times in El Mercurio Innovation for Woku, Inpla, entrepreneurship, startup closure, and Made Inn Conce 2024. Diario Concepción also covered the OPTIMA 2017 recognition.", { y, size: 8.7, lineHeight: 11.5 });
 y = drawWrapped(page, "Portfolio: https://PauRiquelmee.github.io/paula-riquelme-portfolio/", { y: y - 5, size: 8.5, font: boldFont, lineHeight: 11 });
-y = drawWrapped(page, "Woku: https://woku.app  |  Inpla: https://inpla.dev  |  Methodology: https://defi2.cc/", { y: y - 2, size: 8.5, lineHeight: 11 }) - 10;
+y = drawWrapped(page, "Woku: https://woku.app  |  Inpla: https://inpla.ai/en/  |  Methodology: https://defi2.cc/", { y: y - 2, size: 8.5, lineHeight: 11 }) - 10;
 y = drawSectionTitle(page, "Languages", y);
 drawWrapped(page, "English: full professional proficiency.", { y, size: 8.8, lineHeight: 11 });
 

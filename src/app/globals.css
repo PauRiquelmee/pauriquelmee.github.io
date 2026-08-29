@@ -102,7 +102,7 @@ ul { padding: 0; }
   text-transform: uppercase;
 }
 .desktop-navigation a { text-decoration: none; }
-.desktop-navigation a:last-child { padding: 0.6rem 0.9rem; border-radius: 0.75rem; background: var(--ink); color: var(--paper-bright); }
+.desktop-navigation a:last-child { padding: 0.6rem 0.9rem; background: var(--ink); color: var(--paper-bright); }
 .desktop-navigation a:hover, .site-brand:hover, .external-action:hover, .press-title:hover, .recognition-title:hover, .methodology-link:hover, .contact-links a:hover { color: var(--accent); }
 .desktop-navigation a:last-child:hover { background: var(--accent); color: white; }
 
@@ -111,7 +111,7 @@ ul { padding: 0; }
   min-height: 2.9rem;
   padding: 0.76rem 1.05rem;
   border: 1px solid var(--ink);
-  border-radius: 0.75rem;
+  border-radius: 0;
   align-items: center;
   justify-content: center;
   background: var(--ink);

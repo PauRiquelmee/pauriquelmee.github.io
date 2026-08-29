@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T00:29:00Z",
+  "generatedAt": "2026-08-29T00:44:02Z",
   "title": "Design System: Paula Riquelme Portfolio",
   "extensions": {
     "colorMeta": {
@@ -101,7 +101,7 @@
       "refersTo": "button-primary",
       "description": "Deep-indigo action for the highest-priority path.",
       "html": "<a class=\"ds-button-primary\" href=\"#\">View selected work</a>",
-      "css": ".ds-button-primary { display: inline-flex; min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #4338a8; border-radius: 12px; align-items: center; justify-content: center; background: #4338a8; color: white; font: 600 0.82rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; transition: background-color 150ms ease, transform 150ms ease; } .ds-button-primary:hover { border-color: #11110f; background: #11110f; transform: translateY(-2px); } .ds-button-primary:active { transform: translateY(0); } .ds-button-primary:focus-visible { outline: 3px solid #a5b5fc; outline-offset: 4px; }"
+      "css": ".ds-button-primary { display: inline-flex; min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #4338a8; border-radius: 0; align-items: center; justify-content: center; background: #4338a8; color: white; font: 600 0.82rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; transition: background-color 150ms ease, transform 150ms ease; } .ds-button-primary:hover { border-color: #11110f; background: #11110f; transform: translateY(-2px); } .ds-button-primary:active { transform: translateY(0); } .ds-button-primary:focus-visible { outline: 3px solid #a5b5fc; outline-offset: 4px; }"
     },
     {
       "name": "Secondary Button",
@@ -109,14 +109,14 @@
       "refersTo": "button-secondary",
       "description": "Transparent ruled action for a clear but subordinate path.",
       "html": "<a class=\"ds-button-secondary\" href=\"#\">Get in touch</a>",
-      "css": ".ds-button-secondary { display: inline-flex; min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #11110f; border-radius: 12px; align-items: center; justify-content: center; background: transparent; color: #11110f; font: 600 0.82rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; transition: background-color 150ms ease, transform 150ms ease; } .ds-button-secondary:hover { border-color: #4338a8; background: #4338a8; color: white; transform: translateY(-2px); } .ds-button-secondary:active { transform: translateY(0); } .ds-button-secondary:focus-visible { outline: 3px solid #a5b5fc; outline-offset: 4px; }"
+      "css": ".ds-button-secondary { display: inline-flex; min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #11110f; border-radius: 0; align-items: center; justify-content: center; background: transparent; color: #11110f; font: 600 0.82rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-decoration: none; text-transform: uppercase; transition: background-color 150ms ease, transform 150ms ease; } .ds-button-secondary:hover { border-color: #4338a8; background: #4338a8; color: white; transform: translateY(-2px); } .ds-button-secondary:active { transform: translateY(0); } .ds-button-secondary:focus-visible { outline: 3px solid #a5b5fc; outline-offset: 4px; }"
     },
     {
       "name": "Ruled Masthead",
       "kind": "nav",
-      "description": "Sticky paper masthead with the square PR mark, compact section links, and a rounded contact action.",
+      "description": "Sticky paper masthead with the square PR mark, compact section links, and a square contact action.",
       "html": "<header class=\"ds-masthead\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-mark\">PR</span><span>Paula Riquelme</span></a><nav class=\"ds-nav\"><a href=\"#\">Selected work</a><a class=\"ds-nav-contact\" href=\"#\">Contact</a></nav></header>",
-      "css": ".ds-masthead { display: flex; min-height: 4.5rem; padding: 0 1.5rem; border-bottom: 1px solid #11110f; align-items: center; justify-content: space-between; background: rgb(243 240 232 / 94%); color: #11110f; } .ds-brand { display: inline-flex; gap: 0.7rem; align-items: center; color: inherit; font: 700 1.05rem/1 'Arial Narrow', sans-serif; text-decoration: none; text-transform: uppercase; } .ds-mark { display: grid; width: 2rem; height: 2rem; background: #11110f; color: #fbfaf6; place-items: center; } .ds-nav { display: flex; gap: 2rem; align-items: center; font: 600 0.79rem/1 Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav a:hover { color: #4338a8; } .ds-nav-contact { padding: 0.6rem 0.9rem; border-radius: 12px; background: #11110f; color: #fbfaf6 !important; } .ds-nav-contact:hover { background: #4338a8; color: white !important; }"
+      "css": ".ds-masthead { display: flex; min-height: 4.5rem; padding: 0 1.5rem; border-bottom: 1px solid #11110f; align-items: center; justify-content: space-between; background: rgb(243 240 232 / 94%); color: #11110f; } .ds-brand { display: inline-flex; gap: 0.7rem; align-items: center; color: inherit; font: 700 1.05rem/1 'Arial Narrow', sans-serif; text-decoration: none; text-transform: uppercase; } .ds-mark { display: grid; width: 2rem; height: 2rem; background: #11110f; color: #fbfaf6; place-items: center; } .ds-nav { display: flex; gap: 2rem; align-items: center; font: 600 0.79rem/1 Arial, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav a:hover { color: #4338a8; } .ds-nav-contact { padding: 0.6rem 0.9rem; background: #11110f; color: #fbfaf6 !important; } .ds-nav-contact:hover { background: #4338a8; color: white !important; }"
     },
     {
       "name": "Role Register",
@@ -144,7 +144,7 @@
       "kind": "custom",
       "description": "Detached proof sheet opened by explicit action, with screenshot fallback and an external path.",
       "html": "<div class=\"ds-preview-stage\"><section class=\"ds-preview-sheet\"><header><h3>Woku live preview</h3><button aria-label=\"Close\">×</button></header><div class=\"ds-preview-media\">Factual screenshot fallback</div><a href=\"#\">Open website</a></section></div>",
-      "css": ".ds-preview-stage { padding: 2rem; background: rgb(17 17 15 / 78%); } .ds-preview-sheet { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; box-shadow: 0 1.5rem 4rem rgb(17 17 15 / 28%); color: #11110f; } .ds-preview-sheet header { display: flex; align-items: flex-start; justify-content: space-between; } .ds-preview-sheet h3 { margin: 0; font: 700 3rem/0.9 'Arial Narrow', sans-serif; text-transform: uppercase; } .ds-preview-sheet button { width: 2.9rem; height: 2.9rem; border: 1px solid #11110f; border-radius: 12px; background: transparent; } .ds-preview-media { display: grid; min-height: 18rem; margin: 2rem 0 1rem; border: 1px solid #11110f; background: #11110f; color: #fbfaf6; place-items: center; } .ds-preview-sheet a { color: inherit; font: 700 0.78rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-transform: uppercase; }"
+      "css": ".ds-preview-stage { padding: 2rem; background: rgb(17 17 15 / 78%); } .ds-preview-sheet { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; box-shadow: 0 1.5rem 4rem rgb(17 17 15 / 28%); color: #11110f; } .ds-preview-sheet header { display: flex; align-items: flex-start; justify-content: space-between; } .ds-preview-sheet h3 { margin: 0; font: 700 3rem/0.9 'Arial Narrow', sans-serif; text-transform: uppercase; } .ds-preview-sheet button { width: 2.9rem; height: 2.9rem; border: 1px solid #11110f; border-radius: 0; background: transparent; } .ds-preview-media { display: grid; min-height: 18rem; margin: 2rem 0 1rem; border: 1px solid #11110f; background: #11110f; color: #fbfaf6; place-items: center; } .ds-preview-sheet a { color: inherit; font: 700 0.78rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-transform: uppercase; }"
     }
   ],
   "narrative": {
@@ -153,7 +153,7 @@
     "keyCharacteristics": [
       "Evidence before biography.",
       "Compressed display type against calm body copy.",
-      "Square, ruled paper geometry with softly rounded actions and one deep indigo accent.",
+      "Square, ruled paper geometry with square actions and one deep indigo accent.",
       "A vertical desktop role register that becomes horizontal responsively.",
       "Factual imagery and motion that confirms structure, never decorates."
     ],
@@ -164,7 +164,7 @@
       { "name": "The Compression Rule", "body": "Barlow Condensed carries every oversized claim and index title; body copy never imitates it through tracking or all caps.", "section": "typography" },
       { "name": "The Responsive Register Rule", "body": "Preserve hierarchy and reading order when vertical desktop labels become horizontal; do not preserve desktop novelty at the cost of mobile comprehension.", "section": "layout" },
       { "name": "The Detached Sheet Rule", "body": "Shadows appear only when an overlay leaves the page plane; inline panels stay flat and use borders or contrast instead.", "section": "elevation" },
-      { "name": "The Square Proof Rule", "body": "Document surfaces, media crops, and overlays keep square corners; actions alone may soften to 12px for clearer affordance.", "section": "shapes" },
+      { "name": "The Square Proof Rule", "body": "Document surfaces, media crops, overlays, and actions keep square corners; affordance comes from contrast, rules, labels, and interaction states.", "section": "shapes" },
       { "name": "The Motion With Purpose Rule", "body": "Animate rule growth, evidence reveal, and overlay entry only; reduced motion removes spatial starts and preserves immediate feedback.", "section": "components" }
     ],
     "dos": [
