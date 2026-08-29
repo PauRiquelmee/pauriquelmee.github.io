@@ -27,11 +27,10 @@ related_targets: []
 | Masthead | Sticky, thin ruled line, PR mark, short section navigation, resume, contact | Semantic HTML and CSS |
 | Role register | Three vertical role labels at desktop, one horizontal line on mobile | Semantic HTML and CSS |
 | Headline | Condensed grotesk, dominant multi-line scale, nearly full content width | Semantic HTML and self-hosted font |
-| Primary actions | One filled indigo action and one ruled secondary action | Base UI Button rendered as anchors |
+| Primary actions | One filled indigo action and one ruled secondary action | Semantic native anchors with the shared action contract |
 | Evidence ledger | Three equal cells with large values and compact factual labels | Semantic definition list and CSS grid |
-| Selected work | Two equal-width proof-sheet cards with distinct paper tones, factual media, ruled metrics, outcomes, and visible actions | Semantic articles, optimized local WebP, Base UI Dialog |
-| Project preview | Explicitly opened overlay; current project data uses local screenshot fallbacks and external links, while the component retains unused lazy-iframe support | Base UI Dialog, Motion, local WebP |
+| Selected work | Two equal-width proof-sheet cards with distinct paper tones, factual media, ruled metrics, outcomes, case study links, and website links | Semantic articles, optimized local WebP, and native anchors |
 | Experience | Dense index with role, company, dates, responsibilities, outcomes, and metrics | Semantic articles and CSS grid |
 | Recognition and press | Underlined titles, factual publication media, visible external links | Semantic anchors and optimized local WebP |
-| Contact close | Oversized direct prompt, mailto, LinkedIn, projects, English resume | Semantic HTML and Base UI Button rendered as anchors |
-| Motion | Hero-rule growth, first-view project-media reveal, preview-sheet translation, and mobile drawer slide/fade, all suppressed spatially under reduced motion | Motion LazyMotion, `m`, `useReducedMotion`, and CSS media query |
+| Contact close | Oversized direct prompt, mailto, LinkedIn, projects, English resume | Semantic HTML and native anchors |
+| Motion | Hero-rule growth, first-view project-media reveal, and mobile drawer slide/fade, all suppressed spatially under reduced motion | Motion LazyMotion, `m`, `useReducedMotion`, and CSS media query |

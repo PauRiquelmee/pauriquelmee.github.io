@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-29T00:44:02Z",
+  "generatedAt": "2026-08-29T06:23:00Z",
   "title": "Design System: Paula Riquelme Portfolio",
   "extensions": {
     "colorMeta": {
@@ -75,8 +75,6 @@
       "action": { "displayName": "Action", "purpose": "Buttons and compact action links." }
     },
     "shadows": [
-      { "name": "dialog-sheet", "value": "0 1.5rem 4rem rgb(17 17 15 / 28%)", "purpose": "Large detached project preview sheet." },
-      { "name": "dialog-sheet-compact", "value": "0 1rem 2.5rem rgb(17 17 15 / 28%)", "purpose": "Project preview sheet below the mobile breakpoint." },
       { "name": "mobile-drawer", "value": "-1.25rem 0 3rem rgb(17 17 15 / 24%)", "purpose": "Right-edge mobile navigation drawer." }
     ],
     "motion": [
@@ -85,7 +83,6 @@
       { "name": "backdrop-fade", "value": "180ms ease", "purpose": "Dialog backdrop opacity." },
       { "name": "hero-rule", "value": "500ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Scale the hero rule from the left edge." },
       { "name": "project-media-reveal", "value": "460ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveal project media from 24 pixels below without reducing evidence contrast." },
-      { "name": "preview-dialog-enter", "value": "240ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Move the project proof sheet upward by 16 pixels." },
       { "name": "mobile-navigation-enter", "value": "280ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Slide the drawer 32 pixels from the right while fading from 55 percent opacity." },
       { "name": "reduced-motion", "value": "0.01ms transitions and no spatial initial state", "purpose": "Honor the user preference while preserving immediate state feedback." }
     ],
@@ -123,33 +120,33 @@
       "kind": "custom",
       "description": "Three-role professional register, vertical on desktop and horizontal at compact widths.",
       "html": "<div class=\"ds-role-register\"><span>Product Lead</span><span>Product Designer</span><span>Frontend Developer</span></div>",
-      "css": ".ds-role-register { display: grid; grid-template-columns: repeat(3, 1fr); width: 6.25rem; padding: 0.2rem 0.9rem 2rem 0; border-right: 1px solid #b8b4aa; color: #66645e; font: 600 0.7rem/1.5 Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; } .ds-role-register span { display: flex; min-height: 8.25rem; border-left: 1px solid #b8b4aa; align-items: center; justify-content: flex-end; writing-mode: vertical-rl; transform: rotate(180deg); } .ds-role-register span:first-child { border-left: 0; }"
+      "css": ".ds-role-register { display: grid; grid-template-columns: repeat(3, 1fr); width: 6.25rem; padding: 0.2rem 0.9rem 2rem 0; border-right: 1px solid #b8b4aa; color: #66645e; font: 600 0.75rem/1.5 Arial, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; } .ds-role-register span { display: flex; min-height: 8.25rem; border-left: 1px solid #b8b4aa; align-items: center; justify-content: flex-end; writing-mode: vertical-rl; transform: rotate(180deg); } .ds-role-register span:first-child { border-left: 0; }"
     },
     {
       "name": "Proof Ledger",
       "kind": "custom",
       "description": "Three-cell definition list that turns claims into first-scan evidence.",
       "html": "<dl class=\"ds-proof-ledger\"><div><dd>50+</dd><dt>customers</dt></div><div><dd>3</dd><dt>countries</dt></div><div><dd>USD 70K</dd><dt>funding</dt></div></dl>",
-      "css": ".ds-proof-ledger { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #11110f; border-bottom: 1px solid #11110f; background: #f3f0e8; color: #11110f; } .ds-proof-ledger div { padding: 1rem 1.4rem 1.1rem; border-right: 1px solid #b8b4aa; } .ds-proof-ledger div:last-child { border-right: 0; } .ds-proof-ledger dd { margin: 0; font: 700 clamp(2.7rem, 4vw, 4.5rem)/0.85 'Arial Narrow', sans-serif; letter-spacing: -0.04em; text-transform: uppercase; } .ds-proof-ledger dt { margin-top: 0.55rem; color: #66645e; font: 400 0.72rem/1.5 Arial, sans-serif; letter-spacing: 0.09em; text-transform: uppercase; }"
+      "css": ".ds-proof-ledger { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #11110f; border-bottom: 1px solid #11110f; background: #f3f0e8; color: #11110f; } .ds-proof-ledger div { padding: 1rem 1.4rem 1.1rem; border-right: 1px solid #b8b4aa; } .ds-proof-ledger div:last-child { border-right: 0; } .ds-proof-ledger dd { margin: 0; font: 700 clamp(2.7rem, 4vw, 4.5rem)/0.85 'Arial Narrow', sans-serif; letter-spacing: -0.04em; text-transform: uppercase; } .ds-proof-ledger dt { margin-top: 0.55rem; color: #66645e; font: 400 0.75rem/1.5 Arial, sans-serif; letter-spacing: 0.09em; text-transform: uppercase; }"
     },
     {
       "name": "Project Proof Sheet",
       "kind": "card",
-      "description": "Square project dossier with factual media, outcomes, and a ruled metric strip.",
-      "html": "<article class=\"ds-project-card\"><h3>Woku</h3><p>AI-powered customer-feedback platform</p><div class=\"ds-project-media\">Factual local WebP</div><dl><div><dt>customers</dt><dd>50+</dd></div><div><dt>countries</dt><dd>3</dd></div><div><dt>funding</dt><dd>USD 70K</dd></div></dl></article>",
-      "css": ".ds-project-card { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; color: #11110f; } .ds-project-card h3 { margin: 0; font: 700 clamp(3.5rem, 7vw, 7rem)/0.82 'Arial Narrow', sans-serif; letter-spacing: -0.04em; text-transform: uppercase; } .ds-project-card p { color: #66645e; } .ds-project-media { display: grid; margin: 2rem 0; border: 1px solid #11110f; background: #292263; color: white; aspect-ratio: 16 / 10; place-items: center; } .ds-project-card dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #b8b4aa; border-bottom: 1px solid #b8b4aa; } .ds-project-card dl div { padding: 1rem; border-right: 1px solid #b8b4aa; } .ds-project-card dl div:last-child { border-right: 0; } .ds-project-card dt { color: #66645e; font: 400 0.67rem/1.5 Arial, sans-serif; text-transform: uppercase; } .ds-project-card dd { margin: 0.3rem 0 0; font: 700 2rem/1 'Arial Narrow', sans-serif; white-space: nowrap; }"
+      "description": "Square project dossier with factual media, outcomes, a ruled metric strip, and honest case-study and website paths.",
+      "html": "<article class=\"ds-project-card\"><h3>Woku</h3><p>AI-powered customer-feedback platform</p><div class=\"ds-project-media\">Factual local WebP</div><dl><div><dt>customers</dt><dd>50+</dd></div><div><dt>countries</dt><dd>3</dd></div><div><dt>funding</dt><dd>USD 70K</dd></div></dl><div class=\"ds-project-actions\"><a href=\"#\">View case study</a><a href=\"#\">Visit website</a></div></article>",
+      "css": ".ds-project-card { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; color: #11110f; } .ds-project-card h3 { margin: 0; font: 700 clamp(3.5rem, 7vw, 7rem)/0.82 'Arial Narrow', sans-serif; letter-spacing: -0.04em; text-transform: uppercase; } .ds-project-card p { color: #66645e; } .ds-project-media { display: grid; margin: 2rem 0; border: 1px solid #11110f; background: #292263; color: white; aspect-ratio: 16 / 10; place-items: center; } .ds-project-card dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #b8b4aa; border-bottom: 1px solid #b8b4aa; } .ds-project-card dl div { padding: 1rem; border-right: 1px solid #b8b4aa; } .ds-project-card dl div:last-child { border-right: 0; } .ds-project-card dt { color: #66645e; font: 400 0.75rem/1.5 Arial, sans-serif; text-transform: uppercase; } .ds-project-card dd { margin: 0.3rem 0 0; font: 700 2rem/1 'Arial Narrow', sans-serif; white-space: nowrap; } .ds-project-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; } .ds-project-actions a { min-height: 2.9rem; padding: 0.76rem 1.05rem; border: 1px solid #11110f; color: inherit; font: 600 0.82rem/1 Arial, sans-serif; text-transform: uppercase; } .ds-project-actions a:first-child { background: #4338a8; color: white; }"
     },
     {
-      "name": "Project Preview Sheet",
+      "name": "Case Study Record",
       "kind": "custom",
-      "description": "Detached proof sheet opened by explicit action, with screenshot fallback and an external path.",
-      "html": "<div class=\"ds-preview-stage\"><section class=\"ds-preview-sheet\"><header><h3>Woku live preview</h3><button aria-label=\"Close\">×</button></header><div class=\"ds-preview-media\">Factual screenshot fallback</div><a href=\"#\">Open website</a></section></div>",
-      "css": ".ds-preview-stage { padding: 2rem; background: rgb(17 17 15 / 78%); } .ds-preview-sheet { padding: 2rem; border: 1px solid #11110f; background: #fbfaf6; box-shadow: 0 1.5rem 4rem rgb(17 17 15 / 28%); color: #11110f; } .ds-preview-sheet header { display: flex; align-items: flex-start; justify-content: space-between; } .ds-preview-sheet h3 { margin: 0; font: 700 3rem/0.9 'Arial Narrow', sans-serif; text-transform: uppercase; } .ds-preview-sheet button { width: 2.9rem; height: 2.9rem; border: 1px solid #11110f; border-radius: 0; background: transparent; } .ds-preview-media { display: grid; min-height: 18rem; margin: 2rem 0 1rem; border: 1px solid #11110f; background: #11110f; color: #fbfaf6; place-items: center; } .ds-preview-sheet a { color: inherit; font: 700 0.78rem/1 Arial, sans-serif; letter-spacing: 0.055em; text-transform: uppercase; }"
+      "description": "Long-form evidence record with a compressed project register and ruled factual sections.",
+      "html": "<article class=\"ds-case-study\"><header><p>AI-powered customer-feedback platform</p><h3>Woku</h3></header><section><h4>Context and problem</h4><p>Verified project context remains concise and traceable.</p></section><section><h4>Outcomes and measurable evidence</h4><p>Company outcomes remain distinct from individual contribution.</p></section></article>",
+      "css": ".ds-case-study { border-top: 1px solid #11110f; background: #f3f0e8; color: #11110f; } .ds-case-study header { padding: 1rem 0 3rem; } .ds-case-study header p { color: #4338a8; font: 700 0.75rem/1.5 Arial, sans-serif; letter-spacing: 0.13em; text-transform: uppercase; } .ds-case-study header h3 { margin: 0.5rem 0 0; font: 700 clamp(5rem, 15vw, 13rem)/0.76 'Arial Narrow', sans-serif; letter-spacing: -0.045em; text-transform: uppercase; } .ds-case-study section { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 2rem; padding: 3rem 0; border-top: 1px solid #11110f; } .ds-case-study h4 { margin: 0; font: 700 2rem/1 'Arial Narrow', sans-serif; text-transform: uppercase; } .ds-case-study section p { max-width: 68ch; margin: 0; color: #66645e; font: 400 1rem/1.5 Arial, sans-serif; }"
     }
   ],
   "narrative": {
     "northStar": "The Product Launch Dossier",
-    "overview": "The system feels like a product launch dossier built from field evidence, not a centered personal-brand homepage. Warm paper, near-black ink, compressed display typography, thin rules, and square geometry create a factual editorial surface with a clear point of view.\n\nDeep indigo marks decisive actions and high-confidence evidence. Factual project and publication imagery, structured outcomes, and visible metrics make product leadership, design, go-to-market work, and frontend delivery read as one connected practice.\n\nDensity stays deliberate. Oversized type and the asymmetric role register establish identity, while ledgers and indices make the record easy to scan. Depth appears only when an overlay detaches from the document plane, and purposeful motion reinforces structure while respecting reduced-motion preferences.",
+    "overview": "The system feels like a product launch dossier built from field evidence, not a centered personal-brand homepage. Warm paper, near-black ink, compressed display typography, thin rules, and square geometry create a factual editorial surface with a clear point of view.\n\nDeep indigo marks decisive actions and high-confidence evidence. Factual project and publication imagery, structured outcomes, and visible metrics make product leadership, design, go-to-market work, and frontend delivery read as one connected practice.\n\nDensity stays deliberate. Oversized type and the asymmetric role register establish identity, while ledgers and indices make the record easy to scan. Depth appears only when an overlay detaches from the document plane, and purposeful motion reinforces structure while respecting reduced-motion preferences.\n\nTailwind CSS 4 expresses this system through theme tokens and component-local utilities. Global CSS is reserved for document defaults, shared interaction contracts, focus and selection, and selectors that are clearer as a cross-component rule.",
     "keyCharacteristics": [
       "Evidence before biography.",
       "Compressed display type against calm body copy.",
