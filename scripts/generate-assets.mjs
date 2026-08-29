@@ -283,7 +283,7 @@ y = drawWrapped(page, "Design: Figma, Adobe Illustrator, and Adobe Premiere Pro 
 y = drawWrapped(page, "Development: TypeScript, Tailwind CSS, Next.js, Vite, and AI-assisted development with Claude Code, Codex, and Kimi. Working knowledge of MongoDB, NestJS, AWS, and Azure.", { y: y - 2, size: 8.6, lineHeight: 11.3 }) - 10;
 
 y = drawSectionTitle(page, "Selected experience", y);
-y = drawRole(page, "CEO & Co-founder / Product Lead", "woku", "September 2023 - Present", "Chile", [
+y = drawRole(page, "CEO & Co-founder / Product Lead", "woku", "September 2023 - August 2026", "Chile", [
   "Leads end-to-end strategy and execution for an AI-powered customer feedback platform, from discovery and workflow design through frontend implementation and launch.",
   "Translates customer needs into rapid feedback capture, NPS and forms, AI-assisted analysis, alerts, and WhatsApp and API integrations.",
   "Connects product, UX/UI, growth, sales, and implementation to align the roadmap with real workflows and business outcomes.",
