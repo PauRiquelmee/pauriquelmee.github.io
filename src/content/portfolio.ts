@@ -11,8 +11,10 @@ export type Metric = {
 };
 
 export type Project = {
+  slug: 'woku' | 'inpla';
+  caseStudyPath: `/work/${string}/`;
+  experienceId: 'woku' | 'inpla';
   name: string;
-  role: string;
   description: string;
   href: string;
   image: string;
@@ -20,13 +22,21 @@ export type Project = {
   imageCaption: string;
   imageWidth: number;
   imageHeight: number;
-  outcomes: string[];
   metrics: Metric[];
-  previewStatus: 'blocked' | 'unavailable';
-  previewMessage: string;
+  caseStudy: {
+    context: string[];
+    constraints: string[];
+    decisionResponsibilityIndexes: number[];
+    deliveryResponsibilityIndexes: number[];
+    outcomeResponsibilityIndexes: number[];
+    pressFeatureIndexes: number[];
+    reflection: string[];
+    factualBoundary: string;
+  };
 };
 
 export type ExperienceItem = {
+  id: 'woku' | 'inpla' | 'stow' | 'essbio' | 'university' | 'orvita';
   role: string;
   company: string;
   dates: string;
@@ -43,6 +53,20 @@ export type ExperienceItem = {
       }
   >;
 };
+
+export const site = {
+  name: 'Paula Riquelme Portfolio',
+  alternateName: 'Paula Riquelme Product Portfolio',
+  origin: 'https://pauriquelmee.github.io/',
+  language: 'en',
+  locale: 'en_US',
+  email: 'paula.riq.esco@gmail.com',
+  title: 'Paula Riquelme Portfolio | Product Lead & Product Designer',
+  description:
+    'Official portfolio of Paula Riquelme, a Product Lead, product designer, and frontend developer building from discovery and strategy through implementation.',
+  socialImage: '/social/paula-riquelme.png',
+  themeColor: '#f3f0e8',
+} as const;
 
 export type SkillGroup = {
   name: string;
@@ -83,7 +107,7 @@ export const profile = {
 export const contactLinks: LinkItem[] = [
   {
     label: 'Email',
-    href: 'mailto:paula.riq.esco@gmail.com',
+    href: `mailto:${site.email}`,
     ariaLabel: 'Email Paula Riquelme',
   },
   {
@@ -109,7 +133,7 @@ export const contactLinks: LinkItem[] = [
     href: 'https://github.com/PauRiquelmee/pauriquelmee.github.io',
     external: true,
     ariaLabel:
-      'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
+      'GitHub repository: Open the source repository for Paula Riquelme Portfolio in a new tab',
   },
   {
     label: 'English resume',
@@ -129,7 +153,7 @@ export const contactLinks: LinkItem[] = [
   {
     label: 'Contact page',
     href: '/contact/',
-    ariaLabel: 'Open Paula Riquelme contact details',
+    ariaLabel: 'Contact page: Open Paula Riquelme contact details',
   },
   {
     label: 'Privacy',
@@ -264,8 +288,10 @@ export const trustPages: Record<
 
 export const projects: Project[] = [
   {
+    slug: 'woku',
+    caseStudyPath: '/work/woku/',
+    experienceId: 'woku',
     name: 'Woku',
-    role: 'CEO & Co-founder / Product Lead',
     description: 'AI-powered customer-feedback platform',
     href: 'https://woku.app',
     image: '/media/woku-project.webp',
@@ -274,23 +300,37 @@ export const projects: Project[] = [
     imageCaption: 'Current Woku website, captured in English in August 2026.',
     imageWidth: 1600,
     imageHeight: 900,
-    outcomes: [
-      'Leads the product from discovery and workflow design through frontend implementation and launch.',
-      'Translates customer needs into rapid feedback capture, NPS and forms, AI-assisted analysis, alerts, and WhatsApp and API integrations.',
-      'Connects product, UX/UI, growth, sales, and implementation to real business outcomes.',
-    ],
     metrics: [
       { value: '50+', label: 'customers' },
       { value: '3', label: 'countries: Chile, Peru, and Colombia' },
       { value: 'USD 70K', label: 'non-dilutive CORFO funding' },
     ],
-    previewStatus: 'blocked',
-    previewMessage:
-      'Woku prevents third-party embedding through X-Frame-Options. The current website screenshot remains available here, and the live website opens in a new tab.',
+    caseStudy: {
+      context: [
+        'The verified portfolio record frames Woku as an AI-powered customer-feedback platform. Paula connects customer discovery and real workflows with product strategy, UX/UI, go-to-market work, and implementation.',
+        'The current product brings rapid feedback capture, NPS, forms, AI-assisted analysis, alerts, and WhatsApp and API integrations into one product record.',
+      ],
+      constraints: [
+        'The documented role crosses product, design, growth, sales, frontend implementation, and launch. Decisions therefore had to stay connected to both customer workflows and business outcomes rather than move through isolated handoffs.',
+        'The public record does not state a single original research study, launch date, conversion result, or revenue figure, so this case study does not infer any of them.',
+      ],
+      decisionResponsibilityIndexes: [1, 2],
+      deliveryResponsibilityIndexes: [0, 2],
+      outcomeResponsibilityIndexes: [3, 4],
+      pressFeatureIndexes: [0],
+      reflection: [
+        'The evidence supports a practical lesson: discovery, roadmap choices, workflow design, launch, and implementation remain more useful when they are evaluated against the same customer and business context.',
+        'This is a lesson drawn from the documented scope and outcomes, not a claim that Paula alone produced every company result.',
+      ],
+      factualBoundary:
+        "This case study names Paula's documented contributions and lists company outcomes separately. It does not infer undisclosed research findings, revenue, conversion, or sole ownership of team results.",
+    },
   },
   {
+    slug: 'inpla',
+    caseStudyPath: '/work/inpla/',
+    experienceId: 'inpla',
     name: 'Inpla',
-    role: 'Co-founder & Brand Artisan, Product Design',
     description: 'Platform for chatting with company data',
     href: 'https://inpla.ai/en/',
     image: '/media/inpla-website.webp',
@@ -300,23 +340,36 @@ export const projects: Project[] = [
       'Official Inpla product interface from inpla.ai, accessed in August 2026.',
     imageWidth: 1600,
     imageHeight: 1370,
-    outcomes: [
-      'Won Puerto Coronel as the first customer before a product existed by selling the vision alone.',
-      'Co-created the product, user experience, brand, and positioning.',
-      'Helped shape a platform that allows companies to chat with their data.',
-    ],
     metrics: [
       { value: '01', label: 'first customer: Puerto Coronel' },
       { value: 'Pre-product', label: 'commercial validation' },
     ],
-    previewStatus: 'blocked',
-    previewMessage:
-      'Inpla prevents third-party embedding through X-Frame-Options. The official product image remains available here, and the live website opens in a new tab.',
+    caseStudy: {
+      context: [
+        'Inpla is documented as a platform that allows companies to chat with their data. The product record connects an AI conversation with business information and visual reporting.',
+        "The portfolio evidence focuses on the earliest commercial signal and Paula's contribution to turning that signal into a product, experience, brand, and position.",
+      ],
+      constraints: [
+        'Puerto Coronel became the first customer before a product existed. The initial condition was therefore commercial validation of a vision, not optimization of an established interface or mature product.',
+        'The verified record does not publish research transcripts, implementation dates, adoption metrics, revenue, or conversion rates, so none are added here.',
+      ],
+      decisionResponsibilityIndexes: [1, 2],
+      deliveryResponsibilityIndexes: [1, 2],
+      outcomeResponsibilityIndexes: [0],
+      pressFeatureIndexes: [2],
+      reflection: [
+        'The documented sequence shows that product design can begin before a finished interface: positioning a credible vision, earning a first customer, and then co-creating the product are connected parts of reducing product risk.',
+        "The company outcome and Paula's individual work remain distinct. The record credits her with winning the first customer and co-creating the product, user experience, brand, and positioning.",
+      ],
+      factualBoundary:
+        "This case study names Paula's documented contributions and lists the company outcome separately. It does not infer undisclosed customer research, technical ownership, revenue, adoption, or sole ownership of team results.",
+    },
   },
 ];
 
 export const experience: ExperienceItem[] = [
   {
+    id: 'woku',
     role: 'CEO & Co-founder / Product Lead',
     company: 'woku',
     dates: 'September 2023 - August 2026',
@@ -331,6 +384,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    id: 'inpla',
     role: 'Co-founder & Brand Artisan, Product Design',
     company: 'Inpla',
     dates: 'May 2025 - January 2026',
@@ -343,6 +397,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    id: 'stow',
     role: 'CEO & Co-founder',
     company: 'stow SpA',
     dates: 'October 2020 - December 2022',
@@ -355,6 +410,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    id: 'essbio',
     role: 'Maintenance Planning Engineer',
     company: 'Essbio',
     dates: 'May 2019 - July 2021',
@@ -373,6 +429,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    id: 'university',
     role: 'Lecturer',
     company: 'Universidad de Concepción',
     dates: '2023',
@@ -382,6 +439,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    id: 'orvita',
     role: 'CEO',
     company: 'Orvita',
     dates: '2018 - 2019',
@@ -391,6 +449,13 @@ export const experience: ExperienceItem[] = [
     ],
   },
 ];
+
+export const getProjectExperience = (project: Project) => {
+  const record = experience.find((item) => item.id === project.experienceId);
+  if (!record)
+    throw new Error(`Missing experience record for ${project.name}.`);
+  return record;
+};
 
 export const skillGroups: SkillGroup[] = [
   {

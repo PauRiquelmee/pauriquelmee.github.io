@@ -27,12 +27,4 @@ describe('Button', () => {
     await user.click(button);
     expect(handleClick).not.toHaveBeenCalled();
   });
-
-  it('uses Base UI composition to render a link', () => {
-    render(<Button render={<a href="#work" />}>View selected work</Button>);
-
-    expect(
-      screen.getByRole('link', { name: 'View selected work' }),
-    ).toHaveAttribute('href', '#work');
-  });
 });

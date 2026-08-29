@@ -1,16 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import MotionProvider from '@/components/foundations/motion-provider';
+import { profile, site } from '@/content/portfolio';
 import { siteUrl } from '@/lib/paths';
 import './globals.css';
 
-const title = 'Paula Riquelme Portfolio | Product Lead & Product Designer';
-const description =
-  'Official portfolio of Paula Riquelme, a Product Lead, product designer, and frontend developer building from discovery and strategy through implementation.';
-const socialImage = new URL('social/paula-riquelme.png', siteUrl);
+const socialImage = new URL(site.socialImage.slice(1), siteUrl);
 const barlow = localFont({
   variable: '--font-barlow',
-  display: 'swap',
+  display: 'optional',
   preload: true,
   fallback: ['Arial'],
   src: [
@@ -23,7 +21,7 @@ const barlow = localFont({
 });
 const barlowCondensed = localFont({
   variable: '--font-barlow-condensed',
-  display: 'swap',
+  display: 'optional',
   preload: true,
   fallback: ['Arial Narrow', 'Arial'],
   src: [
@@ -37,18 +35,16 @@ const barlowCondensed = localFont({
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title,
-  description,
-  applicationName: 'Paula Riquelme Portfolio',
-  authors: [{ name: 'Paula Riquelme', url: siteUrl }],
-  creator: 'Paula Riquelme',
-  publisher: 'Paula Riquelme',
+  title: site.title,
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: profile.name, url: siteUrl }],
+  creator: profile.name,
+  publisher: profile.name,
   keywords: [
-    'Paula Riquelme Portfolio',
-    'Paula Riquelme',
-    'Product Lead',
-    'Product Designer',
-    'Frontend Developer',
+    site.name,
+    profile.name,
+    ...profile.roles,
     'Product Strategy',
     'UX/UI',
     'Concepción',
@@ -68,29 +64,28 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: site.locale,
     url: '/',
-    siteName: 'Paula Riquelme Portfolio',
-    title,
-    description,
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
     images: [
       {
         url: socialImage,
         width: 1200,
         height: 630,
-        alt: 'Paula Riquelme, Product Lead, Product Designer, and Frontend Developer.',
+        alt: `${profile.name}, ${profile.roles.join(', ')}.`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title,
-    description,
+    title: site.title,
+    description: site.description,
     images: [socialImage],
   },
   icons: {
     icon: [
-      { url: new URL('favicon.ico', siteUrl) },
       {
         url: new URL('icons/icon-192.png', siteUrl),
         sizes: '192x192',
@@ -111,7 +106,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#f3f0e8',
+  themeColor: site.themeColor,
   colorScheme: 'light',
 };
 

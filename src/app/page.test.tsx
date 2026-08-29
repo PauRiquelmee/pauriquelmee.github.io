@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import Home from './page';
+import { profile, site } from '@/content/portfolio';
 
 describe('Home', () => {
   it('assembles the complete single-page portfolio', () => {
@@ -39,12 +40,13 @@ describe('Home', () => {
       expect.arrayContaining([
         expect.objectContaining({
           '@type': 'WebSite',
-          name: 'Paula Riquelme Portfolio',
-          url: 'https://pauriquelmee.github.io/',
+          name: site.name,
+          url: site.origin,
         }),
         expect.objectContaining({
           '@type': 'Person',
-          name: 'Paula Riquelme',
+          name: profile.name,
+          jobTitle: profile.roles.join(', '),
         }),
       ]),
     );

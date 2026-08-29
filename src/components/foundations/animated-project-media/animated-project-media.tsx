@@ -12,7 +12,7 @@ const AnimatedProjectMedia = ({ children }: AnimatedProjectMediaProps) => {
 
   return (
     <m.figure
-      className="project-media"
+      className="project-media relative my-8 aspect-[16/10] overflow-hidden border border-ink bg-accent-dark"
       initial={shouldReduceMotion ? false : { y: 24 }}
       whileInView={{ y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

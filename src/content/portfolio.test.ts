@@ -3,6 +3,7 @@ import {
   contactLinks,
   education,
   experience,
+  getProjectExperience,
   pressFeatures,
   projects,
   recognition,
@@ -30,12 +31,19 @@ describe('canonical portfolio content', () => {
       '3',
       'USD 70K',
     ]);
-    expect(projects[1].outcomes.join(' ')).toContain('Puerto Coronel');
+    expect(
+      getProjectExperience(projects[1]).responsibilities.join(' '),
+    ).toContain('Puerto Coronel');
     expect(projects[1]).toMatchObject({
+      slug: 'inpla',
+      caseStudyPath: '/work/inpla/',
       href: 'https://inpla.ai/en/',
       image: '/media/inpla-website.webp',
-      previewStatus: 'blocked',
     });
+    expect(projects.every((project) => 'previewStatus' in project)).toBe(false);
+    expect(projects.every((project) => 'previewMessage' in project)).toBe(
+      false,
+    );
   });
 
   it('contains all skill groups and five El Mercurio Innovation features', () => {
@@ -64,7 +72,7 @@ describe('canonical portfolio content', () => {
       href: 'https://github.com/PauRiquelmee/pauriquelmee.github.io',
       external: true,
       ariaLabel:
-        'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
+        'GitHub repository: Open the source repository for Paula Riquelme Portfolio in a new tab',
     });
     expect(recognition.title).toBe('Best Undergraduate Paper | OPTIMA 2017');
   });

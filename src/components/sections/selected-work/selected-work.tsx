@@ -1,4 +1,3 @@
-import { createElement } from 'react';
 import ProjectCard from '@/components/patterns/project-card';
 import { projects } from '@/content/portfolio';
 
@@ -16,10 +15,10 @@ const SelectedWork = () => {
           infrastructure.
         </p>
       </div>
-      <div className="project-grid">
-        {projects.map((project) =>
-          createElement(ProjectCard, { key: project.name, project }),
-        )}
+      <div className="project-grid grid gap-px border border-ink bg-ink md:grid-cols-2">
+        {projects.map((project) => (
+          <ProjectCard key={project.name} project={project} />
+        ))}
       </div>
     </section>
   );

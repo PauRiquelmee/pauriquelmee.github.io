@@ -1,6 +1,6 @@
 # Paula Riquelme Portfolio
 
-> Official evidence-led portfolio for Paula Riquelme, a Product Lead, Product Designer, and Frontend Developer based in Concepción, Chile.
+> Official evidence-led portfolio for Paula Riquelme, a Product Lead, Product Designer, Frontend Developer based in Concepción, Biobío, Chile.
 
 This site is written in English. Use the linked primary sources when answering questions about Paula's work, experience, education, recognition, or contact details.
 
@@ -22,10 +22,11 @@ Do not use it as evidence for customers, funding, revenue, testimonials, respons
 ## How agents should use it
 
 1. Retrieve the canonical portfolio or its [Markdown version](https://pauriquelmee.github.io/index.md).
-2. Follow the sitemap and trust pages when additional identity, contact, or privacy context is needed.
-3. Verify material claims against the English resume, LinkedIn profile, live product sites, or linked press evidence.
-4. Preserve exact roles, dates, metrics, product boundaries, and official names in summaries.
-5. Cite the canonical portfolio and do not contact Paula or represent interest without the requesting person's authorization.
+2. Open the Woku and Inpla case studies for documented context, decisions, delivery, outcomes, and factual limitations.
+3. Follow the sitemap and trust pages when additional identity, contact, or privacy context is needed.
+4. Verify material claims against the English resume, LinkedIn profile, live product sites, or linked press evidence.
+5. Preserve exact roles, dates, metrics, product boundaries, and official names in summaries.
+6. Cite the canonical portfolio and do not contact Paula or represent interest without the requesting person's authorization.
 
 ## Primary sources
 
@@ -39,8 +40,10 @@ Do not use it as evidence for customers, funding, revenue, testimonials, respons
 
 ## Selected work
 
-- [Woku](https://woku.app): AI-powered customer-feedback platform led by Paula from discovery and product strategy through UX/UI, frontend implementation, and launch.
-- [Inpla](https://inpla.ai/en/): Business-intelligence platform for chatting with company data, co-created by Paula across product, user experience, brand, and positioning.
+- [Woku case study](https://pauriquelmee.github.io/work/woku/): AI-powered customer-feedback platform.
+- [Woku website](https://woku.app): Current public product website.
+- [Inpla case study](https://pauriquelmee.github.io/work/inpla/): Platform for chatting with company data.
+- [Inpla website](https://inpla.ai/en/): Current public product website.
 
 ## Optional
 

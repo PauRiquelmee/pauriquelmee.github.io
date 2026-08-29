@@ -24,7 +24,7 @@ describe('Contact', () => {
     ).toHaveAttribute('download');
     expect(
       screen.getByRole('link', {
-        name: /Open the source repository for Paula Riquelme Portfolio on GitHub/,
+        name: /GitHub repository: Open the source repository for Paula Riquelme Portfolio/,
       }),
     ).toHaveAttribute(
       'href',
@@ -34,7 +34,9 @@ describe('Contact', () => {
       screen.getByRole('link', { name: 'Read about Paula Riquelme' }),
     ).toHaveAttribute('href', '/about/');
     expect(
-      screen.getByRole('link', { name: 'Open Paula Riquelme contact details' }),
+      screen.getByRole('link', {
+        name: 'Contact page: Open Paula Riquelme contact details',
+      }),
     ).toHaveAttribute('href', '/contact/');
     expect(
       screen.getByRole('link', { name: 'Read the portfolio privacy notice' }),

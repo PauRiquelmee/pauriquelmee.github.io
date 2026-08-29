@@ -4,15 +4,18 @@ import { fileURLToPath } from 'node:url';
 import { PDFDocument, PDFName, PDFString, StandardFonts, rgb } from 'pdf-lib';
 import pngToIco from 'png-to-ico';
 import sharp from 'sharp';
+import { profile, site } from '../src/content/portfolio.ts';
+import { buildResumeModel } from './content-output.mjs';
 
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDirectory, '..');
 const sourceDirectory = path.join(projectRoot, 'assets', 'source');
 const publicDirectory = path.join(projectRoot, 'public');
 const temporaryDirectory = path.join(projectRoot, '.asset-generation-temp');
+const resume = buildResumeModel();
 
 const colors = {
-  background: '#f3f0e8',
+  background: site.themeColor,
   foreground: '#11110f',
   accent: '#4338a8',
   muted: '#68665f',
@@ -37,7 +40,7 @@ const monogramSvg = `
 
 const faviconSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title id="title">Paula Riquelme favicon</title>
+  <title id="title">${profile.name} favicon</title>
   <rect width="64" height="64" fill="${colors.accent}"/>
   <text x="32" y="45" fill="#ffffff" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="44" font-weight="700" text-anchor="middle">P</text>
 </svg>
@@ -45,20 +48,20 @@ const faviconSvg = `
 
 const socialCardSvg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Paula Riquelme portfolio social card</title>
-  <desc id="desc">Product Lead, Product Designer, and Frontend Developer</desc>
+  <title id="title">${site.name} social card</title>
+  <desc id="desc">${profile.roles.join(', ')}</desc>
   <rect width="1200" height="630" fill="${colors.background}"/>
   <line x1="54" y1="82" x2="1146" y2="82" stroke="${colors.foreground}" stroke-width="2"/>
   <line x1="54" y1="548" x2="1146" y2="548" stroke="${colors.foreground}" stroke-width="2"/>
   <rect x="54" y="30" width="52" height="52" fill="${colors.foreground}"/>
   <text x="80" y="66" fill="${colors.background}" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="middle" letter-spacing="-1">PR</text>
-  <text x="130" y="65" fill="${colors.foreground}" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">Paula Riquelme</text>
+  <text x="130" y="65" fill="${colors.foreground}" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700">${profile.name}</text>
   <text x="54" y="220" fill="${colors.foreground}" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="92" font-weight="900" letter-spacing="-3">PRODUCT TO MARKET.</text>
   <text x="54" y="310" fill="${colors.foreground}" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="92" font-weight="900" letter-spacing="-3">DESIGN TO CODE.</text>
   <rect x="54" y="385" width="350" height="6" fill="${colors.accent}"/>
-  <text x="54" y="459" fill="${colors.foreground}" font-family="Arial, Helvetica, sans-serif" font-size="34">Product Lead · Product Designer · Frontend Developer</text>
-  <text x="54" y="590" fill="${colors.muted}" font-family="Arial, Helvetica, sans-serif" font-size="24">Concepción, Chile</text>
-  <text x="1146" y="590" fill="${colors.accent}" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="end">pauriquelmee.github.io</text>
+  <text x="54" y="459" fill="${colors.foreground}" font-family="Arial, Helvetica, sans-serif" font-size="34">${profile.roles.join(' · ')}</text>
+  <text x="54" y="590" fill="${colors.muted}" font-family="Arial, Helvetica, sans-serif" font-size="24">${profile.location}</text>
+  <text x="1146" y="590" fill="${colors.accent}" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="end">${new URL(site.origin).host}</text>
 </svg>
 `.trim();
 
@@ -172,15 +175,18 @@ for (const job of imageJobs) {
 }
 
 const pdf = await PDFDocument.create();
-pdf.setTitle('Paula Riquelme - English Resume');
-pdf.setAuthor('Paula Riquelme');
-pdf.setSubject('Product Lead, Product Designer, and Frontend Developer');
+const documentDate = new Date('2026-08-29T00:00:00.000Z');
+pdf.setTitle(`${resume.name} - English Resume`);
+pdf.setAuthor(resume.name);
+pdf.setSubject(resume.roles.join(', '));
 pdf.setKeywords([
   'product leadership',
   'product design',
   'frontend development',
 ]);
 pdf.setLanguage('en-US');
+pdf.setCreationDate(documentDate);
+pdf.setModificationDate(documentDate);
 pdf.catalog.set(PDFName.of('Lang'), PDFString.of('en-US'));
 
 const regularFont = await pdf.embedFont(StandardFonts.Helvetica);
@@ -255,7 +261,7 @@ const drawRole = (page, role, company, dates, location, bullets, y) => {
     font: boldFont,
     lineHeight: 13,
   });
-  y = drawWrapped(page, `${dates} | ${location}`, {
+  y = drawWrapped(page, location ? `${dates} | ${location}` : dates, {
     y: y + 1,
     size: 8.3,
     color: rgb(0.4, 0.39, 0.36),
@@ -273,15 +279,32 @@ const drawRole = (page, role, company, dates, location, bullets, y) => {
   return y - 8;
 };
 
+const drawDocumentHeader = (page, subtitle, nameSize = 18) => {
+  page.drawText(resume.name.toUpperCase(), {
+    x: margin,
+    y: 770,
+    size: nameSize,
+    font: boldFont,
+    color: rgb(0.07, 0.07, 0.06),
+  });
+  page.drawText(subtitle.toUpperCase(), {
+    x: margin,
+    y: 748,
+    size: 9.5,
+    font: boldFont,
+    color: rgb(0.26, 0.22, 0.66),
+  });
+};
+
 let page = createPage();
-page.drawText('PAULA RIQUELME', {
+page.drawText(resume.name.toUpperCase(), {
   x: margin,
   y: 770,
   size: 27,
   font: boldFont,
   color: rgb(0.07, 0.07, 0.06),
 });
-page.drawText('PRODUCT LEAD · PRODUCT DESIGNER · FRONTEND DEVELOPER', {
+page.drawText(resume.roles.join(' · ').toUpperCase(), {
   x: margin,
   y: 746,
   size: 10.5,
@@ -289,7 +312,7 @@ page.drawText('PRODUCT LEAD · PRODUCT DESIGNER · FRONTEND DEVELOPER', {
   color: rgb(0.26, 0.22, 0.66),
 });
 page.drawText(
-  'Concepción, Biobío, Chile  |  paula.riq.esco@gmail.com  |  linkedin.com/in/pauriquelme',
+  `${resume.location}  |  ${resume.email}  |  linkedin.com/in/pauriquelme`,
   {
     x: margin,
     y: 727,
@@ -300,134 +323,58 @@ page.drawText(
 );
 
 let y = drawSectionTitle(page, 'Profile', 697);
-y =
-  drawWrapped(
-    page,
-    "Product Lead, product designer, and tech entrepreneur with 8+ years building and leading digital products. Industrial Engineer with a master's degree in Innovation and Technology Entrepreneurship. Bridges discovery, product strategy, UX/UI, and frontend implementation to turn real customer problems into useful, market-ready products.",
-    { y, size: 9.1, lineHeight: 12.3 },
-  ) - 10;
+y = drawWrapped(page, resume.summary, { y, size: 9.1, lineHeight: 12.3 }) - 10;
 
 y = drawSectionTitle(page, 'Core skills', y);
-y = drawWrapped(
-  page,
-  'Product: Product strategy, product discovery, customer research, roadmaps, UX/UI, prototyping, go-to-market, and agile delivery.',
-  { y, size: 8.6, lineHeight: 11.3 },
-);
-y = drawWrapped(
-  page,
-  'Design: Figma, Adobe Illustrator, and Adobe Premiere Pro at advanced proficiency.',
-  { y: y - 2, size: 8.6, lineHeight: 11.3 },
-);
-y =
-  drawWrapped(
-    page,
-    'Development: TypeScript, Tailwind CSS, Next.js, Vite, and AI-assisted development with Claude Code, Codex, and Kimi. Working knowledge of MongoDB, NestJS, AWS, and Azure.',
-    { y: y - 2, size: 8.6, lineHeight: 11.3 },
-  ) - 10;
+for (const group of resume.skills) {
+  y = drawWrapped(page, `${group.name}: ${group.items.join(', ')}.`, {
+    y: y - 2,
+    size: 8.6,
+    lineHeight: 11.3,
+  });
+}
+y -= 10;
 
 y = drawSectionTitle(page, 'Selected experience', y);
-y = drawRole(
-  page,
-  'CEO & Co-founder / Product Lead',
-  'woku',
-  'September 2023 - August 2026',
-  'Chile',
-  [
-    'Leads end-to-end strategy and execution for an AI-powered customer feedback platform, from discovery and workflow design through frontend implementation and launch.',
-    'Translates customer needs into rapid feedback capture, NPS and forms, AI-assisted analysis, alerts, and WhatsApp and API integrations.',
-    'Connects product, UX/UI, growth, sales, and implementation to align the roadmap with real workflows and business outcomes.',
-    'Won more than 50 customers across Chile, Peru, and Colombia, and secured USD 70,000 in non-dilutive, equity-free funding from CORFO.',
-  ],
-  y,
-);
-y = drawRole(
-  page,
-  'Co-founder & Brand Artisan, Product Design',
-  'Inpla',
-  'May 2025 - January 2026',
-  'Chile',
-  [
-    'Won the first customer, Puerto Coronel, before a product existed by selling the vision alone.',
-    'Co-created the product, user experience, brand, and positioning for a platform that allows companies to chat with their data.',
-  ],
-  y,
-);
-y = drawRole(
-  page,
-  'CEO & Co-founder',
-  'stow SpA',
-  'October 2020 - December 2022',
-  'Concepción, Chile',
-  [
-    'Built a Chilean technology startup from concept to market across product strategy, design, development, sales, and operations.',
-    'Selected for Start-Up Chile BUILD in 2022 and received USD 10,000 in non-dilutive, equity-free funding.',
-  ],
-  y,
-);
+for (const item of resume.experience.slice(0, 2)) {
+  y = drawRole(
+    page,
+    item.role,
+    item.company,
+    item.dates,
+    item.location,
+    item.responsibilities,
+    y,
+  );
+}
 
 page = createPage();
-page.drawText('PAULA RIQUELME', {
-  x: margin,
-  y: 770,
-  size: 18,
-  font: boldFont,
-});
-page.drawText('EXPERIENCE, EDUCATION & RECOGNITION', {
-  x: margin,
-  y: 748,
-  size: 9.5,
-  font: boldFont,
-  color: rgb(0.26, 0.22, 0.66),
-});
-y = drawRole(
-  page,
-  'Maintenance Planning Engineer',
-  'Essbio',
-  'May 2019 - July 2021',
-  'Concepción, Chile',
-  [
-    "Led an innovation process with 30 technicians to improve maintenance processes using Carlos Osorio's (defi)2 methodology.",
-    'Created data models and decision-support visualizations for maintenance planning.',
-  ],
-  714,
-);
-y = drawSectionTitle(page, 'Additional experience', y);
-y = drawRole(
-  page,
-  'Lecturer',
-  'Universidad de Concepción',
-  '2023',
-  'Chile',
-  [
-    'Taught Business Management and coached students in Project Formulation and Evaluation.',
-  ],
-  y,
-);
-y = drawRole(
-  page,
-  'CEO',
-  'Orvita',
-  '2018 - 2019',
-  'Chile',
-  [
-    'Led strategy and product development for a digital tourism venture using funding obtained after the OPTIMA 2017 recognition.',
-  ],
-  y,
-);
-y = drawSectionTitle(page, 'Education', y);
-y = drawWrapped(
-  page,
-  "Master's in Innovation and Technology Entrepreneurship | Universidad de Concepción, 2023",
-  { y, size: 9.2, font: boldFont, lineHeight: 12 },
-);
-y =
-  drawWrapped(
+drawDocumentHeader(page, 'Experience, education and evidence');
+y = 714;
+for (const item of resume.experience.slice(2)) {
+  y = drawRole(
     page,
-    'Industrial Engineering | Universidad de Concepción, 2018',
-    { y: y - 3, size: 9.2, font: boldFont, lineHeight: 12 },
-  ) - 10;
+    item.role,
+    item.company,
+    item.dates,
+    item.location,
+    item.responsibilities,
+    y,
+  );
+}
+y = drawSectionTitle(page, 'Education', y);
+for (const item of resume.education) {
+  y = drawWrapped(page, `${item.degree} | ${item.institution}, ${item.year}`, {
+    y: y - 3,
+    size: 9.2,
+    font: boldFont,
+    lineHeight: 12,
+  });
+}
+
+y -= 16;
 y = drawSectionTitle(page, 'Recognition', y);
-y = drawWrapped(page, 'Best Undergraduate Paper | OPTIMA 2017', {
+y = drawWrapped(page, resume.recognition.title, {
   y,
   size: 10.5,
   font: boldFont,
@@ -436,16 +383,16 @@ y = drawWrapped(page, 'Best Undergraduate Paper | OPTIMA 2017', {
 y =
   drawWrapped(
     page,
-    "Developed an algorithm based on the traveling salesperson problem to recommend tourist routes according to a visitor's interests, available time, and budget. The work received the Best Undergraduate Paper award at the OPTIMA 2017 Congress and made it possible to obtain USD 7,000 from the Chilean Institute for Operations Research, ICHIO, to develop Orvita.",
+    `${resume.recognition.description} ${resume.recognition.outcome}`,
     { y: y - 1, size: 8.7, lineHeight: 11.5 },
   ) - 10;
 y = drawSectionTitle(page, 'Press', y);
 y = drawWrapped(
   page,
-  'Featured five times in El Mercurio Innovation for Woku, Inpla, entrepreneurship, startup closure, and Made Inn Conce 2024. Diario Concepción also covered the OPTIMA 2017 recognition.',
+  `${resume.pressFeatures.length} El Mercurio Innovation features: ${resume.pressFeatures.map((feature) => feature.title).join('; ')}.`,
   { y, size: 8.7, lineHeight: 11.5 },
 );
-y = drawWrapped(page, 'Portfolio: https://PauRiquelmee.github.io/', {
+y = drawWrapped(page, `Portfolio: ${resume.links.portfolio}`, {
   y: y - 5,
   size: 8.5,
   font: boldFont,
@@ -454,11 +401,11 @@ y = drawWrapped(page, 'Portfolio: https://PauRiquelmee.github.io/', {
 y =
   drawWrapped(
     page,
-    'Woku: https://woku.app  |  Inpla: https://inpla.ai/en/  |  Methodology: https://defi2.cc/',
+    `${resume.projects.map((project) => `${project.name}: ${project.href}`).join('  |  ')}  |  Methodology: ${resume.links.methodology}`,
     { y: y - 2, size: 8.5, lineHeight: 11 },
   ) - 10;
 y = drawSectionTitle(page, 'Languages', y);
-drawWrapped(page, 'English: full professional proficiency.', {
+drawWrapped(page, resume.language, {
   y,
   size: 8.8,
   lineHeight: 11,
