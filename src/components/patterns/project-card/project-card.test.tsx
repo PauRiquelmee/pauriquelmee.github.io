@@ -4,7 +4,7 @@ import { projects } from '@/content/portfolio';
 import ProjectCard from '.';
 
 describe('ProjectCard', () => {
-  it('presents the project role, metrics, media, and safe external link', () => {
+  it('prioritizes the case study and keeps the project website safe', () => {
     render(<ProjectCard project={projects[0]} />);
 
     expect(screen.getByRole('heading', { name: 'Woku' })).toBeVisible();
@@ -12,10 +12,15 @@ describe('ProjectCard', () => {
     expect(screen.getByText('50+')).toBeVisible();
     expect(screen.getByAltText(/Woku website showing/i)).toBeVisible();
     expect(
-      screen.getByRole('link', { name: 'Open website for Woku' }),
+      screen.getByRole('link', { name: 'View case study: Woku' }),
+    ).toHaveAttribute('href', '/work/woku/');
+    expect(
+      screen.getByRole('link', { name: 'Visit website for Woku' }),
     ).toHaveAttribute('rel', 'noreferrer noopener');
     expect(
-      screen.getByRole('button', { name: 'Live preview Woku' }),
-    ).toBeEnabled();
+      screen.getByRole('link', { name: 'Visit website for Woku' }),
+    ).toHaveAttribute('target', '_blank');
+    expect(screen.queryByText(/Live preview/i)).not.toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 });

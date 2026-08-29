@@ -18,17 +18,37 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1440, height: 1000 },
+      },
+    },
+    {
+      name: 'tablet-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 768, height: 1024 },
+      },
     },
     {
       name: 'mobile-chromium',
-      use: { ...devices['Pixel 7'] },
+      use: {
+        ...devices['Pixel 7'],
+        viewport: { width: 390, height: 844 },
+      },
+    },
+    {
+      name: 'narrow-mobile-chromium',
+      use: {
+        ...devices['Pixel 7'],
+        viewport: { width: 320, height: 844 },
+      },
     },
   ],
   webServer: externalBaseUrl
     ? undefined
     : {
-        command: 'npm run preview:pages',
+        command: 'npm run serve:out',
         url: localBaseUrl,
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

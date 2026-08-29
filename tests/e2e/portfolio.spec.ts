@@ -55,25 +55,69 @@ test('supports accessible mobile navigation', async ({ page }) => {
   await expect(trigger).toBeFocused();
 });
 
-test('opens honest project preview fallbacks and restores focus', async ({
+test('links project cards to factual case studies and websites', async ({
   page,
 }) => {
-  const trigger = page.getByRole('button', { name: 'Live preview Woku' });
-  await trigger.click();
+  await expect(page.getByText(/Live preview/i)).toHaveCount(0);
+  await expect(page.getByRole('dialog')).toHaveCount(0);
 
-  const dialog = page.getByRole('dialog', { name: 'Woku live preview' });
-  await expect(dialog).toBeVisible();
-  await expect(
-    dialog.getByText(/prevents third-party embedding/),
-  ).toBeVisible();
-  await expect(dialog.locator('iframe')).toHaveCount(0);
-  await expect(
-    dialog.getByRole('link', { name: 'Open website for Woku' }),
-  ).toHaveAttribute('target', '_blank');
+  for (const [project, path, website] of [
+    ['Woku', '/work/woku/', 'https://woku.app'],
+    ['Inpla', '/work/inpla/', 'https://inpla.ai/en/'],
+  ] as const) {
+    await expect(
+      page.getByRole('link', { name: `View case study: ${project}` }),
+    ).toHaveAttribute('href', path);
+    const externalLink = page.getByRole('link', {
+      name: `Visit website for ${project}`,
+    });
+    await expect(externalLink).toHaveAttribute('href', website);
+    await expect(externalLink).toHaveAttribute('target', '_blank');
+    await expect(externalLink).toHaveAttribute('rel', 'noreferrer noopener');
+  }
+});
 
-  await page.keyboard.press('Escape');
-  await expect(dialog).toBeHidden();
-  await expect(trigger).toBeFocused();
+test('publishes complete canonical case study routes', async ({ page }) => {
+  for (const [path, project] of [
+    ['/work/woku/', 'Woku'],
+    ['/work/inpla/', 'Inpla'],
+  ] as const) {
+    const response = await page.request.get(path);
+    expect(response.status(), path).toBe(200);
+    await page.goto(path);
+
+    await expect(
+      page.getByRole('heading', { level: 1, name: project }),
+    ).toBeVisible();
+    for (const heading of [
+      'Project overview',
+      'Context and problem',
+      "Paula's role and responsibilities",
+      'Constraints and initial conditions',
+      'Customer and market signal',
+      'Product and design decisions',
+      'Implementation and delivery',
+      'Outcomes and measurable evidence',
+      'Supporting media and external evidence',
+      'Reflection and key lesson',
+    ]) {
+      await expect(page.getByRole('heading', { name: heading })).toBeAttached();
+    }
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      `https://pauriquelmee.github.io${path}`,
+    );
+    await expect(page.locator('meta[property="og:type"]')).toHaveAttribute(
+      'content',
+      'article',
+    );
+    expect(
+      await page.locator('script[type="application/ld+json"]').textContent(),
+    ).toContain('"@type":"Article"');
+    await expect(
+      page.getByRole('link', { name: 'Return to selected work' }),
+    ).toHaveAttribute('href', '/#work');
+  }
 });
 
 test('serves the resume and static media from the production root', async ({
@@ -163,6 +207,8 @@ test('publishes substantive trust pages and lists them in the sitemap', async ({
   expect(sitemapText).toContain('https://pauriquelmee.github.io/about/');
   expect(sitemapText).toContain('https://pauriquelmee.github.io/contact/');
   expect(sitemapText).toContain('https://pauriquelmee.github.io/privacy/');
+  expect(sitemapText).toContain('https://pauriquelmee.github.io/work/woku/');
+  expect(sitemapText).toContain('https://pauriquelmee.github.io/work/inpla/');
 });
 
 test('serves a recoverable 404 and Markdown recovery document', async ({
@@ -203,7 +249,7 @@ test('keeps project, LinkedIn, recognition, and press links safe', async ({
   page,
 }) => {
   await expect(
-    page.getByRole('link', { name: 'Open website for Woku' }),
+    page.getByRole('link', { name: 'Visit website for Woku' }),
   ).toHaveAttribute('rel', 'noreferrer noopener');
   await expect(
     page.getByRole('link', {
@@ -211,7 +257,7 @@ test('keeps project, LinkedIn, recognition, and press links safe', async ({
     }),
   ).toHaveAttribute('href', 'https://www.linkedin.com/in/pauriquelme');
   const repositoryLink = page.getByRole('link', {
-    name: 'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
+    name: 'GitHub repository: Open the source repository for Paula Riquelme Portfolio in a new tab',
   });
   await expect(repositoryLink).toHaveAttribute(
     'href',
@@ -399,6 +445,43 @@ test('keeps selected work on the shared vertical rhythm', async ({ page }) => {
   expect(spacing.sectionPaddingTop).toBeGreaterThanOrEqual(72);
   expect(spacing.headingMarginBottom).toBeGreaterThanOrEqual(40);
   expect(spacing.cardPaddingTop).toBeGreaterThanOrEqual(16);
+});
+
+test('reflows without horizontal overflow and keeps informative text legible', async ({
+  page,
+}) => {
+  const dimensions = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
+
+  const informativeSelectors = [
+    '.project-role',
+    '.project-media figcaption',
+    '.project-metrics dt',
+    '.experience-meta',
+    '.contact-links a',
+  ];
+  for (const selector of informativeSelectors) {
+    const sizes = await page
+      .locator(selector)
+      .evaluateAll((elements) =>
+        elements.map((element) =>
+          Number.parseFloat(getComputedStyle(element).fontSize),
+        ),
+      );
+    expect(Math.min(...sizes), selector).toBeGreaterThanOrEqual(12);
+  }
+
+  const supportingSizes = await page
+    .locator('.project-outcomes li, .experience-responsibilities li')
+    .evaluateAll((elements) =>
+      elements.map((element) =>
+        Number.parseFloat(getComputedStyle(element).fontSize),
+      ),
+    );
+  expect(Math.min(...supportingSizes)).toBeGreaterThanOrEqual(14);
 });
 
 test('fills the recognition card height with its evidence image', async ({

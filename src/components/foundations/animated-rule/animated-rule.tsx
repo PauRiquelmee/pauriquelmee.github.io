@@ -7,7 +7,7 @@ const AnimatedRule = () => {
 
   return (
     <m.div
-      className="hero-rule"
+      className="hero-rule my-[clamp(1.75rem,3vw,3rem)] mb-6 h-px w-full origin-left bg-ink"
       aria-hidden="true"
       initial={shouldReduceMotion ? false : { scaleX: 0 }}
       animate={{ scaleX: 1 }}

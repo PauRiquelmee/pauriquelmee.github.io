@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Paula Riquelme portfolio social card</title>
-  <desc id="desc">Product Lead, Product Designer, and Frontend Developer</desc>
+  <title id="title">Paula Riquelme Portfolio social card</title>
+  <desc id="desc">Product Lead, Product Designer, Frontend Developer</desc>
   <rect width="1200" height="630" fill="#f3f0e8"/>
   <line x1="54" y1="82" x2="1146" y2="82" stroke="#11110f" stroke-width="2"/>
   <line x1="54" y1="548" x2="1146" y2="548" stroke="#11110f" stroke-width="2"/>
@@ -11,6 +11,6 @@
   <text x="54" y="310" fill="#11110f" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="92" font-weight="900" letter-spacing="-3">DESIGN TO CODE.</text>
   <rect x="54" y="385" width="350" height="6" fill="#4338a8"/>
   <text x="54" y="459" fill="#11110f" font-family="Arial, Helvetica, sans-serif" font-size="34">Product Lead · Product Designer · Frontend Developer</text>
-  <text x="54" y="590" fill="#68665f" font-family="Arial, Helvetica, sans-serif" font-size="24">Concepción, Chile</text>
+  <text x="54" y="590" fill="#68665f" font-family="Arial, Helvetica, sans-serif" font-size="24">Concepción, Biobío, Chile</text>
   <text x="1146" y="590" fill="#4338a8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" text-anchor="end">pauriquelmee.github.io</text>
 </svg>

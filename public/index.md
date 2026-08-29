@@ -1,22 +1,39 @@
 # Paula Riquelme Portfolio
 
-Official evidence-led portfolio for Paula Riquelme, a Product Lead, Product Designer, and Frontend Developer based in Concepción, Biobío, Chile.
+Official evidence-led portfolio for Paula Riquelme, a Product Lead, Product Designer, Frontend Developer based in Concepción, Biobío, Chile.
 
-Paula connects customer discovery, product strategy, UX/UI, go-to-market work, and frontend implementation to turn real problems into useful, market-ready products.
+Product Lead, product designer, and frontend developer. I connect customer discovery, strategy, UX/UI, and implementation to turn real problems into useful, market-ready products.
 
 ## Selected work
 
 ### Woku
 
-Paula is CEO, Co-founder, and Product Lead at [Woku](https://woku.app), an AI-powered customer-feedback platform. She leads the product from discovery and workflow design through frontend implementation and launch. The portfolio records more than 50 customers across Chile, Peru, and Colombia and USD 70,000 in non-dilutive, equity-free funding from CORFO.
+Paula Riquelme's documented role was CEO & Co-founder / Product Lead from September 2023 - August 2026. AI-powered customer-feedback platform. [Read the case study](https://pauriquelmee.github.io/work/woku/) or [visit the project website](https://woku.app).
+
+- 50+: customers
+- 3: countries: Chile, Peru, and Colombia
+- USD 70K: non-dilutive CORFO funding
 
 ### Inpla
 
-Paula co-created the product, user experience, brand, and positioning for [Inpla](https://inpla.ai/en/), a platform for chatting with company data. She won Puerto Coronel as the first customer before a product existed by selling the vision alone.
+Paula Riquelme's documented role was Co-founder & Brand Artisan, Product Design from May 2025 - January 2026. Platform for chatting with company data. [Read the case study](https://pauriquelmee.github.io/work/inpla/) or [visit the project website](https://inpla.ai/en/).
 
-## Professional record
+- 01: first customer: Puerto Coronel
+- Pre-product: commercial validation
 
-Paula has 8+ years building and leading digital products. Her experience includes woku, Inpla, stow SpA, Essbio, Universidad de Concepción, and Orvita. She holds an Industrial Engineering degree and a master's degree in Innovation and Technology Entrepreneurship from Universidad de Concepción.
+## Professional chronology
+
+- CEO & Co-founder / Product Lead | woku | September 2023 - August 2026
+- Co-founder & Brand Artisan, Product Design | Inpla | May 2025 - January 2026
+- CEO & Co-founder | stow SpA | October 2020 - December 2022
+- Maintenance Planning Engineer | Essbio | May 2019 - July 2021
+- Lecturer | Universidad de Concepción | 2023
+- CEO | Orvita | 2018 - 2019
+
+## Education
+
+- Master's in Innovation and Technology Entrepreneurship | Universidad de Concepción, 2023
+- Industrial Engineering | Universidad de Concepción, 2018
 
 ## Evidence
 

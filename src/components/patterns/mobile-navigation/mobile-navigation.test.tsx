@@ -10,7 +10,9 @@ describe('MobileNavigation', () => {
 
     const trigger = screen.getByRole('button', { name: 'Open navigation' });
     await user.click(trigger);
-    expect(screen.getByRole('dialog', { name: 'Navigation' })).toBeVisible();
+    expect(
+      await screen.findByRole('dialog', { name: 'Navigation' }),
+    ).toBeVisible();
     expect(screen.getByRole('link', { name: 'Selected work' })).toBeVisible();
 
     await user.keyboard('{Escape}');

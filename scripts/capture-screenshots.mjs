@@ -11,6 +11,17 @@ const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
   { name: 'tablet', width: 768, height: 1024 },
   { name: 'mobile', width: 390, height: 844 },
+  { name: 'narrow-mobile', width: 320, height: 844 },
+];
+const evidenceRoutes = [
+  { name: 'woku-case-study', path: 'work/woku/' },
+  { name: 'inpla-case-study', path: 'work/inpla/' },
+  { name: 'agent-readiness-about', path: 'about/' },
+  {
+    name: 'agent-readiness-404',
+    path: 'agent-readiness-path-that-does-not-exist',
+    desktopOnly: true,
+  },
 ];
 
 const waitForServer = async () => {
@@ -66,18 +77,11 @@ try {
       });
     }
 
-    if (viewport.name === 'desktop') {
-      await page.getByRole('button', { name: 'Live preview Woku' }).click();
-      await page.waitForTimeout(350);
-      await page.screenshot({
-        path: 'docs/screenshots/preview-dialog.png',
-        fullPage: false,
-      });
-    }
-
     if (viewport.name === 'mobile') {
       await page.evaluate(() => window.scrollTo(0, 0));
       await page.getByRole('button', { name: 'Open navigation' }).click();
+      await page.getByRole('dialog', { name: 'Navigation' }).waitFor();
+      await page.mouse.move(200, 800);
       await page.waitForTimeout(350);
       await page.screenshot({
         path: 'docs/screenshots/mobile-menu.png',
@@ -87,7 +91,33 @@ try {
     await context.close();
   }
 
-  console.log('Captured responsive, full-page, menu, and preview screenshots.');
+  for (const route of evidenceRoutes) {
+    for (const viewport of viewports.filter(
+      ({ name }) =>
+        name === 'desktop' || (!route.desktopOnly && name === 'mobile'),
+    )) {
+      const context = await browser.newContext({
+        viewport: { width: viewport.width, height: viewport.height },
+        deviceScaleFactor: 1,
+      });
+      const page = await context.newPage();
+      await page.goto(new URL(route.path, previewUrl).toString(), {
+        waitUntil: 'load',
+      });
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(350);
+      await revealPage(page);
+      await page.screenshot({
+        path: `docs/screenshots/${route.name}-${viewport.name}.png`,
+        fullPage: route.name.includes('case-study'),
+      });
+      await context.close();
+    }
+  }
+
+  console.log(
+    'Captured responsive home, menu, case study, trust, and 404 screenshots.',
+  );
 } finally {
   if (browser) await browser.close();
   server.kill('SIGTERM');

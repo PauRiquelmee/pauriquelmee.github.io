@@ -11,7 +11,7 @@ describe('Hero', () => {
         name: 'I design products, bring them to market, and can build them too.',
       }),
     ).toBeVisible();
-    expect(screen.getByText('Concepción, Chile')).toBeVisible();
+    expect(screen.getByText('Concepción, Biobío, Chile')).toBeVisible();
     expect(
       screen.getByRole('link', { name: 'View selected work' }),
     ).toHaveAttribute('href', '#work');

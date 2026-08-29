@@ -1,4 +1,3 @@
-import { createElement } from 'react';
 import ExperienceEntry from '@/components/patterns/experience-entry';
 import { education, experience } from '@/content/portfolio';
 
@@ -16,25 +15,29 @@ const Experience = () => {
           classroom.
         </p>
       </div>
-      <div className="experience-list">
-        {experience.map((item) =>
-          createElement(ExperienceEntry, {
-            key: `${item.company}-${item.role}`,
-            item,
-          }),
-        )}
+      <div className="experience-list border-t border-ink">
+        {experience.map((item) => (
+          <ExperienceEntry key={item.id} item={item} />
+        ))}
       </div>
-      <div className="education-block">
-        <h2>Education</h2>
-        <div className="education-list">
-          {education.map((item) =>
-            createElement(
-              'article',
-              { key: item.degree },
-              createElement('h3', null, item.degree),
-              createElement('p', null, `${item.institution}, ${item.year}`),
-            ),
-          )}
+      <div className="education-block mt-[var(--section-space)] grid gap-8 border-t border-ink pt-4 md:grid-cols-[1fr_2.8fr]">
+        <h2 className="mb-4 font-display text-[clamp(2.6rem,5.4vw,5.5rem)] font-bold leading-[0.9] tracking-[-0.035em] uppercase md:mb-0">
+          Education
+        </h2>
+        <div className="education-list grid gap-px border border-line bg-line md:grid-cols-2">
+          {education.map((item) => (
+            <article
+              className="bg-paper p-[clamp(1.25rem,2vw,2rem)]"
+              key={item.degree}
+            >
+              <h3 className="font-display text-[clamp(1.55rem,2.4vw,2.4rem)] font-bold leading-none uppercase">
+                {item.degree}
+              </h3>
+              <p className="mt-3 text-muted">
+                {item.institution}, {item.year}
+              </p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

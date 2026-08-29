@@ -1,19 +1,19 @@
 import type { MetadataRoute } from 'next';
+import { profile, site } from '@/content/portfolio';
 
 export const dynamic = 'force-static';
 
 const manifest = (): MetadataRoute.Manifest => {
   return {
-    name: 'Paula Riquelme Portfolio',
-    short_name: 'Paula Riquelme',
-    description:
-      'Portfolio of Paula Riquelme, Product Lead, Product Designer, and Frontend Developer.',
+    name: site.name,
+    short_name: profile.name,
+    description: site.description,
     start_url: '/',
     scope: '/',
     display: 'standalone',
-    background_color: '#f3f0e8',
-    theme_color: '#f3f0e8',
-    lang: 'en',
+    background_color: site.themeColor,
+    theme_color: site.themeColor,
+    lang: site.language,
     icons: [
       {
         src: '/icons/icon-192.png',
