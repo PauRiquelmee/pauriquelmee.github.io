@@ -162,6 +162,51 @@ test("contains complete core resume content and English metadata", async ({ page
   ).toContain("https://www.linkedin.com/in/pauriquelme");
 });
 
+test("keeps the Essbio link quiet and the desktop role register balanced", async ({
+  page,
+}) => {
+  const essbioEntry = page.locator(".experience-entry").filter({ hasText: "Essbio" });
+  const methodologyLink = essbioEntry.getByRole("link", {
+    name: "Used Carlos Osorio's (defi)2 innovation methodology. Opens in a new tab",
+  });
+  const referenceResponsibility = essbioEntry
+    .locator(".experience-responsibilities li")
+    .first();
+
+  const [linkStyle, referenceStyle] = await Promise.all([
+    methodologyLink.evaluate((element) => ({
+      color: getComputedStyle(element).color,
+      fontWeight: getComputedStyle(element).fontWeight,
+    })),
+    referenceResponsibility.evaluate((element) => ({
+      color: getComputedStyle(element).color,
+      fontWeight: getComputedStyle(element).fontWeight,
+    })),
+  ]);
+
+  expect(linkStyle).toEqual(referenceStyle);
+
+  if ((await page.viewportSize())!.width >= 1088) {
+    await methodologyLink.hover();
+    await expect
+      .poll(() => methodologyLink.evaluate((element) => getComputedStyle(element).color))
+      .not.toBe(referenceStyle.color);
+
+    const roleDividers = await page.locator(".role-register span").evaluateAll(
+      (elements) =>
+        elements.map((element) => getComputedStyle(element).borderLeftWidth),
+    );
+    expect(roleDividers).toEqual(["1px", "1px", "1px"]);
+    await expect(page.locator(".role-register")).toHaveCSS("border-right-width", "1px");
+  } else {
+    const roleDividers = await page.locator(".role-register span").evaluateAll(
+      (elements) =>
+        elements.map((element) => getComputedStyle(element).borderLeftWidth),
+    );
+    expect(roleDividers).toEqual(["0px", "0px", "0px"]);
+  }
+});
+
 test("keeps desktop metrics aligned, on one line, and actions square", async ({
   page,
 }) => {
@@ -191,6 +236,25 @@ test("keeps desktop metrics aligned, on one line, and actions square", async ({
     "border-radius",
     "0px",
   );
+});
+
+test("aligns mobile metric values and hero actions", async ({ page }) => {
+  test.skip((await page.viewportSize())!.width >= 1088, "Mobile layout only");
+
+  for (const project of ["woku", "inpla"]) {
+    const valueTops = await page
+      .locator(`[data-project="${project}"] .project-metrics dd`)
+      .evaluateAll((elements) =>
+        elements.map((element) => element.getBoundingClientRect().top),
+      );
+
+    expect(Math.max(...valueTops) - Math.min(...valueTops)).toBeLessThanOrEqual(1);
+  }
+
+  const actionHeights = await page.locator(".hero-actions .button").evaluateAll(
+    (elements) => elements.map((element) => element.getBoundingClientRect().height),
+  );
+  expect(Math.max(...actionHeights) - Math.min(...actionHeights)).toBeLessThanOrEqual(1);
 });
 
 test("keeps selected work on the shared vertical rhythm", async ({ page }) => {
