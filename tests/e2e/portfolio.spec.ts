@@ -162,7 +162,7 @@ test("contains complete core resume content and English metadata", async ({ page
   ).toContain("https://www.linkedin.com/in/pauriquelme");
 });
 
-test("keeps desktop metrics on one line and actions square", async ({
+test("keeps desktop metrics aligned, on one line, and actions square", async ({
   page,
 }) => {
   test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
@@ -177,6 +177,12 @@ test("keeps desktop metrics on one line and actions square", async ({
   });
 
   expect(lineCount).toBe(1);
+
+  const metricValueTops = await page.locator(".project-metrics dd").evaluateAll(
+    (elements) => elements.map((element) => element.getBoundingClientRect().top),
+  );
+  expect(Math.max(...metricValueTops) - Math.min(...metricValueTops)).toBeLessThanOrEqual(1);
+
   await expect(page.getByRole("link", { name: "View selected work" })).toHaveCSS(
     "border-radius",
     "0px",
