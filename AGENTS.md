@@ -34,13 +34,13 @@ Follow `docs/architecture.md`. Dependencies flow from `app` to `sections`, then 
 - Consumers must import from the folder, never an internal implementation file.
 - Do not add broad component barrel files.
 - Keep exactly one React component in every production TSX file.
-- Keep at most one component-level JSX return in every production TSX file.
-- Move JSX-returning children into their own component files.
+- Use idiomatic JSX in array callbacks and conditional expressions when it improves readability.
+- Do not define inline secondary React components inside a production TSX file.
 - Put non-JSX helpers in TS files.
 
 ## Base UI
 
-Use Base UI for every relevant interactive primitive, including buttons, dialogs, drawers, menus, and tooltips. Preserve the documented `render` composition API, prop and ref forwarding, state attributes, keyboard interaction, focus management, TypeScript types, and accessibility behavior. Do not recreate behavior Base UI already provides.
+Use Base UI for every relevant interactive primitive, including buttons, dialogs, drawers, menus, and tooltips. Foundations own meaningful project-specific wrappers. Interaction patterns may import Base UI directly when a wrapper would add no semantic, accessibility, behavioral, or styling value. Sections and routes must not import Base UI directly. Preserve the documented `render` composition API, prop and ref forwarding, state attributes, keyboard interaction, focus management, TypeScript types, and accessibility behavior. Do not recreate behavior Base UI already provides.
 
 ## Motion
 

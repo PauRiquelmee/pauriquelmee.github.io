@@ -37,7 +37,7 @@ tests/e2e/                Playwright flows
 
 ## Component categories
 
-`foundations` are the only components allowed to wrap Base UI directly. They expose project-specific styling and preserve Base UI prop forwarding, refs, state attributes, keyboard behavior, and accessibility.
+`foundations` own meaningful project-specific Base UI wrappers and preserve prop forwarding, refs, state attributes, keyboard behavior, and accessibility. Self-contained interaction patterns may import Base UI directly when an additional wrapper would add no semantic, accessibility, behavioral, or styling value. Sections and routes may not import Base UI directly.
 
 `patterns` combine foundations and semantic HTML into reusable units such as project previews, metric groups, press links, and resume links.
 
@@ -57,6 +57,8 @@ lib -> platform APIs only
 ```
 
 Imports must enter component folders through `index.ts`. Broad component barrels are prohibited. This keeps boundaries explicit and prevents circular dependencies.
+
+Each production TSX file contains exactly one named React component. Idiomatic JSX inside array callbacks and conditional expressions belongs to that component and is allowed. Named secondary components remain separate files, while non-visual helpers belong in regular TS modules.
 
 ## Base UI strategy
 
