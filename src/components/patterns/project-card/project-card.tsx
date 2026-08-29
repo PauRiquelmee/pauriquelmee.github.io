@@ -2,6 +2,7 @@ import { createElement } from "react";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import type { Project } from "@/content/portfolio";
+import AnimatedProjectMedia from "@/components/foundations/animated-project-media";
 import ProjectPreviewDialog from "@/components/patterns/project-preview-dialog";
 import { withBasePath } from "@/lib/paths";
 
@@ -19,7 +20,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <p className="project-description">{project.description}</p>
       </div>
-      <figure className="project-media">
+      <AnimatedProjectMedia>
         <Image
           src={withBasePath(project.image)}
           alt={project.imageAlt}
@@ -27,7 +28,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           height={project.imageHeight}
         />
         <figcaption>{project.imageCaption}</figcaption>
-      </figure>
+      </AnimatedProjectMedia>
       <dl className="project-metrics">
         {project.metrics.map((metric) =>
           createElement(

@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
+import { brotliCompressSync, constants as zlibConstants } from "node:zlib";
 import { normalizeOutputPath } from "./serve-out.lib.mjs";
 
 const port = Number(process.env.PORT ?? 4173);
@@ -20,6 +21,16 @@ const contentTypes = new Map([
   [".woff2", "font/woff2"],
   [".xml", "application/xml; charset=utf-8"],
 ]);
+const compressibleExtensions = new Set([
+  ".css",
+  ".html",
+  ".js",
+  ".json",
+  ".svg",
+  ".txt",
+  ".webmanifest",
+  ".xml",
+]);
 
 const server = createServer(async (request, response) => {
   try {
@@ -35,12 +46,24 @@ const server = createServer(async (request, response) => {
     }
 
     const file = await readFile(filePath);
-    response.writeHead(200, {
+    const extension = path.extname(filePath);
+    const shouldCompress =
+      request.headers["accept-encoding"]?.includes("br") &&
+      compressibleExtensions.has(extension);
+    const responseBody = shouldCompress
+      ? brotliCompressSync(file, {
+          params: { [zlibConstants.BROTLI_PARAM_QUALITY]: 4 },
+        })
+      : file;
+    const responseHeaders = {
       "cache-control": "no-store",
-      "content-type": contentTypes.get(path.extname(filePath)) ?? "application/octet-stream",
-    });
+      "content-type": contentTypes.get(extension) ?? "application/octet-stream",
+      vary: "Accept-Encoding",
+    };
+    if (shouldCompress) responseHeaders["content-encoding"] = "br";
+    response.writeHead(200, responseHeaders);
     if (request.method === "HEAD") response.end();
-    else response.end(file);
+    else response.end(responseBody);
   } catch {
     response.writeHead(404, { "content-type": "text/plain; charset=utf-8" });
     response.end("Not found");
