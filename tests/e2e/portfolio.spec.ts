@@ -186,6 +186,23 @@ test("keeps desktop metrics on one line and actions square", async ({
   );
 });
 
+test("keeps selected work on the shared vertical rhythm", async ({ page }) => {
+  const spacing = await page.locator(".selected-work").evaluate((section) => {
+    const heading = section.querySelector<HTMLElement>(".section-heading")!;
+    const card = section.querySelector<HTMLElement>(".project-card")!;
+
+    return {
+      sectionPaddingTop: Number.parseFloat(getComputedStyle(section).paddingTop),
+      headingMarginBottom: Number.parseFloat(getComputedStyle(heading).marginBottom),
+      cardPaddingTop: Number.parseFloat(getComputedStyle(card).paddingTop),
+    };
+  });
+
+  expect(spacing.sectionPaddingTop).toBeGreaterThanOrEqual(72);
+  expect(spacing.headingMarginBottom).toBeGreaterThanOrEqual(40);
+  expect(spacing.cardPaddingTop).toBeGreaterThanOrEqual(16);
+});
+
 test("fills the recognition card height with its evidence image", async ({ page }) => {
   test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
 

@@ -199,9 +199,6 @@ ul { padding: 0; }
 .hero-evidence dt { margin-top: 0.55rem; color: var(--muted); font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; }
 
 .section { width: min(100%, var(--max-width)); margin: 0 auto; padding: var(--section-space) var(--page-gutter); }
-.selected-work { padding-top: 0.75rem; }
-.selected-work .section-heading { margin-bottom: 0.75rem; }
-.selected-work .project-card { padding-top: 1rem; }
 .section-heading { margin-bottom: clamp(2.5rem, 5vw, 5rem); padding-top: 1rem; border-top: 1px solid var(--ink); }
 .section-heading-row { display: grid; grid-template-columns: minmax(13rem, 1fr) minmax(18rem, 1fr); gap: 2rem; }
 .section-heading h2, .education-block > h2 { font-family: var(--font-display); font-size: clamp(2.6rem, 5.4vw, 5.5rem); font-weight: 700; letter-spacing: -0.035em; line-height: 0.9; text-transform: uppercase; }
