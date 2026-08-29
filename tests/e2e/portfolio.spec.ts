@@ -186,6 +186,17 @@ test("keeps desktop metrics on one line and actions square", async ({
   );
 });
 
+test("fills the recognition card height with its evidence image", async ({ page }) => {
+  test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
+
+  const featureBox = await page.locator(".recognition-feature").boundingBox();
+  const imageBox = await page.locator(".recognition-feature > img").boundingBox();
+
+  expect(featureBox).not.toBeNull();
+  expect(imageBox).not.toBeNull();
+  expect(Math.abs(featureBox!.height - imageBox!.height)).toBeLessThanOrEqual(2);
+});
+
 test("completes structural motion and removes spatial starts when requested", async ({
   page,
 }) => {
