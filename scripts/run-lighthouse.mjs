@@ -4,7 +4,7 @@ import lighthouse from "lighthouse";
 import { launch } from "chrome-launcher";
 import { chromium } from "playwright";
 
-const auditUrl = "http://127.0.0.1:4173/paula-riquelme-portfolio/";
+const auditUrl = "http://127.0.0.1:4173/";
 const server = spawn(process.execPath, ["scripts/serve-out.mjs"], {
   cwd: process.cwd(),
   stdio: "ignore",

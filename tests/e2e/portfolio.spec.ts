@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const productionPath = "/paula-riquelme-portfolio/";
+const productionPath = "/";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("./");
@@ -63,7 +63,7 @@ test("opens honest project preview fallbacks and restores focus", async ({ page 
   await expect(trigger).toBeFocused();
 });
 
-test("serves the resume, static media, and production subpath", async ({ page }) => {
+test("serves the resume and static media from the production root", async ({ page }) => {
   expect(new URL(page.url()).pathname).toBe(productionPath);
 
   const resume = page.getByRole("link", {
@@ -85,7 +85,8 @@ test("serves the resume, static media, and production subpath", async ({ page })
     );
 
   for (const assetUrl of [...new Set(assetUrls)]) {
-    expect(new URL(assetUrl).pathname).toMatch(/^\/paula-riquelme-portfolio\//);
+    expect(new URL(assetUrl).origin).toBe(new URL(page.url()).origin);
+    expect(new URL(assetUrl).pathname).toMatch(/^\//);
     const response = await page.request.get(assetUrl);
     expect(response.status(), assetUrl).toBe(200);
   }
@@ -102,7 +103,7 @@ test("serves the resume, static media, and production subpath", async ({ page })
   await expect(llmsLink).toHaveAttribute("href", `${productionPath}llms.txt`);
   await expect(page.locator('link[rel="describedby"]')).toHaveAttribute(
     "href",
-    "https://pauriquelmee.github.io/paula-riquelme-portfolio/llms.txt",
+    "https://pauriquelmee.github.io/llms.txt",
   );
 
   const llmsResponse = await page.request.get(`${productionPath}llms.txt`);
@@ -146,7 +147,7 @@ test("contains complete core resume content and English metadata", async ({ page
   await expect(page.locator('html[lang="en"]')).toHaveCount(1);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://pauriquelmee.github.io/paula-riquelme-portfolio/",
+    "https://pauriquelmee.github.io/",
   );
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
     "content",

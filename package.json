@@ -1,12 +1,12 @@
 {
-  "name": "paula-riquelme-portfolio",
+  "name": "pauriquelmee-github-io",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:pages": "NEXT_PUBLIC_BASE_PATH=/paula-riquelme-portfolio npm run build",
+    "build:pages": "npm run build",
     "postbuild": "node scripts/postbuild.mjs",
     "start": "node scripts/serve-out.mjs",
     "serve:out": "node scripts/serve-out.mjs",

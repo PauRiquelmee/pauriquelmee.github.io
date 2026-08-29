@@ -2,7 +2,7 @@ import { spawn } from "node:child_process";
 import { mkdir } from "node:fs/promises";
 import { chromium } from "playwright";
 
-const previewUrl = "http://127.0.0.1:4173/paula-riquelme-portfolio/";
+const previewUrl = "http://127.0.0.1:4173/";
 const server = spawn(process.execPath, ["scripts/serve-out.mjs"], {
   cwd: process.cwd(),
   stdio: "ignore",

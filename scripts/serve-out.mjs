@@ -71,5 +71,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, "127.0.0.1", () => {
-  console.log(`Static export available at http://127.0.0.1:${port}/paula-riquelme-portfolio/`);
+  console.log(`Static export available at http://127.0.0.1:${port}/`);
 });
