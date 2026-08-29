@@ -57,6 +57,14 @@ describe('canonical portfolio content', () => {
     expect(contactLinks.find((link) => link.label === 'llms.txt')?.href).toBe(
       '/llms.txt',
     );
+    expect(
+      contactLinks.find((link) => link.label === 'GitHub repository'),
+    ).toMatchObject({
+      href: 'https://github.com/PauRiquelmee/pauriquelmee.github.io',
+      external: true,
+      ariaLabel:
+        'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
+    });
     expect(recognition.title).toBe('Best Undergraduate Paper | OPTIMA 2017');
   });
 });

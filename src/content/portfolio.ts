@@ -95,6 +95,13 @@ export const contactLinks: LinkItem[] = [
     ariaLabel: 'Open Inpla in a new tab',
   },
   {
+    label: 'GitHub repository',
+    href: 'https://github.com/PauRiquelmee/pauriquelmee.github.io',
+    external: true,
+    ariaLabel:
+      'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
+  },
+  {
     label: 'English resume',
     href: '/documents/paula-riquelme-resume-en.pdf',
     ariaLabel: "Download Paula Riquelme's English resume as a PDF",
