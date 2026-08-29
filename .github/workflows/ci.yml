@@ -40,6 +40,9 @@ jobs:
       - name: Validate agent documentation
         run: npm run validate:agent-docs
 
+      - name: Check formatting
+        run: npm run format:check
+
       - name: Lint source
         run: npm run lint
 

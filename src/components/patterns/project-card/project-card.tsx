@@ -1,10 +1,10 @@
-import { createElement } from "react";
-import Image from "next/image";
-import { ExternalLink } from "lucide-react";
-import type { Project } from "@/content/portfolio";
-import AnimatedProjectMedia from "@/components/foundations/animated-project-media";
-import ProjectPreviewDialog from "@/components/patterns/project-preview-dialog";
-import { withBasePath } from "@/lib/paths";
+import { createElement } from 'react';
+import Image from 'next/image';
+import { ExternalLink } from 'lucide-react';
+import type { Project } from '@/content/portfolio';
+import AnimatedProjectMedia from '@/components/foundations/animated-project-media';
+import ProjectPreviewDialog from '@/components/patterns/project-preview-dialog';
+import { withBasePath } from '@/lib/paths';
 
 export type ProjectCardProps = {
   project: Project;
@@ -32,16 +32,16 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       <dl className="project-metrics">
         {project.metrics.map((metric) =>
           createElement(
-            "div",
+            'div',
             { key: `${project.name}-${metric.label}` },
-            createElement("dt", null, metric.label),
-            createElement("dd", null, metric.value),
+            createElement('dt', null, metric.label),
+            createElement('dd', null, metric.value),
           ),
         )}
       </dl>
       <ul className="project-outcomes">
         {project.outcomes.map((outcome) =>
-          createElement("li", { key: outcome }, outcome),
+          createElement('li', { key: outcome }, outcome),
         )}
       </ul>
       <div className="project-actions">

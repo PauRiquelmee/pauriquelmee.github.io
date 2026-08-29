@@ -2,92 +2,92 @@
 name: Paula Riquelme Portfolio
 description: An evidence-led product launch dossier spanning product leadership, design, go-to-market, and frontend delivery.
 colors:
-  primary: "#4338a8"
-  primary-light: "#a5b5fc"
-  primary-dark: "#292263"
-  paper: "#f3f0e8"
-  paper-bright: "#fbfaf6"
-  ink: "#11110f"
-  muted: "#66645e"
-  line: "#b8b4aa"
-  line-dark: "#383832"
-  on-accent: "#ffffff"
+  primary: '#4338a8'
+  primary-light: '#a5b5fc'
+  primary-dark: '#292263'
+  paper: '#f3f0e8'
+  paper-bright: '#fbfaf6'
+  ink: '#11110f'
+  muted: '#66645e'
+  line: '#b8b4aa'
+  line-dark: '#383832'
+  on-accent: '#ffffff'
 typography:
   display:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "clamp(4.35rem, 9.4vw, 9.3rem)"
+    fontFamily: 'Barlow Condensed, Arial Narrow, sans-serif'
+    fontSize: 'clamp(4.35rem, 9.4vw, 9.3rem)'
     fontWeight: 700
     lineHeight: 0.78
-    letterSpacing: "-0.04em"
+    letterSpacing: '-0.04em'
   headline:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "clamp(2.6rem, 5.4vw, 5.5rem)"
+    fontFamily: 'Barlow Condensed, Arial Narrow, sans-serif'
+    fontSize: 'clamp(2.6rem, 5.4vw, 5.5rem)'
     fontWeight: 700
     lineHeight: 0.9
-    letterSpacing: "-0.035em"
+    letterSpacing: '-0.035em'
   project-title:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "clamp(3.5rem, 7vw, 7rem)"
+    fontFamily: 'Barlow Condensed, Arial Narrow, sans-serif'
+    fontSize: 'clamp(3.5rem, 7vw, 7rem)'
     fontWeight: 700
     lineHeight: 0.82
-    letterSpacing: "-0.04em"
+    letterSpacing: '-0.04em'
   title:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "clamp(1.55rem, 2.4vw, 2.4rem)"
+    fontFamily: 'Barlow Condensed, Arial Narrow, sans-serif'
+    fontSize: 'clamp(1.55rem, 2.4vw, 2.4rem)'
     fontWeight: 700
     lineHeight: 1
-    letterSpacing: "normal"
+    letterSpacing: 'normal'
   body:
-    fontFamily: "Barlow, Arial, sans-serif"
-    fontSize: "1rem"
+    fontFamily: 'Barlow, Arial, sans-serif'
+    fontSize: '1rem'
     fontWeight: 400
     lineHeight: 1.5
-    letterSpacing: "normal"
+    letterSpacing: 'normal'
   label:
-    fontFamily: "Barlow, Arial, sans-serif"
-    fontSize: "0.72rem"
+    fontFamily: 'Barlow, Arial, sans-serif'
+    fontSize: '0.72rem'
     fontWeight: 700
     lineHeight: 1.5
-    letterSpacing: "0.13em"
+    letterSpacing: '0.13em'
   action:
-    fontFamily: "Barlow, Arial, sans-serif"
-    fontSize: "0.82rem"
+    fontFamily: 'Barlow, Arial, sans-serif'
+    fontSize: '0.82rem'
     fontWeight: 600
     lineHeight: 1
-    letterSpacing: "0.055em"
+    letterSpacing: '0.055em'
 rounded:
-  square: "0"
+  square: '0'
 spacing:
-  page-gutter: "clamp(1.25rem, 4vw, 4.5rem)"
-  section-space: "clamp(5rem, 10vw, 9rem)"
+  page-gutter: 'clamp(1.25rem, 4vw, 4.5rem)'
+  section-space: 'clamp(5rem, 10vw, 9rem)'
 components:
   button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-accent}"
-    typography: "{typography.action}"
-    rounded: "{rounded.square}"
-    padding: "0.76rem 1.05rem"
-    height: "2.9rem"
+    backgroundColor: '{colors.primary}'
+    textColor: '{colors.on-accent}'
+    typography: '{typography.action}'
+    rounded: '{rounded.square}'
+    padding: '0.76rem 1.05rem'
+    height: '2.9rem'
   button-primary-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.on-accent}"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.on-accent}'
   button-secondary:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    typography: "{typography.action}"
-    rounded: "{rounded.square}"
-    padding: "0.76rem 1.05rem"
-    height: "2.9rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    typography: '{typography.action}'
+    rounded: '{rounded.square}'
+    padding: '0.76rem 1.05rem'
+    height: '2.9rem'
   button-secondary-hover:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-accent}"
+    backgroundColor: '{colors.primary}'
+    textColor: '{colors.on-accent}'
   button-quiet:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.square}"
-    padding: "0.7rem"
-    height: "2.9rem"
-    width: "2.9rem"
+    backgroundColor: 'transparent'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.square}'
+    padding: '0.7rem'
+    height: '2.9rem'
+    width: '2.9rem'
 ---
 
 # Design System: Paula Riquelme Portfolio

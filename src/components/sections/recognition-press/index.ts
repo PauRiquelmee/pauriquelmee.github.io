@@ -1,1 +1,1 @@
-export { default } from "./recognition-press";
+export { default } from './recognition-press';

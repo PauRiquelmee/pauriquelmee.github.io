@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
-import MotionProvider from ".";
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import MotionProvider from '.';
 
-vi.mock("motion/react", () => ({
+vi.mock('motion/react', () => ({
   domAnimation: {},
   LazyMotion: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="lazy-motion">{children}</div>
@@ -16,7 +16,7 @@ vi.mock("motion/react", () => ({
   }) => <div data-reduced-motion={reducedMotion}>{children}</div>,
 }));
 
-describe("MotionProvider", () => {
+describe('MotionProvider', () => {
   it("loads motion features lazily and respects the user's reduced-motion preference", () => {
     render(
       <MotionProvider>
@@ -24,10 +24,10 @@ describe("MotionProvider", () => {
       </MotionProvider>,
     );
 
-    expect(screen.getByTestId("lazy-motion")).toBeInTheDocument();
-    expect(screen.getByText("Portfolio content").parentElement).toHaveAttribute(
-      "data-reduced-motion",
-      "user",
+    expect(screen.getByTestId('lazy-motion')).toBeInTheDocument();
+    expect(screen.getByText('Portfolio content').parentElement).toHaveAttribute(
+      'data-reduced-motion',
+      'user',
     );
   });
 });

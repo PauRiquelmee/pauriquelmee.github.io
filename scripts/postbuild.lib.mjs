@@ -8,6 +8,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 -->`;
 
 export const injectDirectionContract = (html) => {
-  if (html.includes("portfolio-dossier-v1")) return html;
-  return html.replace(/<body([^>]*)>/i, (openingBody) => `${openingBody}${directionContract}`);
+  if (html.includes('portfolio-dossier-v1')) return html;
+  return html.replace(
+    /<body([^>]*)>/i,
+    (openingBody) => `${openingBody}${directionContract}`,
+  );
 };

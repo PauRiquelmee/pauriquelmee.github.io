@@ -1,16 +1,16 @@
-import "@testing-library/jest-dom/vitest";
-import { cleanup } from "@testing-library/react";
-import { afterEach, vi } from "vitest";
+import '@testing-library/jest-dom/vitest';
+import { cleanup } from '@testing-library/react';
+import { afterEach, vi } from 'vitest';
 
-vi.mock("next/font/local", () => ({
-  default: () => ({ className: "", variable: "test-font-variable" }),
+vi.mock('next/font/local', () => ({
+  default: () => ({ className: '', variable: 'test-font-variable' }),
 }));
 
 afterEach(() => {
   cleanup();
 });
 
-Object.defineProperty(window, "matchMedia", {
+Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query: string) => ({
     matches: false,
@@ -34,7 +34,7 @@ global.ResizeObserver = ResizeObserverMock;
 
 class IntersectionObserverMock {
   root = null;
-  rootMargin = "0px";
+  rootMargin = '0px';
   thresholds = [0];
   observe = () => {};
   unobserve = () => {};

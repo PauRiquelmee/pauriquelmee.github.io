@@ -1,6 +1,6 @@
-import { createElement } from "react";
-import ExperienceEntry from "@/components/patterns/experience-entry";
-import { education, experience } from "@/content/portfolio";
+import { createElement } from 'react';
+import ExperienceEntry from '@/components/patterns/experience-entry';
+import { education, experience } from '@/content/portfolio';
 
 const Experience = () => {
   return (
@@ -11,7 +11,10 @@ const Experience = () => {
     >
       <div className="section-heading section-heading-row">
         <h2 id="experience-title">Experience</h2>
-        <p>Eight years across products, ventures, infrastructure, and the classroom.</p>
+        <p>
+          Eight years across products, ventures, infrastructure, and the
+          classroom.
+        </p>
       </div>
       <div className="experience-list">
         {experience.map((item) =>
@@ -26,10 +29,10 @@ const Experience = () => {
         <div className="education-list">
           {education.map((item) =>
             createElement(
-              "article",
+              'article',
               { key: item.degree },
-              createElement("h3", null, item.degree),
-              createElement("p", null, `${item.institution}, ${item.year}`),
+              createElement('h3', null, item.degree),
+              createElement('p', null, `${item.institution}, ${item.year}`),
             ),
           )}
         </div>

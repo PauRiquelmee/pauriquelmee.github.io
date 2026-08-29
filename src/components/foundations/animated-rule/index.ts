@@ -1,1 +1,1 @@
-export { default } from "./animated-rule";
+export { default } from './animated-rule';

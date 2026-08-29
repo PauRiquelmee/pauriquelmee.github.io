@@ -1,9 +1,9 @@
-import { createElement } from "react";
-import { ExternalLink } from "lucide-react";
-import Image from "next/image";
-import PressFeature from "@/components/patterns/press-feature";
-import { pressFeatures, recognition } from "@/content/portfolio";
-import { withBasePath } from "@/lib/paths";
+import { createElement } from 'react';
+import { ExternalLink } from 'lucide-react';
+import Image from 'next/image';
+import PressFeature from '@/components/patterns/press-feature';
+import { pressFeatures, recognition } from '@/content/portfolio';
+import { withBasePath } from '@/lib/paths';
 
 const RecognitionPress = () => {
   return (
@@ -14,7 +14,10 @@ const RecognitionPress = () => {
     >
       <div className="section-heading section-heading-row">
         <h2 id="recognition-title">Recognition & press</h2>
-        <p>Published evidence of product work, entrepreneurship, and regional impact.</p>
+        <p>
+          Published evidence of product work, entrepreneurship, and regional
+          impact.
+        </p>
       </div>
       <article className="recognition-feature">
         <div className="recognition-copy">
@@ -40,7 +43,9 @@ const RecognitionPress = () => {
       <div className="press-introduction">
         <h3>Five El Mercurio Innovation features</h3>
         <p>
-          {"El Mercurio is one of Chile's leading newspapers. These links open the publication's LinkedIn posts, where each paywalled article reference and preview can be seen."}
+          {
+            "El Mercurio is one of Chile's leading newspapers. These links open the publication's LinkedIn posts, where each paywalled article reference and preview can be seen."
+          }
         </p>
       </div>
       <div className="press-grid">

@@ -1,13 +1,13 @@
-import { spawn } from "node:child_process";
-import { mkdir, writeFile } from "node:fs/promises";
-import lighthouse from "lighthouse";
-import { launch } from "chrome-launcher";
-import { chromium } from "playwright";
+import { spawn } from 'node:child_process';
+import { mkdir, writeFile } from 'node:fs/promises';
+import lighthouse from 'lighthouse';
+import { launch } from 'chrome-launcher';
+import { chromium } from 'playwright';
 
-const auditUrl = "http://127.0.0.1:4173/";
-const server = spawn(process.execPath, ["scripts/serve-out.mjs"], {
+const auditUrl = 'http://127.0.0.1:4173/';
+const server = spawn(process.execPath, ['scripts/serve-out.mjs'], {
   cwd: process.cwd(),
-  stdio: "ignore",
+  stdio: 'ignore',
 });
 
 const waitForServer = async () => {
@@ -19,7 +19,7 @@ const waitForServer = async () => {
       await new Promise((resolve) => setTimeout(resolve, 250));
     }
   }
-  throw new Error("The static preview did not become available.");
+  throw new Error('The static preview did not become available.');
 };
 
 let chrome;
@@ -28,17 +28,17 @@ try {
   await waitForServer();
   chrome = await launch({
     chromePath: chromium.executablePath(),
-    chromeFlags: ["--headless", "--no-sandbox", "--disable-dev-shm-usage"],
+    chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'],
   });
 
   const result = await lighthouse(auditUrl, {
-    logLevel: "error",
-    output: "json",
+    logLevel: 'error',
+    output: 'json',
     port: chrome.port,
-    onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+    onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
   });
 
-  if (!result) throw new Error("Lighthouse did not produce a report.");
+  if (!result) throw new Error('Lighthouse did not produce a report.');
 
   const scores = Object.fromEntries(
     Object.entries(result.lhr.categories).map(([key, category]) => [
@@ -47,15 +47,18 @@ try {
     ]),
   );
 
-  await mkdir(".lighthouse", { recursive: true });
-  await writeFile(".lighthouse/report.json", result.report);
-  await writeFile(".lighthouse/summary.json", `${JSON.stringify(scores, null, 2)}\n`);
+  await mkdir('.lighthouse', { recursive: true });
+  await writeFile('.lighthouse/report.json', result.report);
+  await writeFile(
+    '.lighthouse/summary.json',
+    `${JSON.stringify(scores, null, 2)}\n`,
+  );
   console.log(JSON.stringify(scores, null, 2));
 
   const targets = {
     performance: 95,
     accessibility: 95,
-    "best-practices": 95,
+    'best-practices': 95,
     seo: 100,
   };
   const missedTargets = Object.entries(targets).filter(
@@ -66,10 +69,10 @@ try {
     throw new Error(
       `Lighthouse targets missed: ${missedTargets
         .map(([category, target]) => `${category} below ${target}`)
-        .join(", ")}`,
+        .join(', ')}`,
     );
   }
 } finally {
   if (chrome) await chrome.kill();
-  server.kill("SIGTERM");
+  server.kill('SIGTERM');
 }

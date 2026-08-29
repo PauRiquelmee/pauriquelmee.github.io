@@ -1,7 +1,7 @@
-import { createElement } from "react";
-import { ExternalLink } from "lucide-react";
-import type { PressFeature as PressFeatureData } from "@/content/portfolio";
-import { withBasePath } from "@/lib/paths";
+import { createElement } from 'react';
+import { ExternalLink } from 'lucide-react';
+import type { PressFeature as PressFeatureData } from '@/content/portfolio';
+import { withBasePath } from '@/lib/paths';
 
 export type PressFeatureProps = {
   feature: PressFeatureData;
@@ -12,13 +12,13 @@ const PressFeature = ({ feature }: PressFeatureProps) => {
     <article className="press-feature">
       <div className="press-media">
         {feature.images.map((image) =>
-          createElement("img", {
+          createElement('img', {
             key: image.src,
             src: withBasePath(image.src),
             alt: image.alt,
             width: 800,
             height: 640,
-            loading: "lazy",
+            loading: 'lazy',
           }),
         )}
       </div>
