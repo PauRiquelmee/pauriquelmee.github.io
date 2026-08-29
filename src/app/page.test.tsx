@@ -26,4 +26,27 @@ describe('Home', () => {
       screen.getByRole('link', { name: 'Skip to content' }),
     ).toHaveAttribute('href', '#content');
   });
+
+  it('identifies the canonical portfolio brand in structured data', () => {
+    render(<Home />);
+
+    const structuredData = JSON.parse(
+      document.querySelector('script[type="application/ld+json"]')
+        ?.textContent ?? '{}',
+    );
+
+    expect(structuredData['@graph']).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          '@type': 'WebSite',
+          name: 'Paula Riquelme Portfolio',
+          url: 'https://pauriquelmee.github.io/',
+        }),
+        expect.objectContaining({
+          '@type': 'Person',
+          name: 'Paula Riquelme',
+        }),
+      ]),
+    );
+  });
 });

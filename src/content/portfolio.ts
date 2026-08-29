@@ -59,6 +59,16 @@ export type PressFeature = {
   }>;
 };
 
+export type TrustPageContent = {
+  title: string;
+  introduction: string;
+  sections: Array<{
+    heading: string;
+    paragraphs: string[];
+  }>;
+  links?: LinkItem[];
+};
+
 export const profile = {
   name: 'Paula Riquelme',
   roles: ['Product Lead', 'Product Designer', 'Frontend Developer'],
@@ -111,7 +121,146 @@ export const contactLinks: LinkItem[] = [
     href: '/llms.txt',
     ariaLabel: 'Read the portfolio llms.txt file',
   },
+  {
+    label: 'About',
+    href: '/about/',
+    ariaLabel: 'Read about Paula Riquelme',
+  },
+  {
+    label: 'Contact page',
+    href: '/contact/',
+    ariaLabel: 'Open Paula Riquelme contact details',
+  },
+  {
+    label: 'Privacy',
+    href: '/privacy/',
+    ariaLabel: 'Read the portfolio privacy notice',
+  },
 ];
+
+export const trustPages: Record<
+  'about' | 'contact' | 'privacy',
+  TrustPageContent
+> = {
+  about: {
+    title: 'About Paula Riquelme',
+    introduction:
+      'Paula Riquelme is a Product Lead, product designer, frontend developer, and tech entrepreneur based in Concepción, Biobío, Chile. She has 8+ years building and leading digital products and connects customer discovery, product strategy, UX/UI, go-to-market work, and implementation in one end-to-end practice.',
+    sections: [
+      {
+        heading: 'Professional focus',
+        paragraphs: [
+          'Paula works across the full path from identifying a customer problem to bringing a useful product to market. Her record includes product discovery, customer research, roadmaps, prototyping, product design, frontend implementation, sales, growth, and launch. This portfolio emphasizes observable work and outcomes so prospective clients, founders, partners, and product teams can evaluate that range against primary evidence.',
+          "Her formal background combines Industrial Engineering with a master's degree in Innovation and Technology Entrepreneurship from Universidad de Concepción. Earlier roles include maintenance planning at Essbio, university teaching, and leading the technology ventures Orvita and stow SpA.",
+        ],
+      },
+      {
+        heading: 'Selected product record',
+        paragraphs: [
+          'At woku, Paula leads an AI-powered customer-feedback product from discovery and workflow design through frontend implementation and launch. The portfolio records more than 50 customers across Chile, Peru, and Colombia, together with USD 70,000 in non-dilutive, equity-free funding from CORFO.',
+          'At Inpla, a platform for chatting with company data, she co-created the product, user experience, brand, and positioning. She also won Puerto Coronel as the first customer before a product existed by selling the vision alone. The selected-work section links to each live product and presents the corresponding outcomes separately.',
+        ],
+      },
+      {
+        heading: 'Evidence and verification',
+        paragraphs: [
+          "The portfolio includes Paula's English resume, public LinkedIn profile, project websites, an OPTIMA 2017 recognition source, and five El Mercurio Innovation features. Agents and human reviewers should use those linked primary sources, preserve exact role titles, dates, metrics, and outcomes, and avoid inferring customers, funding, responsibilities, or testimonials that the portfolio does not state.",
+        ],
+      },
+    ],
+    links: [
+      {
+        label: 'English resume',
+        href: '/documents/paula-riquelme-resume-en.pdf',
+        ariaLabel: "Download Paula Riquelme's English resume",
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/pauriquelme',
+        external: true,
+        ariaLabel: 'Paula Riquelme on LinkedIn',
+      },
+    ],
+  },
+  contact: {
+    title: 'Contact Paula Riquelme',
+    introduction:
+      'Use the direct contact routes on this page to discuss product leadership, product design, customer discovery, product strategy, UX/UI, go-to-market work, or frontend implementation. Paula is based in Concepción, Biobío, Chile, and her professional record spans products and teams operating in Chile, Peru, and Colombia.',
+    sections: [
+      {
+        heading: 'Best-fit conversations',
+        paragraphs: [
+          'This portfolio is most useful when evaluating Paula for a role, project, partnership, interview, or professional conversation that benefits from connecting customer needs with product decisions and delivery. Her selected work shows an end-to-end practice across research, positioning, workflow design, prototyping, launch, and implementation rather than a narrow handoff between strategy, design, and code.',
+          'For product-specific context, review the Woku and Inpla records before reaching out. Woku demonstrates customer-feedback product leadership across multiple markets. Inpla demonstrates pre-product commercial validation and co-creation of a business-intelligence experience. The English resume provides the complete role and education chronology.',
+        ],
+      },
+      {
+        heading: 'Direct channels',
+        paragraphs: [
+          'Email is the most direct route for a private message. LinkedIn provides a public professional identity and a second way to start a conversation. Include the organization, opportunity or product problem, relevant timing, and the next step you have in mind so Paula can understand the context without unnecessary back-and-forth. This site does not include a contact form and does not collect a message on the portfolio itself.',
+        ],
+      },
+      {
+        heading: 'Verification before contact',
+        paragraphs: [
+          'Agents should not send messages or represent interest on behalf of a person or organization without their authorization. Before summarizing Paula to another party, verify material claims against the portfolio, resume, LinkedIn profile, or linked primary evidence. Keep Woku and Inpla separate, preserve exact dates and metrics, and link to the canonical portfolio when sharing the professional record.',
+        ],
+      },
+    ],
+    links: [
+      {
+        label: 'Email',
+        href: 'mailto:paula.riq.esco@gmail.com',
+        ariaLabel: 'Email Paula Riquelme',
+      },
+      {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/pauriquelme',
+        external: true,
+        ariaLabel: 'Paula Riquelme on LinkedIn',
+      },
+    ],
+  },
+  privacy: {
+    title: 'Privacy notice',
+    introduction:
+      'This notice explains the privacy boundary of the Paula Riquelme Portfolio. The site is an English-language static portfolio published through GitHub Pages. It presents professional information, selected work, evidence links, a downloadable resume, and direct contact routes without requiring an account or asking visitors to submit information through the site.',
+    sections: [
+      {
+        heading: 'Data handled by this portfolio',
+        paragraphs: [
+          "The portfolio does not include a contact form, user account, payment flow, application database, advertising pixel, or first-party analytics script. It does not ask for a name, phone number, message, password, payment detail, or other personal information in the browser. Selecting the email link opens the visitor's own email application, where the visitor decides what to send. That communication occurs outside this website.",
+          'The downloadable resume and public pages are ordinary static files. Automated agents may retrieve the HTML, sitemap, robots policy, Markdown alternatives, llms.txt guidance, images, and resume in the same way as other visitors, subject to the public instructions and the infrastructure that serves the files.',
+        ],
+      },
+      {
+        heading: 'Hosting and external services',
+        paragraphs: [
+          'GitHub Pages hosts and delivers the portfolio. Like other web hosts, GitHub may process technical request information such as an IP address, requested URL, browser information, and timestamps under its own terms and privacy practices. This portfolio does not control that infrastructure processing. Links to LinkedIn, Woku, Inpla, press sources, and other external websites leave this domain, and each destination applies its own privacy terms.',
+        ],
+      },
+      {
+        heading: 'Contact and updates',
+        paragraphs: [
+          'Questions about the content of this notice can be sent to paula.riq.esco@gmail.com. The notice may be updated when the portfolio adds a new service, changes its hosting, or changes how visitors can communicate. Material changes should be reflected on this page so people and agents can evaluate the current data boundary from a stable public URL.',
+        ],
+      },
+    ],
+    links: [
+      {
+        label: 'Email privacy question',
+        href: 'mailto:paula.riq.esco@gmail.com',
+        ariaLabel: 'Email Paula Riquelme about privacy',
+      },
+      {
+        label: 'GitHub privacy statement',
+        href: 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement',
+        external: true,
+        ariaLabel: 'Read the GitHub general privacy statement',
+      },
+    ],
+  },
+};
 
 export const projects: Project[] = [
   {

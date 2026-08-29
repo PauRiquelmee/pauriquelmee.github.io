@@ -7,6 +7,7 @@ import {
   projects,
   recognition,
   skillGroups,
+  trustPages,
 } from '@/content/portfolio';
 
 describe('canonical portfolio content', () => {
@@ -66,5 +67,22 @@ describe('canonical portfolio content', () => {
         'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
     });
     expect(recognition.title).toBe('Best Undergraduate Paper | OPTIMA 2017');
+  });
+
+  it('provides substantial English content for every trust page', () => {
+    expect(Object.keys(trustPages)).toEqual(['about', 'contact', 'privacy']);
+
+    for (const page of Object.values(trustPages)) {
+      const visibleText = [
+        page.title,
+        page.introduction,
+        ...page.sections.flatMap((section) => [
+          section.heading,
+          ...section.paragraphs,
+        ]),
+      ].join(' ');
+
+      expect(visibleText.length).toBeGreaterThanOrEqual(500);
+    }
   });
 });

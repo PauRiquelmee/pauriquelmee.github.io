@@ -4,9 +4,9 @@ import MotionProvider from '@/components/foundations/motion-provider';
 import { siteUrl } from '@/lib/paths';
 import './globals.css';
 
-const title = 'Paula Riquelme | Product Lead & Product Designer';
+const title = 'Paula Riquelme Portfolio | Product Lead & Product Designer';
 const description =
-  'Product Lead, product designer, and frontend developer building digital products from customer discovery and strategy through implementation.';
+  'Official portfolio of Paula Riquelme, a Product Lead, product designer, and frontend developer building from discovery and strategy through implementation.';
 const socialImage = new URL('social/paula-riquelme.png', siteUrl);
 const barlow = localFont({
   variable: '--font-barlow',
@@ -44,6 +44,8 @@ export const metadata: Metadata = {
   creator: 'Paula Riquelme',
   publisher: 'Paula Riquelme',
   keywords: [
+    'Paula Riquelme Portfolio',
+    'Paula Riquelme',
     'Product Lead',
     'Product Designer',
     'Frontend Developer',
@@ -123,6 +125,12 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         <link
           rel="describedby"
           href={new URL('llms.txt', siteUrl).toString()}
+        />
+        <link
+          rel="alternate"
+          type="text/markdown"
+          title="Paula Riquelme Portfolio in Markdown"
+          href={new URL('index.md', siteUrl).toString()}
         />
       </head>
       <body>

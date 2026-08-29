@@ -30,5 +30,14 @@ describe('Contact', () => {
       'href',
       'https://github.com/PauRiquelmee/pauriquelmee.github.io',
     );
+    expect(
+      screen.getByRole('link', { name: 'Read about Paula Riquelme' }),
+    ).toHaveAttribute('href', '/about/');
+    expect(
+      screen.getByRole('link', { name: 'Open Paula Riquelme contact details' }),
+    ).toHaveAttribute('href', '/contact/');
+    expect(
+      screen.getByRole('link', { name: 'Read the portfolio privacy notice' }),
+    ).toHaveAttribute('href', '/privacy/');
   });
 });
