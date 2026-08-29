@@ -1,12 +1,8 @@
-"use client";
-
-import { m, useReducedMotion } from "motion/react";
+import AnimatedRule from "@/components/foundations/animated-rule";
 import Button from "@/components/foundations/button";
 import { profile } from "@/content/portfolio";
 
 export default function Hero() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="role-register" aria-label="Professional roles">
@@ -15,21 +11,17 @@ export default function Hero() {
         <span>Frontend Developer</span>
       </div>
       <div className="hero-content">
-        <p className="hero-location">Concepción, Chile</p>
         <h1 id="hero-title" aria-label={profile.headline}>
           <span aria-hidden="true">I design products,</span>
           <span aria-hidden="true">bring them to market,</span>
           <span aria-hidden="true">and can build them too.</span>
         </h1>
-        <m.div
-          className="hero-rule"
-          aria-hidden="true"
-          initial={shouldReduceMotion ? false : { scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        />
+        <AnimatedRule />
         <div className="hero-bottom">
-          <p>{profile.summary}</p>
+          <div className="hero-summary">
+            <p>{profile.summary}</p>
+            <p className="hero-location">Concepción, Chile</p>
+          </div>
           <div className="hero-actions">
             <Button render={<a href="#work" />}>View selected work</Button>
             <Button variant="secondary" render={<a href="#contact" />}>

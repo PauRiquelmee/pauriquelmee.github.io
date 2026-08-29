@@ -2,6 +2,10 @@ import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 import { afterEach, vi } from "vitest";
 
+vi.mock("next/font/local", () => ({
+  default: () => ({ className: "", variable: "test-font-variable" }),
+}));
+
 afterEach(() => {
   cleanup();
 });
@@ -27,3 +31,17 @@ class ResizeObserverMock {
 }
 
 global.ResizeObserver = ResizeObserverMock;
+
+class IntersectionObserverMock {
+  root = null;
+  rootMargin = "0px";
+  thresholds = [0];
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords() {
+    return [];
+  }
+}
+
+global.IntersectionObserver = IntersectionObserverMock;

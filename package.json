@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:pages": "NEXT_PUBLIC_BASE_PATH=/paula-riquelme-portfolio next build",
+    "build:pages": "NEXT_PUBLIC_BASE_PATH=/paula-riquelme-portfolio npm run build",
     "postbuild": "node scripts/postbuild.mjs",
     "start": "node scripts/serve-out.mjs",
     "serve:out": "node scripts/serve-out.mjs",
@@ -20,6 +20,7 @@
     "validate:architecture": "node scripts/validate-architecture.mjs",
     "validate:agent-docs": "node scripts/validate-agent-docs.mjs",
     "generate:assets": "node scripts/generate-assets.mjs",
+    "screenshots": "node scripts/capture-screenshots.mjs",
     "lighthouse": "node scripts/run-lighthouse.mjs"
   },
   "dependencies": {
