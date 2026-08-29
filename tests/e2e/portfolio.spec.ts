@@ -144,3 +144,46 @@ test("contains complete core resume content and English metadata", async ({ page
     await page.locator('script[type="application/ld+json"]').textContent(),
   ).toContain("https://www.linkedin.com/in/pauriquelme");
 });
+
+test("keeps desktop metrics on one line and actions softly rounded", async ({
+  page,
+}) => {
+  test.skip((await page.viewportSize())!.width < 1088, "Desktop layout only");
+
+  const preProduct = page
+    .locator('[data-project="inpla"] .project-metrics dd')
+    .filter({ hasText: "Pre-product" });
+  const lineCount = await preProduct.evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return range.getClientRects().length;
+  });
+
+  expect(lineCount).toBe(1);
+  await expect(page.getByRole("link", { name: "View selected work" })).toHaveCSS(
+    "border-radius",
+    "12px",
+  );
+  await expect(page.getByRole("link", { name: "Contact", exact: true })).toHaveCSS(
+    "border-radius",
+    "12px",
+  );
+});
+
+test("completes structural motion and removes spatial starts when requested", async ({
+  page,
+}) => {
+  const media = page.locator('[data-project="woku"] .project-media');
+  const initialOpacity = Number(await media.evaluate((element) => getComputedStyle(element).opacity));
+  expect(initialOpacity).toBeLessThan(1);
+
+  await media.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(600);
+  await expect(media).toHaveCSS("opacity", "1");
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.reload();
+  const reducedMedia = page.locator('[data-project="woku"] .project-media');
+  expect(Number(await reducedMedia.evaluate((element) => getComputedStyle(element).opacity))).toBe(1);
+  await expect(reducedMedia).toHaveCSS("transform", "none");
+});
