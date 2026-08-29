@@ -53,7 +53,7 @@ test("opens honest project preview fallbacks and restores focus", async ({ page 
   await expect(dialog).toBeVisible();
   await expect(dialog.getByText(/prevents third-party embedding/)).toBeVisible();
   await expect(dialog.locator("iframe")).toHaveCount(0);
-  await expect(dialog.getByRole("link", { name: "Open Woku website" })).toHaveAttribute(
+  await expect(dialog.getByRole("link", { name: "Open website for Woku" })).toHaveAttribute(
     "target",
     "_blank",
   );
@@ -98,7 +98,7 @@ test("serves the resume, static media, and production subpath", async ({ page })
 });
 
 test("keeps project, LinkedIn, recognition, and press links safe", async ({ page }) => {
-  await expect(page.getByRole("link", { name: "Open Woku website" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "Open website for Woku" })).toHaveAttribute(
     "rel",
     "noreferrer noopener",
   );
@@ -174,12 +174,14 @@ test("completes structural motion and removes spatial starts when requested", as
   page,
 }) => {
   const media = page.locator('[data-project="woku"] .project-media');
-  const initialOpacity = Number(await media.evaluate((element) => getComputedStyle(element).opacity));
-  expect(initialOpacity).toBeLessThan(1);
+  const initialTransform = await media.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+  expect(initialTransform).not.toBe("none");
 
   await media.scrollIntoViewIfNeeded();
   await page.waitForTimeout(600);
-  await expect(media).toHaveCSS("opacity", "1");
+  await expect(media).toHaveCSS("transform", "none");
 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();

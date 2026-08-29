@@ -20,7 +20,7 @@ describe("ProjectPreviewDialog", () => {
     expect(screen.getByRole("dialog", { name: "Woku live preview" })).toBeVisible();
     expect(screen.getByText(commonProps.fallbackMessage)).toBeVisible();
     expect(screen.queryByTitle("Woku live website")).toBeNull();
-    expect(screen.getByRole("link", { name: "Open Woku website" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Open website for Woku" })).toHaveAttribute(
       "target",
       "_blank",
     );

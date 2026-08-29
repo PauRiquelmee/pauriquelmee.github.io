@@ -83,7 +83,7 @@ export default function ProjectPreviewDialog({
                 href={websiteUrl}
                 target="_blank"
                 rel="noreferrer noopener"
-                aria-label={`Open ${projectName} website`}
+                aria-label={`Open website for ${projectName}`}
               >
                 Open website
                 <ExternalLink aria-hidden="true" size={17} strokeWidth={1.7} />
