@@ -22,5 +22,13 @@ describe('Contact', () => {
         name: /Download Paula Riquelme's English resume/,
       }),
     ).toHaveAttribute('download');
+    expect(
+      screen.getByRole('link', {
+        name: /Open the source repository for Paula Riquelme Portfolio on GitHub/,
+      }),
+    ).toHaveAttribute(
+      'href',
+      'https://github.com/PauRiquelmee/pauriquelmee.github.io',
+    );
   });
 });

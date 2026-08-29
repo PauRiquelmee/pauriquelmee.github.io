@@ -143,6 +143,20 @@ test('keeps project, LinkedIn, recognition, and press links safe', async ({
       name: 'Open Paula Riquelme on LinkedIn in a new tab',
     }),
   ).toHaveAttribute('href', 'https://www.linkedin.com/in/pauriquelme');
+  const repositoryLink = page.getByRole('link', {
+    name: 'Open the source repository for Paula Riquelme Portfolio on GitHub in a new tab',
+  });
+  await expect(repositoryLink).toHaveAttribute(
+    'href',
+    'https://github.com/PauRiquelmee/pauriquelmee.github.io',
+  );
+  await expect(repositoryLink).toHaveAttribute('target', '_blank');
+  await expect(repositoryLink).toHaveAttribute('rel', 'noreferrer noopener');
+  if ((await page.viewportSize())!.width <= 768) {
+    expect((await repositoryLink.boundingBox())!.height).toBeGreaterThanOrEqual(
+      44,
+    );
+  }
   await expect(
     page.getByRole('link', { name: 'Best Undergraduate Paper | OPTIMA 2017' }),
   ).toHaveAttribute('target', '_blank');
