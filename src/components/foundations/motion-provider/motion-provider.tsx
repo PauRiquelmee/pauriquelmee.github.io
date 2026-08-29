@@ -6,10 +6,12 @@ export type MotionProviderProps = {
   children: React.ReactNode;
 };
 
-export default function MotionProvider({ children }: MotionProviderProps) {
+const MotionProvider = ({ children }: MotionProviderProps) => {
   return (
     <LazyMotion features={domAnimation} strict>
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </LazyMotion>
   );
-}
+};
+
+export default MotionProvider;

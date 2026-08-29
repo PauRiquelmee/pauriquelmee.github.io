@@ -8,10 +8,10 @@ export type ButtonProps = Omit<BaseButton.Props, "className"> & {
   variant?: "primary" | "secondary" | "quiet";
 };
 
-const Button = React.forwardRef<HTMLElement, ButtonProps>(function Button(
+const Button = React.forwardRef<HTMLElement, ButtonProps>((
   { className = "", variant = "primary", ...props },
   ref,
-) {
+) => {
   return (
     <BaseButton
       ref={ref}
@@ -20,5 +20,7 @@ const Button = React.forwardRef<HTMLElement, ButtonProps>(function Button(
     />
   );
 });
+
+Button.displayName = "Button";
 
 export default Button;

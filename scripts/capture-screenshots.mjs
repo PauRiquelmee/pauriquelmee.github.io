@@ -13,7 +13,7 @@ const viewports = [
   { name: "mobile", width: 390, height: 844 },
 ];
 
-async function waitForServer() {
+const waitForServer = async () => {
   for (let attempt = 0; attempt < 40; attempt += 1) {
     try {
       const response = await fetch(previewUrl);
@@ -23,11 +23,11 @@ async function waitForServer() {
     }
   }
   throw new Error("The static preview did not become available.");
-}
+};
 
 let browser;
 
-async function revealPage(page) {
+const revealPage = async (page) => {
   const height = await page.evaluate(() => document.documentElement.scrollHeight);
   for (let y = 0; y < height; y += 700) {
     await page.evaluate((scrollY) => window.scrollTo(0, scrollY), y);
@@ -35,7 +35,7 @@ async function revealPage(page) {
   }
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(180);
-}
+};
 
 try {
   await waitForServer();

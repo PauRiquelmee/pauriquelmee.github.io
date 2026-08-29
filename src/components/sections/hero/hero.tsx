@@ -2,7 +2,7 @@ import AnimatedRule from "@/components/foundations/animated-rule";
 import Button from "@/components/foundations/button";
 import { profile } from "@/content/portfolio";
 
-export default function Hero() {
+const Hero = () => {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="role-register" aria-label="Professional roles">
@@ -46,4 +46,6 @@ export default function Hero() {
       </dl>
     </section>
   );
-}
+};
+
+export default Hero;

@@ -10,7 +10,7 @@ export type ProjectCardProps = {
   project: Project;
 };
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <article className="project-card" data-project={project.name.toLowerCase()}>
       <div className="project-card-heading">
@@ -65,4 +65,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </div>
     </article>
   );
-}
+};
+
+export default ProjectCard;

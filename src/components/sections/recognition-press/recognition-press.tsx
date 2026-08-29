@@ -5,7 +5,7 @@ import PressFeature from "@/components/patterns/press-feature";
 import { pressFeatures, recognition } from "@/content/portfolio";
 import { withBasePath } from "@/lib/paths";
 
-export default function RecognitionPress() {
+const RecognitionPress = () => {
   return (
     <section
       id="recognition"
@@ -50,4 +50,6 @@ export default function RecognitionPress() {
       </div>
     </section>
   );
-}
+};
+
+export default RecognitionPress;

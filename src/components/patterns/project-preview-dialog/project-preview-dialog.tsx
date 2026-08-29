@@ -16,14 +16,14 @@ export type ProjectPreviewDialogProps = {
   previewUrl?: string;
 };
 
-export default function ProjectPreviewDialog({
+const ProjectPreviewDialog = ({
   projectName,
   websiteUrl,
   imageSrc,
   imageAlt,
   fallbackMessage,
   previewUrl,
-}: ProjectPreviewDialogProps) {
+}: ProjectPreviewDialogProps) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -94,4 +94,6 @@ export default function ProjectPreviewDialog({
       </Dialog.Portal>
     </Dialog.Root>
   );
-}
+};
+
+export default ProjectPreviewDialog;

@@ -6,7 +6,7 @@ export type ExperienceEntryProps = {
   item: ExperienceItem;
 };
 
-export default function ExperienceEntry({ item }: ExperienceEntryProps) {
+const ExperienceEntry = ({ item }: ExperienceEntryProps) => {
   return (
     <article className="experience-entry">
       <div className="experience-primary">
@@ -54,4 +54,6 @@ export default function ExperienceEntry({ item }: ExperienceEntryProps) {
       </ul>
     </article>
   );
-}
+};
+
+export default ExperienceEntry;

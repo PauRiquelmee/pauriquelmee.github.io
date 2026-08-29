@@ -2,7 +2,7 @@ import { createElement } from "react";
 import ExperienceEntry from "@/components/patterns/experience-entry";
 import { education, experience } from "@/content/portfolio";
 
-export default function Experience() {
+const Experience = () => {
   return (
     <section
       id="experience"
@@ -36,4 +36,6 @@ export default function Experience() {
       </div>
     </section>
   );
-}
+};
+
+export default Experience;

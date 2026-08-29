@@ -2,7 +2,7 @@ import { createElement } from "react";
 import SkillGroup from "@/components/patterns/skill-group";
 import { language, skillGroups } from "@/content/portfolio";
 
-export default function Capabilities() {
+const Capabilities = () => {
   return (
     <section className="section capabilities" aria-labelledby="capabilities-title">
       <div className="section-heading section-heading-row">
@@ -17,4 +17,6 @@ export default function Capabilities() {
       <p className="language-note">{language}</p>
     </section>
   );
-}
+};
+
+export default Capabilities;

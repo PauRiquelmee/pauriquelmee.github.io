@@ -7,7 +7,7 @@ export type PressFeatureProps = {
   feature: PressFeatureData;
 };
 
-export default function PressFeature({ feature }: PressFeatureProps) {
+const PressFeature = ({ feature }: PressFeatureProps) => {
   return (
     <article className="press-feature">
       <div className="press-media">
@@ -34,4 +34,6 @@ export default function PressFeature({ feature }: PressFeatureProps) {
       </a>
     </article>
   );
-}
+};
+
+export default PressFeature;

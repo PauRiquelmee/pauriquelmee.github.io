@@ -4,7 +4,7 @@ import Button from "@/components/foundations/button";
 import { contactLinks } from "@/content/portfolio";
 import { withBasePath } from "@/lib/paths";
 
-export default function Contact() {
+const Contact = () => {
   const emailLink = contactLinks[0];
   const secondaryLinks = contactLinks.slice(1);
 
@@ -44,4 +44,6 @@ export default function Contact() {
       <p className="contact-signoff">Paula Riquelme · Concepción, Chile</p>
     </footer>
   );
-}
+};
+
+export default Contact;

@@ -1,6 +1,6 @@
 import path from "node:path";
 
-export function normalizeOutputPath(pathname) {
+export const normalizeOutputPath = (pathname) => {
   const decodedPath = decodeURIComponent(pathname);
 
   if (decodedPath === "" || decodedPath === "/") return "index.html";
@@ -19,4 +19,4 @@ export function normalizeOutputPath(pathname) {
   return relativePath.endsWith("/")
     ? `${normalizedPath}/index.html`
     : normalizedPath;
-}
+};

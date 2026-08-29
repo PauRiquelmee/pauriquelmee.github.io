@@ -27,7 +27,7 @@ const personStructuredData = {
   ],
 };
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <a className="skip-link" href="#content">
@@ -52,4 +52,6 @@ export default function Home() {
       />
     </>
   );
-}
+};
+
+export default Home;

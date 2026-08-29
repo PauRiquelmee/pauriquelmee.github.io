@@ -7,7 +7,7 @@ const sourceRoot = path.join(root, "src");
 const componentRoot = path.join(sourceRoot, "components");
 const errors = [];
 
-async function walk(directory) {
+const walk = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
   const ignoredDirectories = new Set([
@@ -31,17 +31,17 @@ async function walk(directory) {
   }
 
   return files;
-}
+};
 
-function isJsxNode(node) {
+const isJsxNode = (node) => {
   return (
     ts.isJsxElement(node) ||
     ts.isJsxSelfClosingElement(node) ||
     ts.isJsxFragment(node)
   );
-}
+};
 
-function isJsxExpression(node) {
+const isJsxExpression = (node) => {
   let current = node;
   while (
     ts.isParenthesizedExpression(current) ||
@@ -51,9 +51,9 @@ function isJsxExpression(node) {
     current = current.expression;
   }
   return isJsxNode(current);
-}
+};
 
-function inspectTsx(file, source) {
+const inspectTsx = (file, source) => {
   const ast = ts.createSourceFile(
     file,
     source,
@@ -64,7 +64,7 @@ function inspectTsx(file, source) {
   let componentDeclarations = 0;
   let jsxReturns = 0;
 
-  function functionReturnsJsx(node) {
+  const functionReturnsJsx = (node) => {
     let found = false;
     const visit = (child) => {
       if (found) return;
@@ -78,9 +78,9 @@ function inspectTsx(file, source) {
     if (node.body && isJsxExpression(node.body)) return true;
     if (node.body) ts.forEachChild(node.body, visit);
     return found;
-  }
+  };
 
-  function visit(node) {
+  const visit = (node) => {
     if (
       (ts.isFunctionDeclaration(node) ||
         ts.isFunctionExpression(node) ||
@@ -99,7 +99,7 @@ function inspectTsx(file, source) {
     }
 
     ts.forEachChild(node, visit);
-  }
+  };
 
   visit(ast);
 
@@ -119,9 +119,9 @@ function inspectTsx(file, source) {
       errors.push(`${path.relative(root, file)} bypasses a component folder boundary: ${specifier}.`);
     }
   }
-}
+};
 
-async function inspectComponentFolders() {
+const inspectComponentFolders = async () => {
   const categories = ["foundations", "patterns", "sections"];
 
   for (const category of categories) {
@@ -162,7 +162,7 @@ async function inspectComponentFolders() {
       }
     }
   }
-}
+};
 
 const allFiles = await walk(sourceRoot);
 const productionTsx = allFiles.filter(

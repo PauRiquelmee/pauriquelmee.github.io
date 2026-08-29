@@ -2,7 +2,7 @@
 
 import { m, useReducedMotion } from "motion/react";
 
-export default function AnimatedRule() {
+const AnimatedRule = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -14,4 +14,6 @@ export default function AnimatedRule() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     />
   );
-}
+};
+
+export default AnimatedRule;

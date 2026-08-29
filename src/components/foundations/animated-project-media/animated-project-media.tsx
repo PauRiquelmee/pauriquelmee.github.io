@@ -7,9 +7,9 @@ export type AnimatedProjectMediaProps = {
   children: ReactNode;
 };
 
-export default function AnimatedProjectMedia({
+const AnimatedProjectMedia = ({
   children,
-}: AnimatedProjectMediaProps) {
+}: AnimatedProjectMediaProps) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -23,4 +23,6 @@ export default function AnimatedProjectMedia({
       {children}
     </m.figure>
   );
-}
+};
+
+export default AnimatedProjectMedia;

@@ -7,7 +7,7 @@ FORM: Product launch dossier, first approved composition, seed portfolio-dossier
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
 
-export function injectDirectionContract(html) {
+export const injectDirectionContract = (html) => {
   if (html.includes("portfolio-dossier-v1")) return html;
   return html.replace(/<body([^>]*)>/i, (openingBody) => `${openingBody}${directionContract}`);
-}
+};

@@ -14,6 +14,22 @@ const eslintConfig = defineConfig([
     "coverage/**",
     "next-env.d.ts",
   ]),
+  {
+    files: ["**/*.{js,mjs,cjs,ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "FunctionDeclaration",
+          message: "Use a const arrow declaration.",
+        },
+        {
+          selector: "FunctionExpression",
+          message: "Use an arrow expression.",
+        },
+      ],
+    },
+  },
 ]);
 
 export default eslintConfig;

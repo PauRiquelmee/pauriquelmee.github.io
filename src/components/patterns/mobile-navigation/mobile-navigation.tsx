@@ -6,7 +6,7 @@ import { m, useReducedMotion } from "motion/react";
 import Button from "@/components/foundations/button";
 import { withBasePath } from "@/lib/paths";
 
-export default function MobileNavigation() {
+const MobileNavigation = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -64,4 +64,6 @@ export default function MobileNavigation() {
       </Dialog.Portal>
     </Dialog.Root>
   );
-}
+};
+
+export default MobileNavigation;
