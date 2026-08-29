@@ -2,11 +2,7 @@ import { createElement } from "react";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import PressFeature from "@/components/patterns/press-feature";
-import {
-  methodologyLink,
-  pressFeatures,
-  recognition,
-} from "@/content/portfolio";
+import { pressFeatures, recognition } from "@/content/portfolio";
 import { withBasePath } from "@/lib/paths";
 
 export default function RecognitionPress() {
@@ -33,16 +29,6 @@ export default function RecognitionPress() {
           </a>
           <p>{recognition.description}</p>
           <p>{recognition.outcome}</p>
-          <a
-            className="methodology-link"
-            href={methodologyLink.href}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label={`${methodologyLink.label}. Opens in a new tab`}
-          >
-            {methodologyLink.label}
-            <ExternalLink aria-hidden="true" size={16} strokeWidth={1.7} />
-          </a>
         </div>
         <Image
           src={withBasePath(recognition.image)}

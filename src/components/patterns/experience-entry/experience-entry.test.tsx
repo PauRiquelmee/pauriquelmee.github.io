@@ -14,5 +14,10 @@ describe("ExperienceEntry", () => {
     expect(screen.getByText("May 2019 - July 2021")).toBeVisible();
     expect(screen.getByText("Concepción, Chile")).toBeVisible();
     expect(screen.getByText(/30 technicians/)).toBeVisible();
+    expect(
+      screen.getByRole("link", {
+        name: "Used Carlos Osorio's (defi)2 innovation methodology. Opens in a new tab",
+      }),
+    ).toHaveAttribute("href", "https://defi2.cc/");
   });
 });

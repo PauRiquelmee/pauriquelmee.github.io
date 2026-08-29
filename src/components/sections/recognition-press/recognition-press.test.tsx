@@ -3,15 +3,13 @@ import { describe, expect, it } from "vitest";
 import RecognitionPress from ".";
 
 describe("RecognitionPress", () => {
-  it("renders OPTIMA, methodology, and all five press links", () => {
+  it("renders OPTIMA and all five press links without unrelated methodology", () => {
     render(<RecognitionPress />);
 
     expect(
       screen.getByRole("link", { name: "Best Undergraduate Paper | OPTIMA 2017" }),
     ).toBeVisible();
-    expect(
-      screen.getByRole("link", { name: /Carlos Osorio's \(defi\)2/ }),
-    ).toBeVisible();
+    expect(screen.queryByRole("link", { name: /\(defi\)2/ })).toBeNull();
     expect(
       screen.getAllByText("El Mercurio Innovation", { selector: "span" }),
     ).toHaveLength(5);
