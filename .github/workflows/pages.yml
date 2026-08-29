@@ -1,24 +1,24 @@
-name: Deploy GitHub Pages
+name: Portfolio quality and deployment
 
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: github-pages
-  cancel-in-progress: false
+  group: portfolio-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build:
-    name: Build static portfolio
+  quality:
+    name: Quality gate
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
@@ -29,27 +29,78 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Install dependencies
         run: npm ci
 
-      - name: Build the static export
-        run: npm run build:pages
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate architecture
+        run: npm run validate:architecture
+
+      - name: Validate agent documentation
+        run: npm run validate:agent-docs
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Lint source
+        run: npm run lint
+
+      - name: Check types
+        run: npm run typecheck
+
+      - name: Run coverage
+        run: npm run coverage
+
+      - name: Build the GitHub Pages export
+        run: npm run build
+
+      - name: Run browser tests
+        run: npm run test:e2e
+
+      - name: Enforce Lighthouse targets
+        run: npm run lighthouse
+
+      - name: Configure Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
 
+      - name: Upload browser diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-diagnostics
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+      - name: Upload Lighthouse diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-diagnostics
+          path: .lighthouse
+          if-no-files-found: ignore
+
   deploy:
     name: Deploy portfolio
+    if: github.event_name != 'pull_request'
+    needs: quality
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     timeout-minutes: 10
     steps:
       - name: Deploy to GitHub Pages

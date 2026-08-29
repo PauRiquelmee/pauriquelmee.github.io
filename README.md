@@ -12,11 +12,8 @@
   </p>
 
   <p>
-    <a href="https://github.com/PauRiquelmee/pauriquelmee.github.io/actions/workflows/ci.yml">
-      <img src="https://github.com/PauRiquelmee/pauriquelmee.github.io/actions/workflows/ci.yml/badge.svg?branch=main" alt="Continuous integration status">
-    </a>
     <a href="https://github.com/PauRiquelmee/pauriquelmee.github.io/actions/workflows/pages.yml">
-      <img src="https://github.com/PauRiquelmee/pauriquelmee.github.io/actions/workflows/pages.yml/badge.svg?branch=main" alt="GitHub Pages deployment status">
+      <img src="https://github.com/PauRiquelmee/pauriquelmee.github.io/actions/workflows/pages.yml/badge.svg?branch=main" alt="Portfolio quality and deployment status">
     </a>
   </p>
 </div>
@@ -27,14 +24,14 @@
 
 This repository contains Paula Riquelme's English-only professional portfolio. It presents her work across customer discovery, product strategy, UX/UI, go-to-market execution, and frontend implementation through selected projects, measurable outcomes, professional experience, recognition, and press evidence.
 
-The experience is designed as a product launch dossier, not a generic personal profile. Visitors can understand Paula's range quickly, inspect factual project evidence, download the English resume, and start a conversation from a fast, accessible static site. Dedicated About, Contact, and Privacy pages provide stable trust anchors for people and agents.
+The experience is designed as a product launch dossier, not a generic personal profile. Visitors can understand Paula's range quickly, inspect factual Woku and Inpla case studies, download the English resume, and start a conversation from a fast, accessible static site. Dedicated About, Contact, and Privacy pages provide stable trust anchors for people and agents.
 
 ## Product principles
 
 - **Evidence before biography:** selected work and verified outcomes lead the story.
 - **One source of truth:** portfolio facts live in [`src/content/portfolio.ts`](src/content/portfolio.ts) and are protected by tests.
-- **Static by default:** meaningful content renders to HTML at build time, while JavaScript is reserved for navigation, motion, and project previews.
-- **Honest previews:** projects use factual local screenshots and clear external links when third-party embedding is unavailable.
+- **Static by default:** meaningful content, project evidence, and case studies render to HTML at build time, while JavaScript is reserved for navigation and purposeful motion.
+- **Honest project access:** every project card links to a factual case study and the external product website without presenting a screenshot as a live preview.
 - **Accessible interaction:** semantic landmarks, keyboard navigation, focus restoration, reduced-motion support, visible focus states, and 44 px touch targets are part of the implementation contract.
 
 ## Architecture
@@ -58,7 +55,7 @@ flowchart LR
 | ---------------------------- | ------------------------------------------------------------------------- |
 | `src/app`                    | Route composition, global styles, metadata, sitemap, robots, and manifest |
 | `src/components/sections`    | Page-level portfolio sections                                             |
-| `src/components/patterns`    | Reusable compositions such as project cards and preview dialogs           |
+| `src/components/patterns`    | Reusable compositions such as project cards and case study records        |
 | `src/components/foundations` | Base UI wrappers and low-level motion primitives                          |
 | `src/content`                | Canonical typed portfolio and resume facts                                |
 | `src/lib`                    | URL and static asset path helpers                                         |
@@ -68,18 +65,18 @@ Read the full [architecture record](docs/architecture.md) for dependency rules, 
 
 ## Technology
 
-| Concern         | Choice                                                                   |
-| --------------- | ------------------------------------------------------------------------ |
-| Framework       | Next.js 16 App Router with React 19                                      |
-| Language        | Strict TypeScript                                                        |
-| Styling         | Tailwind CSS 4 and a documented custom design system                     |
-| UI primitives   | Base UI from `@base-ui/react`                                            |
-| Motion          | Motion for React with `LazyMotion` and user-controlled reduced motion    |
-| Unit testing    | Vitest, React Testing Library, user-event, and jest-dom                  |
-| Browser testing | Playwright on desktop Chromium and Pixel 7 viewports                     |
-| Code quality    | ESLint, Prettier, architecture validation, and agent-document validation |
-| Performance     | Lighthouse with enforced category targets                                |
-| Hosting         | Static export deployed through GitHub Actions and GitHub Pages           |
+| Concern         | Choice                                                                    |
+| --------------- | ------------------------------------------------------------------------- |
+| Framework       | Next.js 16 App Router with React 19                                       |
+| Language        | Strict TypeScript                                                         |
+| Styling         | Tailwind CSS 4 theme tokens, local utilities, and concise global defaults |
+| UI primitives   | Base UI from `@base-ui/react`                                             |
+| Motion          | Motion for React with `LazyMotion` and user-controlled reduced motion     |
+| Unit testing    | Vitest, React Testing Library, user-event, and jest-dom                   |
+| Browser testing | Playwright at 1440, 768, 390, and 320 pixel viewport widths               |
+| Code quality    | ESLint, Prettier, architecture validation, and agent-document validation  |
+| Performance     | Lighthouse with enforced category targets                                 |
+| Hosting         | Static export deployed through GitHub Actions and GitHub Pages            |
 
 ## Run locally
 
@@ -109,23 +106,24 @@ The production build is emitted to `out` and includes `.nojekyll`.
 
 ## Commands
 
-| Command                         | Purpose                                                       |
-| ------------------------------- | ------------------------------------------------------------- |
-| `npm run dev`                   | Start the local Next.js development server                    |
-| `npm run build`                 | Create the production static export                           |
-| `npm run preview:pages`         | Build and serve the exported site locally                     |
-| `npm run format`                | Format authored project files with Prettier                   |
-| `npm run format:check`          | Verify formatting without changing files                      |
-| `npm run lint`                  | Run ESLint, including the arrow-function convention           |
-| `npm run typecheck`             | Run strict TypeScript checks without emitting files           |
-| `npm run test`                  | Run the Vitest suite once                                     |
-| `npm run coverage`              | Run unit tests with enforced coverage thresholds              |
-| `npm run test:e2e`              | Test the static export in desktop and mobile Chromium         |
-| `npm run screenshots`           | Capture desktop, tablet, mobile, menu, and preview evidence   |
-| `npm run lighthouse`            | Audit performance, accessibility, best practices, and SEO     |
-| `npm run validate:architecture` | Enforce component and dependency boundaries                   |
-| `npm run validate:agent-docs`   | Confirm contributor instructions remain synchronized          |
-| `npm run generate:assets`       | Regenerate optimized identity, media, icon, and resume assets |
+| Command                         | Purpose                                                            |
+| ------------------------------- | ------------------------------------------------------------------ |
+| `npm run dev`                   | Start the local Next.js development server                         |
+| `npm run build`                 | Create the production static export                                |
+| `npm run preview:pages`         | Build and serve the exported site locally                          |
+| `npm run format`                | Format authored project files with Prettier                        |
+| `npm run format:check`          | Verify formatting without changing files                           |
+| `npm run lint`                  | Run ESLint, including the arrow-function convention                |
+| `npm run typecheck`             | Run strict TypeScript checks without emitting files                |
+| `npm run test`                  | Run the Vitest suite once                                          |
+| `npm run coverage`              | Run unit tests with enforced coverage thresholds                   |
+| `npm run test:e2e`              | Test the static export in desktop and mobile Chromium              |
+| `npm run screenshots`           | Capture responsive home, menu, case study, trust, and 404 evidence |
+| `npm run lighthouse`            | Audit performance, accessibility, best practices, and SEO          |
+| `npm run validate:architecture` | Enforce component and dependency boundaries                        |
+| `npm run validate:agent-docs`   | Confirm contributor instructions remain synchronized               |
+| `npm run generate:assets`       | Regenerate optimized identity, media, icon, and resume assets      |
+| `npm run generate:content`      | Regenerate Markdown and agent files from canonical content         |
 
 ## Quality bar
 
@@ -136,7 +134,7 @@ The repository treats quality requirements as executable constraints:
 - Every reusable component has one implementation, one colocated behavior test, and one default folder export.
 - Every production TSX file contains one named React component. JSX in callbacks and conditions remains idiomatic and is not counted as a second component.
 - JavaScript and TypeScript use arrow functions, single-quoted strings, and double-quoted JSX attributes.
-- The production route, metadata, assets, resume, navigation, dialogs, focus behavior, and reduced-motion path are covered by automated checks.
+- The production routes, metadata, assets, resume, case studies, navigation, focus behavior, reflow, and reduced-motion path are covered by automated checks.
 
 Run the complete pre-pull-request suite with:
 
@@ -150,6 +148,7 @@ npm run lint
 npm run typecheck
 npm run build
 npm run test:e2e
+npm run lighthouse
 ```
 
 ## Content and design integrity
@@ -166,15 +165,16 @@ All visible copy, metadata, tests, documentation, workflow text, identifiers, an
 
 ## Deployment
 
-Every push to `main` triggers continuous integration and the Pages workflow. Pages builds the static export, uploads `out` as an artifact, and deploys it through the official GitHub Pages actions with the `github-pages` environment, minimum permissions, and concurrency protection.
+Pull requests to `main` and pushes to `main` run one complete `Quality gate` job. That job validates architecture and agent documentation, checks formatting, lint and types, enforces coverage, builds the static export once, runs Playwright, and enforces Lighthouse targets. The Pages deploy job depends on that exact job, receives minimum Pages permissions, uploads the already validated `out` artifact, and uses the protected `github-pages` environment.
 
 - [Live portfolio](https://pauriquelmee.github.io/)
 - [About Paula Riquelme](https://pauriquelmee.github.io/about/)
 - [Contact Paula Riquelme](https://pauriquelmee.github.io/contact/)
 - [Privacy notice](https://pauriquelmee.github.io/privacy/)
+- [Woku case study](https://pauriquelmee.github.io/work/woku/)
+- [Inpla case study](https://pauriquelmee.github.io/work/inpla/)
 - [Source repository](https://github.com/PauRiquelmee/pauriquelmee.github.io)
-- [Continuous integration workflow](.github/workflows/ci.yml)
-- [GitHub Pages workflow](.github/workflows/pages.yml)
+- [Quality and GitHub Pages workflow](.github/workflows/pages.yml)
 
 ## Contributing
 

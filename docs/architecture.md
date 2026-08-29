@@ -2,7 +2,7 @@
 
 ## Project constraints
 
-This repository produces an English-only portfolio for Paula Riquelme. The primary experience lives at `/`, supported by focused About, Contact, and Privacy trust pages. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical resume facts in `src/content`.
+This repository produces an English-only portfolio for Paula Riquelme. The primary experience lives at `/`, supported by Woku and Inpla case studies plus focused About, Contact, and Privacy trust pages. The site must export to static files, run at the root of Paula's GitHub Pages user site, avoid server-only features, minimize browser JavaScript, and preserve the canonical professional facts in `src/content`.
 
 The implementation uses strict TypeScript, Tailwind CSS, Base UI, Motion for React, Vitest, React Testing Library, user-event, jest-dom, and Playwright. It does not use another foundational component library, animation library, backend, API route, database, or multilingual routing.
 
@@ -10,7 +10,7 @@ The implementation uses strict TypeScript, Tailwind CSS, Base UI, Motion for Rea
 
 - Use the Next.js App Router because the brief requires it and its Server Components can render static HTML at build time.
 - Use `output: "export"`, `trailingSlash: true`, and unoptimized Next images so `next build` emits the deployable `out` directory.
-- Keep route and section content server-rendered by default. Mark only Motion providers, dialogs, and mobile navigation as client components.
+- Keep route and section content server-rendered by default. Mark only Motion providers, motion primitives, and mobile navigation as client components.
 - Store canonical content as typed plain data. Components render this data but do not own resume facts.
 - Use Base UI for buttons and dialogs. Semantic content and ordinary anchor navigation stay native HTML.
 - Wrap each reusable component in its own folder with a colocated test and a default export from `index.ts`.
@@ -39,7 +39,7 @@ tests/e2e/                Playwright flows
 
 `foundations` own meaningful project-specific Base UI wrappers and preserve prop forwarding, refs, state attributes, keyboard behavior, and accessibility. Self-contained interaction patterns may import Base UI directly when an additional wrapper would add no semantic, accessibility, behavioral, or styling value. Sections and routes may not import Base UI directly.
 
-`patterns` combine foundations and semantic HTML into reusable units such as project previews, metric groups, press links, and resume links.
+`patterns` combine foundations and semantic HTML into reusable units such as project cards, case study records, experience entries, and press links.
 
 `sections` compose patterns and content for one major page region. A section may not import another section.
 
@@ -52,8 +52,8 @@ app -> sections -> patterns -> foundations -> Base UI
                  -> content
                  -> lib
 
-content -> types only
-lib -> platform APIs only
+lib -> content
+content -> typed data only
 ```
 
 Imports must enter component folders through `index.ts`. Broad component barrels are prohibited. This keeps boundaries explicit and prevents circular dependencies.
@@ -62,13 +62,13 @@ Each production TSX file contains exactly one named React component. Idiomatic J
 
 ## Base UI strategy
 
-Base UI is installed as `@base-ui/react`. The project uses its Button and Dialog primitives for controls, mobile navigation, and project previews. Wrappers accept the underlying Base UI types, forward supported props, and style public state attributes with Tailwind. Composition uses Base UI's `render` API only when changing the rendered element is necessary. Dialog focus trapping, Escape handling, and focus restoration remain Base UI responsibilities.
+Base UI is installed as `@base-ui/react`. The foundation Button owns actionable button behavior, while the self-contained mobile navigation pattern imports Dialog directly because a second wrapper would add no project-specific value. Wrappers accept the underlying Base UI types and preserve supported props, refs, state attributes, and accessible behavior. Dialog composition uses Base UI's `render` API for its native button controls and semantic navigation links. Focus trapping, Escape handling, and focus restoration remain Base UI responsibilities.
 
 Native anchors remain appropriate for static in-page and external navigation. Static headings, articles, lists, and grids do not receive unnecessary interactive wrappers.
 
 ## Motion strategy
 
-A small client-side provider wraps the page in `LazyMotion` and `<MotionConfig reducedMotion="user">`. Motion components use `m` from `motion/react`. The hero receives one restrained entrance sequence, project media receives reveal feedback, and dialogs use short opacity and transform transitions. `AnimatePresence` is reserved for real exit transitions.
+A small client-side provider wraps the page in `LazyMotion` and `<MotionConfig reducedMotion="user">`. Motion components use `m` from `motion/react`. The hero rule receives one restrained entrance sequence, project media receives reveal feedback, and mobile navigation uses a short transform and opacity transition. `AnimatePresence` is reserved for real exit transitions.
 
 Content remains visible in server-rendered HTML. Motion does not gate meaningful content before hydration. Reduced-motion tests verify that large transforms are removed or replaced with opacity-only feedback.
 
@@ -82,11 +82,17 @@ No component uses cookies, headers, draft mode, server actions, rewrites, redire
 
 The repository is named `pauriquelmee.github.io`, so production is served directly from `/` without `basePath` or `assetPrefix`. `src/lib/paths.ts` provides one tested helper that normalizes public asset URLs to root-relative paths.
 
-The canonical production origin is `https://PauRiquelmee.github.io/`. Metadata, sitemap, robots, manifest, JSON-LD, resume links, screenshots, icons, and social cards use the user-site root.
+The canonical production origin is `https://pauriquelmee.github.io/`. Metadata, sitemap, robots, manifest, JSON-LD, resume links, screenshots, icons, and social cards use the user-site root.
 
 ## Content architecture
 
-All resume facts live in `src/content/portfolio.ts` with explicit TypeScript types. Experience, education, skills, metrics, recognition, press, contact links, and trust-page content are separate exported records. This gives tests a single factual source and prevents text drift across sections, routes, metadata, JSON-LD, and the resume generator.
+All professional facts live in `src/content/portfolio.ts` with explicit TypeScript types. Experience, education, skills, metrics, case study framing, recognition, press, contact links, and trust-page content are separate exported records. Server components, metadata, JSON-LD, route helpers, social assets, the PDF resume, `llms.txt`, and `index.md` derive from that source. Deterministic generation tests detect factual drift, including the exact Woku date.
+
+## Styling strategy
+
+Tailwind CSS 4 owns component layout and presentation through utilities placed in the relevant production TSX files. `globals.css` defines Tailwind theme tokens, the paper and ink document defaults, reset behavior, focus and selection, shared section and button contracts, mobile-dialog selectors, and complex reduced-motion selectors. Component-specific project, case study, experience, capability, recognition, press, contact, trust-page, and hero layouts do not live in a monolithic global stylesheet.
+
+Informative metadata, captions, navigation, and actions remain at least 12 pixels. Supporting copy remains at least 14 pixels and body copy defaults to 16 pixels. The Playwright matrix verifies reflow and horizontal overflow at 1440 x 1000, 768 x 1024, 390 x 844, and 320 x 844.
 
 The site does not invent testimonials, customer names, awards, dates, metrics, roles, funding sources, or capabilities. Press imagery and links are mapped explicitly to the supplied local files.
 
@@ -94,18 +100,18 @@ The site does not invent testimonials, customer names, awards, dates, metrics, r
 
 The component workflow is test-first: add a behavior test, run it and confirm the expected failure, implement the minimum behavior, run the relevant test, then refactor while green.
 
-Vitest and React Testing Library cover semantic roles, names, external links, disabled controls, focus behavior, mobile navigation, project preview loading, Escape closing, focus restoration, fallback messaging, resume downloads, reduced motion, base paths, and English metadata. Coverage thresholds are 90 percent statements, lines, and functions, plus 85 percent branches for the component layer.
+Vitest and React Testing Library cover semantic roles, names, project and external links, disabled controls, focus behavior, mobile navigation, Escape closing, focus restoration, case study structure, canonical generation, resume downloads, reduced motion, base paths, and English metadata. Coverage thresholds are 90 percent statements, lines, and functions, plus 85 percent branches for the component layer.
 
-Playwright runs against the static export served at the production root. It covers navigation, mobile menu, previews, fallbacks, external links, resume download, LinkedIn, press links, core content, and static assets.
+Playwright runs against the static export served at the production root. It covers navigation, mobile menu, case study routes and metadata, external links, resume download, LinkedIn, press links, content, static assets, minimum informative text sizes, and responsive overflow.
 
-The custom architecture validator parses production TSX and folder structure. CI runs lint, typecheck, unit tests, coverage, architecture validation, agent-document validation, build, and Playwright.
+The custom architecture validator parses production TSX and folder structure. The single `Quality gate` CI job runs architecture and agent-document validation, formatting, lint, typecheck, coverage, one build, Playwright, and Lighthouse. Deployment depends on that job and cannot run independently after a failed check.
 
 ## Accessibility strategy
 
 - Semantic landmarks and ordered heading levels.
 - Skip link and visible `:focus-visible` treatments.
-- Base UI focus trapping and restoration for dialogs.
-- Descriptive accessible names for project previews and external press links.
+- Base UI focus trapping and restoration for mobile navigation.
+- Descriptive accessible names for case study, project website, and external press links.
 - `aria-current` only where state is real.
 - Mobile touch targets of at least 44 pixels.
 - WCAG AA foreground and surface contrast.
@@ -131,7 +137,7 @@ The English resume PDF is generated from canonical content using a deterministic
 
 ## Trade-offs
 
-- Base UI and Motion add client code, but only interactive preview and navigation islands import them.
+- Base UI and Motion add client code, but only button, navigation, and motion islands import them.
 - Static export removes server-dependent features, which fits a portfolio and makes hosting simple.
 - Next image optimization is disabled for GitHub Pages, so assets must be pre-optimized at build time.
 - One-component-per-file increases file count but makes the requested boundaries mechanically enforceable.
@@ -145,4 +151,4 @@ The English resume PDF is generated from canonical content using a deterministic
 - Radix UI, shadcn/ui, Headless UI, Material UI, and Chakra UI: rejected because Base UI is the required foundation.
 - CSS animation libraries or custom entrance keyframes: rejected because Motion is the required animation system.
 - MDX or a content management system: rejected because one canonical typed content module is simpler and more enforceable.
-- Runtime iframe capability probing: rejected because cross-origin frame policies cannot be inspected reliably from a static browser client. Deployment-time header checks and explicit fallback messaging are more honest.
+- Runtime product preview probing: rejected because cross-origin frame policies cannot be inspected reliably from a static browser client. Dedicated factual case studies and explicit website links are more honest than presenting a screenshot as a live product.
